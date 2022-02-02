@@ -1,24 +1,39 @@
 package com.mydiploma.autohelper;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 
 public class Car {
-    boolean model;
     String maker;
+    String model;
     float engineVolume;
-    transmissionEnum transmission;
+    TransmissionEnum transmission;
     String color;
-    Date changeOilDate;
     int productionYear;
-    boolean health;
-    Date insuranceEndDate;
+    float fuelAmount;
+    String currentOilBrand;
+    String wheelsType;
+    Date insuranceRunOutDate;
+    SparePart[] spareParts;
 
-    public boolean isModel() {
-        return model;
+    public Car() {
     }
 
-    public void setModel(boolean model) {
+    public Car(String maker, String model, float engineVolume, TransmissionEnum transmission,
+               String color, int productionYear, float fuelAmount, String currentOilBrand,
+               String wheelsType, Date insuranceRunOutDate, SparePart[] spareParts) {
+        this.maker = maker;
         this.model = model;
+        this.engineVolume = engineVolume;
+        this.transmission = transmission;
+        this.color = color;
+        this.productionYear = productionYear;
+        this.fuelAmount = fuelAmount;
+        this.currentOilBrand = currentOilBrand;
+        this.wheelsType = wheelsType;
+        this.insuranceRunOutDate = insuranceRunOutDate;
+        this.spareParts = spareParts;
     }
 
     public String getMaker() {
@@ -29,6 +44,14 @@ public class Car {
         this.maker = maker;
     }
 
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public float getEngineVolume() {
         return engineVolume;
     }
@@ -37,11 +60,11 @@ public class Car {
         this.engineVolume = engineVolume;
     }
 
-    public transmissionEnum getTransmission() {
+    public TransmissionEnum getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(transmissionEnum transmission) {
+    public void setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
     }
 
@@ -53,14 +76,6 @@ public class Car {
         this.color = color;
     }
 
-    public Date getChangeOilDate() {
-        return changeOilDate;
-    }
-
-    public void setChangeOilDate(Date changeOilDate) {
-        this.changeOilDate = changeOilDate;
-    }
-
     public int getProductionYear() {
         return productionYear;
     }
@@ -69,28 +84,82 @@ public class Car {
         this.productionYear = productionYear;
     }
 
-    public boolean isHealth() {
-        return health;
+    public float getFuelAmount() {
+        return fuelAmount;
     }
 
-    public void setHealth(boolean health) {
-        this.health = health;
+    public void setFuelAmount(float fuelAmount) {
+        this.fuelAmount = fuelAmount;
     }
 
-    public Date getInsuranceEndDate() {
-        return insuranceEndDate;
+    public String getCurrentOilBrand() {
+        return currentOilBrand;
     }
 
-    public void setInsuranceEndDate(Date insuranceEndDate) {
-        this.insuranceEndDate = insuranceEndDate;
+    public void setCurrentOilBrand(String currentOilBrand) {
+        this.currentOilBrand = currentOilBrand;
     }
 
-    public Car(boolean model) {
+    public String getWheelsType() {
+        return wheelsType;
     }
 
-    enum transmissionEnum{
-        MANUAL,
+    public void setWheelsType(String wheelsType) {
+        this.wheelsType = wheelsType;
+    }
+
+    public Date getInsuranceRunOutDate() {
+        return insuranceRunOutDate;
+    }
+
+    public void setInsuranceRunOutDate(Date insuranceRunOutDate) {
+        this.insuranceRunOutDate = insuranceRunOutDate;
+    }
+
+    public SparePart[] getSpareParts() {
+        return spareParts;
+    }
+
+    public void setSpareParts(SparePart[] spareParts) {
+        this.spareParts = spareParts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Float.compare(car.engineVolume, engineVolume) == 0 && productionYear == car.productionYear && Float.compare(car.fuelAmount, fuelAmount) == 0 && Objects.equals(maker, car.maker) && Objects.equals(model, car.model) && transmission == car.transmission && Objects.equals(color, car.color) && Objects.equals(currentOilBrand, car.currentOilBrand) && Objects.equals(wheelsType, car.wheelsType) && Objects.equals(insuranceRunOutDate, car.insuranceRunOutDate) && Arrays.equals(spareParts, car.spareParts);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(maker, model, engineVolume, transmission, color, productionYear, fuelAmount, currentOilBrand, wheelsType, insuranceRunOutDate);
+        result = 31 * result + Arrays.hashCode(spareParts);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "maker='" + maker + '\'' +
+                ", model='" + model + '\'' +
+                ", engineVolume=" + engineVolume +
+                ", transmission=" + transmission +
+                ", color='" + color + '\'' +
+                ", productionYear=" + productionYear +
+                ", fuelAmount=" + fuelAmount +
+                ", currentOilBrand='" + currentOilBrand + '\'' +
+                ", wheelsType='" + wheelsType + '\'' +
+                ", insuranceRunOutDate=" + insuranceRunOutDate +
+                ", spareParts=" + Arrays.toString(spareParts) +
+                '}';
+    }
+
+    enum TransmissionEnum{
+        MECHANICAL,
         AUTOMATIC,
-        CONTINUOUSLY
+        ROBOTIC,
+        VARIABLE
     };
 }

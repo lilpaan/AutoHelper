@@ -1,6 +1,25 @@
 <resources>
-    <string name="app_name">AutoHelper</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">Auto Helper</string>
+    <!--Buttons-->
+    <string name="ok_button">OK</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="add_car_button">Добавить автомобиль</string>
+
+    <!--Menu-->
+    <string name="title_cards">Карточки</string>
+    <string name="title_auto">Авто</string>
+    <string name="title_refills">Заправки</string>
+
+    <!--Automobile properties-->
+    <string name="maker">Марка автомобиля</string>
+    <string name="model">Модель</string>
+    <string name="engine_volume">Марка автомобиля</string>
+    <string name="transmission">Марка автомобиля</string>
+    <string name="color">Марка автомобиля</string>
+    <string name="production_year">Марка автомобиля</string>
+    <string name="fuel_amount">Марка автомобиля</string>
+    <string name="current_oil_brand">Марка автомобиля</string>
+    <string name="wheels_type">Марка автомобиля</string>
+    <string name="insurance_run_out_date">Марка автомобиля</string>
+
 </resources>
