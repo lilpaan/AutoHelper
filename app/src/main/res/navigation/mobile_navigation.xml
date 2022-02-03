@@ -6,20 +6,20 @@
     app:startDestination="@+id/navigation_dashboard">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.mydiploma.autohelper.ui.home.HomeFragment"
+        android:id="@+id/navigation_infoCards"
+        android:name="com.mydiploma.autohelper.ui.infoCards.HomeFragment"
         android:label="@string/title_cards"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.mydiploma.autohelper.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_сars"
+        android:name="com.mydiploma.autohelper.ui.cars.DashboardFragment"
         android:label="@string/title_auto"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.mydiploma.autohelper.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_refills"
+        android:name="com.mydiploma.autohelper.ui.refills.NotificationsFragment"
         android:label="@string/title_refills"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

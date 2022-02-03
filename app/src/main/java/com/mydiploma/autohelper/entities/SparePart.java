@@ -1,4 +1,4 @@
-package com.mydiploma.autohelper;
+package com.mydiploma.autohelper.entities;
 
 import java.util.Date;
 
