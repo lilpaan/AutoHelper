@@ -1,6 +1,6 @@
-package com.mydiploma.autohelper;
+package com.mydiploma.autohelper.entity;
+
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -9,7 +9,6 @@ import java.util.Objects;
 
 @Entity
 public class Car {
-    @NonNull
     @PrimaryKey(autoGenerate = true)
     long id;
     String maker;
@@ -153,6 +152,7 @@ public class Car {
         return Objects.hash(id, maker, model, engineVolume, transmission, color, productionYear, fuelAmount, currentOilBrand, wheelsType, insuranceRunOutDate);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Car{" +
@@ -170,10 +170,4 @@ public class Car {
                 '}';
     }
 
-    enum TransmissionEnum{
-        MECHANICAL,
-        AUTOMATIC,
-        ROBOTIC,
-        VARIABLE
-    };
 }

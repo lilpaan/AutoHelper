@@ -1,5 +1,6 @@
-package com.mydiploma.autohelper;
+package com.mydiploma.autohelper.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -11,12 +12,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.mydiploma.autohelper.Constants;
+import com.mydiploma.autohelper.R;
+import com.mydiploma.autohelper.entity.Car;
+
 public class CarAdapter extends ArrayAdapter<Car>{
 
         public CarAdapter(@NonNull Context context, @NonNull Car[] objects) {
             super(context, R.layout.car_item, objects);
         }
 
+        @SuppressLint(Constants.INFLATE_PARAMS)
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -24,11 +30,9 @@ public class CarAdapter extends ArrayAdapter<Car>{
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.car_item, null);
             }
-            if (position%2==0){
-                convertView.setBackgroundColor(Color.argb(190, 127, 255, 0));
-            } else {
-                convertView.setBackgroundColor(Color.argb(190, 152, 251, 152));
-            }
+                convertView.setBackgroundColor(Color.argb(Constants.CAR_ADAPTER_COLOR_ALPHA,
+                        Constants.CAR_ADAPTER_COLOR_RED, Constants.CAR_ADAPTER_COLOR_GREEN,
+                        Constants.CAR_ADAPTER_COLOR_BLUE));
             ((TextView) convertView.findViewById(R.id.added_cars)).setText(car.getModel());
             return convertView;
         }

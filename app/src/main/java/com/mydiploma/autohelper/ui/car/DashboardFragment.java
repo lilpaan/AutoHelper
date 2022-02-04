@@ -1,4 +1,4 @@
-package com.mydiploma.autohelper.ui.dashboard;
+package com.mydiploma.autohelper.ui.car;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,19 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.room.Room;
 
-import com.mydiploma.autohelper.Car;
-import com.mydiploma.autohelper.CarAdapter;
-import com.mydiploma.autohelper.CarDao;
-import com.mydiploma.autohelper.CarDatabase;
+import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
+import com.mydiploma.autohelper.adapter.CarAdapter;
+import com.mydiploma.autohelper.dao.CarDao;
+import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.databinding.FragmentDashboardBinding;
+import com.mydiploma.autohelper.entity.Car;
 
 public class DashboardFragment extends Fragment {
 
@@ -29,7 +28,6 @@ public class DashboardFragment extends Fragment {
     Car[] cars;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -37,7 +35,8 @@ public class DashboardFragment extends Fragment {
         Thread thread = new Thread(){
             @Override
             public void run() {
-                carDatabase = Room.databaseBuilder(requireContext(), CarDatabase.class, "car").build();
+                carDatabase = Room.databaseBuilder(requireContext(), CarDatabase.class,
+                        Constants.CAR).build();
                 carDao = carDatabase.carDao();
                 cars = carDao.getCarTitle().toArray(new Car[0]);
             }
@@ -51,12 +50,9 @@ public class DashboardFragment extends Fragment {
         CarAdapter adapter = new CarAdapter(requireContext(), cars);
         lv.setAdapter(adapter);
         Button button = root.findViewById(R.id.addCarButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(root.getContext(), AddCarActivity.class);
-                startActivity(intent);
-            }
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(root.getContext(), AddCarActivity.class);
+            startActivity(intent);
         });
         return root;
     }

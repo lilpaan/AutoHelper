@@ -1,4 +1,4 @@
-package com.mydiploma.autohelper.ui.dashboard;
+package com.mydiploma.autohelper.ui.car;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
@@ -7,12 +7,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.mydiploma.autohelper.Car;
-import com.mydiploma.autohelper.CarDao;
-import com.mydiploma.autohelper.CarDatabase;
+import com.mydiploma.autohelper.Constants;
+import com.mydiploma.autohelper.entity.Car;
+import com.mydiploma.autohelper.dao.CarDao;
+import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.R;
-
-import java.util.Date;
 
 public class AddCarActivity extends AppCompatActivity {
 
@@ -23,12 +22,18 @@ public class AddCarActivity extends AppCompatActivity {
         Button ok = findViewById(R.id.saveCarButton);
         Button cancelAdd = findViewById(R.id.cancelAddCarButton);
         ok.setOnClickListener(v -> {
+
+
 /*            CarDatabase db = Room.databaseBuilder(getApplicationContext(),
-                    CarDatabase.class, "car")
+                    CarDatabase.class, Constants.CAR)
                     .fallbackToDestructiveMigration()
                     .build();*/
+
+
             CarDatabase db =  Room.databaseBuilder(getApplicationContext(),
-                    CarDatabase.class, "Car").build();
+                    CarDatabase.class, Constants.CAR).build();
+
+
             Car car = new Car();
             car.setMaker (((EditText) findViewById(R.id.input_maker)).getText().toString());
             car.setModel (((EditText) findViewById(R.id.input_model)).getText().toString());
@@ -48,8 +53,6 @@ public class AddCarActivity extends AppCompatActivity {
             thread.start();
             finish();
         });
-        cancelAdd.setOnClickListener(v -> {
-            finish();
-        });
+        cancelAdd.setOnClickListener(v -> finish());
     }
 }

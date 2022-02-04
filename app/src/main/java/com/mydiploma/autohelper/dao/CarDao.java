@@ -1,4 +1,4 @@
-package com.mydiploma.autohelper;
+package com.mydiploma.autohelper.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -7,6 +7,9 @@ import androidx.room.Query;
 import androidx.room.RoomWarnings;
 import androidx.room.Update;
 
+import com.mydiploma.autohelper.Constants;
+import com.mydiploma.autohelper.entity.Car;
+
 import java.util.List;
 
 @Dao
@@ -14,14 +17,13 @@ public interface CarDao {
 
         @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
 
-        @Query("SELECT id, maker, model, engineVolume, productionYear, fuelAmount FROM car")
+        @Query(Constants.SQL_CAR_TITLE_INFO)
         List<Car> getCarTitle();
 
-
-        @Query("SELECT * FROM car")
+        @Query(Constants.SQL_CAR_ALL_INFO)
         List<Car> getAll();
 
-        @Query("SELECT * FROM car WHERE id = :id")
+        @Query(Constants.SQL_CAR_BY_ID)
         Car getById(long id);
 
         @Insert
