@@ -1,4 +1,4 @@
-package com.mydiploma.autohelper.ui.cars;
+package com.mydiploma.autohelper.ui.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;

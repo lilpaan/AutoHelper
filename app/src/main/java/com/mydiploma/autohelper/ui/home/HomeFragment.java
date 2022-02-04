@@ -1,4 +1,4 @@
-package com.mydiploma.autohelper.ui.infoCards;
+package com.mydiploma.autohelper.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {

@@ -1,4 +1,4 @@
-package com.mydiploma.autohelper.entities;
+package com.mydiploma.autohelper;
 
 import java.util.Objects;
 
