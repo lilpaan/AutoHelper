@@ -14,7 +14,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginBottom="10dp"
         android:ems="10"
-        android:hint= "Марка автомобиля"
+        android:hint="Марка авто"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
         app:layout_constraintStart_toStartOf="parent"
