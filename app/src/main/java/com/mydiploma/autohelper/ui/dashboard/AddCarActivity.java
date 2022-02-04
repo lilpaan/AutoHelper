@@ -1,15 +1,18 @@
 package com.mydiploma.autohelper.ui.dashboard;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.mydiploma.autohelper.Car;
+import com.mydiploma.autohelper.CarDao;
+import com.mydiploma.autohelper.CarDatabase;
 import com.mydiploma.autohelper.R;
+
+import java.util.Date;
 
 public class AddCarActivity extends AppCompatActivity {
 
@@ -20,13 +23,30 @@ public class AddCarActivity extends AppCompatActivity {
         Button ok = findViewById(R.id.saveCarButton);
         Button cancelAdd = findViewById(R.id.cancelAddCarButton);
         ok.setOnClickListener(v -> {
-/*            Car car = new Car();
-            EditText edit = (EditText)findViewById(R.id.inputMaker);
-            TextView tview = (TextView)findViewById(R.id.inputMaker);
-            String result = edit.getText().toString();
-            tview.setText(result);*/
-/*            car.setMaker(findViewById(R.id.inputMaker).toString());
-            car.setModel();*/
+/*            CarDatabase db = Room.databaseBuilder(getApplicationContext(),
+                    CarDatabase.class, "car")
+                    .fallbackToDestructiveMigration()
+                    .build();*/
+            CarDatabase db =  Room.databaseBuilder(getApplicationContext(),
+                    CarDatabase.class, "Car").build();
+            Car car = new Car();
+            car.setMaker (((EditText) findViewById(R.id.input_maker)).getText().toString());
+            car.setModel (((EditText) findViewById(R.id.input_model)).getText().toString());
+            car.setEngineVolume (Float.parseFloat(((EditText) findViewById(R.id.input_engine_volume)).getText().toString()));
+            car.setTransmission (((EditText) findViewById(R.id.input_type_of_transmission)).getText().toString());
+            car.setColor (((EditText) findViewById(R.id.input_color)).getText().toString());
+            car.setProductionYear (Integer.parseInt(((EditText) findViewById(R.id.input_production_year)).getText().toString()));
+            car.setCurrentOilBrand (((EditText) findViewById(R.id.input_current_oil_brand)).getText().toString());
+            car.setInsuranceRunOutDate (((EditText) findViewById(R.id.input_insurance_run_out_date)).getText().toString());
+            CarDao carDao = db.carDao();
+            Thread thread = new Thread(){
+                @Override
+                public void run() {
+                    carDao.insert(car);
+                }
+            };
+            thread.start();
+            finish();
         });
         cancelAdd.setOnClickListener(v -> {
             finish();

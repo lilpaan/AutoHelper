@@ -1,28 +1,45 @@
 package com.mydiploma.autohelper;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
-import java.util.Arrays;
-import java.util.Date;
 import java.util.Objects;
 
+@Entity
 public class Car {
+    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    long id;
     String maker;
     String model;
     float engineVolume;
-    TransmissionEnum transmission;
+    String transmission;
     String color;
     int productionYear;
     float fuelAmount;
     String currentOilBrand;
     String wheelsType;
-    Date insuranceRunOutDate;
-    SparePart[] spareParts;
+    String insuranceRunOutDate;
 
     public Car() {
     }
 
-    public Car(String maker, String model, float engineVolume, TransmissionEnum transmission,
+    @Ignore
+    public Car(long id, String maker, String model, float engineVolume, int productionYear, float fuelAmount) {
+        this.id = id;
+        this.maker = maker;
+        this.model = model;
+        this.engineVolume = engineVolume;
+        this.productionYear = productionYear;
+        this.fuelAmount = fuelAmount;
+    }
+
+    public Car(long id, String maker, String model, float engineVolume, String transmission,
                String color, int productionYear, float fuelAmount, String currentOilBrand,
-               String wheelsType, Date insuranceRunOutDate, SparePart[] spareParts) {
+               String wheelsType, String insuranceRunOutDate) {
+        this.id = id;
         this.maker = maker;
         this.model = model;
         this.engineVolume = engineVolume;
@@ -33,7 +50,14 @@ public class Car {
         this.currentOilBrand = currentOilBrand;
         this.wheelsType = wheelsType;
         this.insuranceRunOutDate = insuranceRunOutDate;
-        this.spareParts = spareParts;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getMaker() {
@@ -60,11 +84,11 @@ public class Car {
         this.engineVolume = engineVolume;
     }
 
-    public TransmissionEnum getTransmission() {
+    public String getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(TransmissionEnum transmission) {
+    public void setTransmission(String transmission) {
         this.transmission = transmission;
     }
 
@@ -108,20 +132,12 @@ public class Car {
         this.wheelsType = wheelsType;
     }
 
-    public Date getInsuranceRunOutDate() {
+    public String getInsuranceRunOutDate() {
         return insuranceRunOutDate;
     }
 
-    public void setInsuranceRunOutDate(Date insuranceRunOutDate) {
+    public void setInsuranceRunOutDate(String insuranceRunOutDate) {
         this.insuranceRunOutDate = insuranceRunOutDate;
-    }
-
-    public SparePart[] getSpareParts() {
-        return spareParts;
-    }
-
-    public void setSpareParts(SparePart[] spareParts) {
-        this.spareParts = spareParts;
     }
 
     @Override
@@ -129,30 +145,28 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return Float.compare(car.engineVolume, engineVolume) == 0 && productionYear == car.productionYear && Float.compare(car.fuelAmount, fuelAmount) == 0 && Objects.equals(maker, car.maker) && Objects.equals(model, car.model) && transmission == car.transmission && Objects.equals(color, car.color) && Objects.equals(currentOilBrand, car.currentOilBrand) && Objects.equals(wheelsType, car.wheelsType) && Objects.equals(insuranceRunOutDate, car.insuranceRunOutDate) && Arrays.equals(spareParts, car.spareParts);
+        return id == car.id && Float.compare(car.engineVolume, engineVolume) == 0 && productionYear == car.productionYear && Float.compare(car.fuelAmount, fuelAmount) == 0 && Objects.equals(maker, car.maker) && Objects.equals(model, car.model) && Objects.equals(transmission, car.transmission) && Objects.equals(color, car.color) && Objects.equals(currentOilBrand, car.currentOilBrand) && Objects.equals(wheelsType, car.wheelsType) && Objects.equals(insuranceRunOutDate, car.insuranceRunOutDate);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(maker, model, engineVolume, transmission, color, productionYear, fuelAmount, currentOilBrand, wheelsType, insuranceRunOutDate);
-        result = 31 * result + Arrays.hashCode(spareParts);
-        return result;
+        return Objects.hash(id, maker, model, engineVolume, transmission, color, productionYear, fuelAmount, currentOilBrand, wheelsType, insuranceRunOutDate);
     }
 
     @Override
     public String toString() {
         return "Car{" +
-                "maker='" + maker + '\'' +
+                "id=" + id +
+                ", maker='" + maker + '\'' +
                 ", model='" + model + '\'' +
                 ", engineVolume=" + engineVolume +
-                ", transmission=" + transmission +
+                ", transmission='" + transmission + '\'' +
                 ", color='" + color + '\'' +
                 ", productionYear=" + productionYear +
                 ", fuelAmount=" + fuelAmount +
                 ", currentOilBrand='" + currentOilBrand + '\'' +
                 ", wheelsType='" + wheelsType + '\'' +
-                ", insuranceRunOutDate=" + insuranceRunOutDate +
-                ", spareParts=" + Arrays.toString(spareParts) +
+                ", insuranceRunOutDate='" + insuranceRunOutDate + '\'' +
                 '}';
     }
 
