@@ -20,7 +20,7 @@ import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.databinding.FragmentDashboardBinding;
 import com.mydiploma.autohelper.entity.Car;
 
-public class DashboardFragment extends Fragment {
+public class CarFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
     CarDatabase carDatabase;

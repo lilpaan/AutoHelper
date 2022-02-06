@@ -14,21 +14,21 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
 
-public class NotificationsFragment extends Fragment {
+public class RefillFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    private RefillViewModel refillViewModel;
     private FragmentNotificationsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        refillViewModel =
+                new ViewModelProvider(this).get(RefillViewModel.class);
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        refillViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blueForBack"
     tools:context=".ui.car.AddCarActivity">
 
     <EditText
@@ -16,6 +17,9 @@
         android:ems="10"
         android:hint="Марка авто"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#36CF20"
+        android:textColorHint="@color/whiteForHint"
         app:layout_constraintBottom_toTopOf="@+id/input_model"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,6 +53,7 @@
         android:ems="10"
         android:hint="Модель"
         android:inputType="textPersonName"
+        android:textColorHint="@color/whiteForHint"
         app:layout_constraintBottom_toTopOf="@+id/input_engine_volume"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,6 +66,7 @@
         android:ems="10"
         android:hint="Объём двигателя"
         android:inputType="numberDecimal"
+        android:textColorHint="@color/whiteForHint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_model" />
 
@@ -73,6 +79,7 @@
         android:ems="10"
         android:hint="Тип трансмиссии"
         android:inputType="textPersonName"
+        android:textColorHint="@color/whiteForHint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_engine_volume" />
 
@@ -85,6 +92,7 @@
         android:ems="10"
         android:hint="Цвет"
         android:inputType="textPersonName"
+        android:textColorHint="@color/whiteForHint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_type_of_transmission" />
 
@@ -97,6 +105,7 @@
         android:ems="10"
         android:hint="Год выпуска"
         android:inputType="number"
+        android:textColorHint="@color/whiteForHint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_color" />
 
@@ -109,6 +118,7 @@
         android:ems="10"
         android:hint="Текущее моторное масло"
         android:inputType="textPersonName"
+        android:textColorHint="@color/whiteForHint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_production_year" />
 
@@ -121,6 +131,7 @@
         android:ems="10"
         android:hint="Окончание страховки"
         android:inputType="text"
+        android:textColorHint="@color/whiteForHint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_current_oil_brand" />
 
