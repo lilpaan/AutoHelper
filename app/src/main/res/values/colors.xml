@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blueForBack">#131742</color>
     <color name="whiteForHint">#EFE8E8</color>
+    <color name="auto_helper">#AFCAE7</color>
+
 
 </resources>

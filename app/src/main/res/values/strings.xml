@@ -9,6 +9,7 @@
     <string name="title_cards">Карточки</string>
     <string name="title_auto">Авто</string>
     <string name="title_refills">Заправки</string>
+    <string name="auto_helper">Auto Helper</string>
 
     <!--Automobile properties-->
     <string name="maker">Марка автомобиля</string>
