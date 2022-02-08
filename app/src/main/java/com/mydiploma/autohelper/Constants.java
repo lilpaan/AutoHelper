@@ -1,10 +1,7 @@
 package com.mydiploma.autohelper;
 
 public class Constants {
-    public static final int CAR_ADAPTER_COLOR_ALPHA = 190;
-    public static final int CAR_ADAPTER_COLOR_RED = 127;
-    public static final int CAR_ADAPTER_COLOR_GREEN = 255;
-    public static final int CAR_ADAPTER_COLOR_BLUE = 0;
+    public static final String CAR_ADAPTER_COLOR = "#212870";
 
     public static final String CAR = "car";
 

@@ -3,6 +3,7 @@ package com.mydiploma.autohelper.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +31,7 @@ public class CarAdapter extends ArrayAdapter<Car>{
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.car_item, null);
             }
-                convertView.setBackgroundColor(Color.argb(Constants.CAR_ADAPTER_COLOR_ALPHA,
-                        Constants.CAR_ADAPTER_COLOR_RED, Constants.CAR_ADAPTER_COLOR_GREEN,
-                        Constants.CAR_ADAPTER_COLOR_BLUE));
+                convertView.setBackgroundColor(Color.parseColor(Constants.CAR_ADAPTER_COLOR));
             ((TextView) convertView.findViewById(R.id.added_cars)).setText(car.getModel());
             return convertView;
         }
