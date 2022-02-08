@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_height="wrap_content"
-        android:background="@color/blueForBack"
+        android:background="@color/for_bar"
         app:itemHorizontalTranslationEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
