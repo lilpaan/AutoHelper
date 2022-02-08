@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/back_for_list"
     android:foreground="@drawable/back_for_list">
-
     <TextView
         android:id="@+id/added_cars"
 

@@ -15,7 +15,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:text="@string/ok"
+        android:background="@drawable/complete"
+        android:foreground="@drawable/complete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_insurance_run_out_date" />
@@ -27,7 +28,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
-        android:text="@string/cancel"
+        android:background="@drawable/complete"
+        android:foreground="@drawable/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_insurance_run_out_date" />
@@ -53,8 +55,8 @@
             <EditText
                 android:id="@+id/input_maker"
                 android:layout_width="330dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="22dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
                 android:gravity="center"
@@ -72,7 +74,7 @@
             <EditText
                 android:id="@+id/input_model"
                 android:layout_width="330dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/back_for_input_field"
@@ -92,7 +94,7 @@
             <EditText
                 android:id="@+id/input_engine_volume"
                 android:layout_width="330dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -109,7 +111,7 @@
             <EditText
                 android:id="@+id/input_type_of_transmission"
                 android:layout_width="330dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -126,7 +128,7 @@
             <EditText
                 android:id="@+id/input_color"
                 android:layout_width="330dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -143,7 +145,7 @@
             <EditText
                 android:id="@+id/input_production_year"
                 android:layout_width="330dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -160,7 +162,7 @@
             <EditText
                 android:id="@+id/input_current_oil_brand"
                 android:layout_width="330dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="99dp"
                 android:background="@drawable/back_for_input_field"
@@ -178,7 +180,7 @@
     <EditText
         android:id="@+id/input_insurance_run_out_date"
         android:layout_width="330dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/back_for_input_field"
         android:ems="10"
