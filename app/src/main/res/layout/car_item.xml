@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/haha"
-    android:foreground="@drawable/haha"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/back_for_list"
+    android:foreground="@drawable/back_for_list">
 
     <TextView
         android:id="@+id/added_cars"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="0dp"
         android:fontFamily="@font/montserrat_bold"
-        android:gravity="left"
+        android:gravity="center|top|left"
         android:textColor="@color/white"
         android:textColorLink="#D31212"
         android:textSize="36sp"

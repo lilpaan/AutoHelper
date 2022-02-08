@@ -7,132 +7,193 @@
     android:background="@color/blueForBack"
     tools:context=".ui.car.AddCarActivity">
 
-    <EditText
-        android:id="@+id/input_maker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Марка авто"
-        android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#36CF20"
-        android:textColorHint="@color/whiteForHint"
-        app:layout_constraintBottom_toTopOf="@+id/input_model"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/saveCarButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:text="OK"
+        android:text="@string/ok"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/cancelAddCarButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
-        android:text="CANCEL"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/input_model"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Модель"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/whiteForHint"
-        app:layout_constraintBottom_toTopOf="@+id/input_engine_volume"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/bad_script"
+                android:text="@string/add_car_button"
+                android:textAlignment="center"
+                android:textColor="@color/auto_helper"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.538"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/input_engine_volume"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Объём двигателя"
-        android:inputType="numberDecimal"
-        android:textColorHint="@color/whiteForHint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_model" />
+            <EditText
+                android:id="@+id/input_maker"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/maker_hint"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHighlight="#36CF20"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <EditText
-        android:id="@+id/input_type_of_transmission"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Тип трансмиссии"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/whiteForHint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_engine_volume" />
+            <EditText
+                android:id="@+id/input_model"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/model_hint"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/input_engine_volume"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_maker" />
 
-    <EditText
-        android:id="@+id/input_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Цвет"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/whiteForHint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_type_of_transmission" />
+            <EditText
+                android:id="@+id/input_engine_volume"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/engine_volume_hint"
+                android:inputType="numberDecimal"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_model" />
 
-    <EditText
-        android:id="@+id/input_production_year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Год выпуска"
-        android:inputType="number"
-        android:textColorHint="@color/whiteForHint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_color" />
+            <EditText
+                android:id="@+id/input_type_of_transmission"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/transmission_hint"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_engine_volume" />
 
-    <EditText
-        android:id="@+id/input_current_oil_brand"
-        android:layout_width="229dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Текущее моторное масло"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/whiteForHint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_production_year" />
+            <EditText
+                android:id="@+id/input_color"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/color_hint"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_type_of_transmission" />
 
-    <EditText
-        android:id="@+id/input_insurance_run_out_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Окончание страховки"
-        android:inputType="text"
-        android:textColorHint="@color/whiteForHint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_current_oil_brand" />
+            <EditText
+                android:id="@+id/input_production_year"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/production_year_hint"
+                android:inputType="number"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_color" />
+
+            <EditText
+                android:id="@+id/input_current_oil_brand"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="99dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/current_oil_brand_hint"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_production_year" />
+
+            <EditText
+                android:id="@+id/input_insurance_run_out_date"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/insurance_run_out_date_hint"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_production_year"
+                tools:ignore="TextFields" />
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

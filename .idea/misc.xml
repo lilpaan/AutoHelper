@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/learn/diploma/app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1465" />
+        <entry key="..\:/learn/diploma/app/app/src/main/res/drawable/back_for_input_field.xml" value="0.1465" />
+        <entry key="..\:/learn/diploma/app/app/src/main/res/drawable/back_for_list.xml" value="0.1465" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/drawable/haha.xml" value="0.1465" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.26614583333333336" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.194" />

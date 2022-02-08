@@ -22,5 +22,15 @@
     <string name="current_oil_brand">Марка автомобиля</string>
     <string name="wheels_type">Марка автомобиля</string>
     <string name="insurance_run_out_date">Марка автомобиля</string>
+    <string name="maker_hint">Марка авто</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="model_hint">Модель</string>
+    <string name="engine_volume_hint">Объём двигателя</string>
+    <string name="transmission_hint">Тип трансмиссии</string>
+    <string name="color_hint">Цвет</string>
+    <string name="production_year_hint">Год выпуска</string>
+    <string name="current_oil_brand_hint">Моторное масло</string>
+    <string name="insurance_run_out_date_hint">Окончание страховки</string>
 
 </resources>
