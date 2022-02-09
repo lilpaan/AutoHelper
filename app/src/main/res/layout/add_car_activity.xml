@@ -12,27 +12,23 @@
         android:id="@+id/saveCarButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/complete"
         android:foreground="@drawable/complete"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_insurance_run_out_date" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/cancelAddCarButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/complete"
         android:foreground="@drawable/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_insurance_run_out_date" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -71,7 +67,7 @@
             <EditText
                 android:id="@+id/input_engine_volume"
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -86,7 +82,7 @@
             <EditText
                 android:id="@+id/input_maker"
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -102,7 +98,7 @@
             <EditText
                 android:id="@+id/input_type_of_transmission"
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -117,7 +113,7 @@
             <EditText
                 android:id="@+id/input_model"
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -132,7 +128,7 @@
             <EditText
                 android:id="@+id/input_insurance_run_out_date"
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -148,7 +144,7 @@
             <EditText
                 android:id="@+id/input_production_year"
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -163,7 +159,7 @@
             <EditText
                 android:id="@+id/input_current_oil_brand"
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -178,7 +174,7 @@
             <EditText
                 android:id="@+id/input_color"
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
