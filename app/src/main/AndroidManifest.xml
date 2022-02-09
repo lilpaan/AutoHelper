@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoHelper">
         <activity
+            android:name=".ScrollingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/Theme.AutoHelper.NoActionBar" />
+        <activity
             android:name=".ui.car.AddCarActivity"
             android:exported="false" />
         <activity

@@ -195,5 +195,4 @@
         app:layout_constraintTop_toBottomOf="@+id/input_current_oil_brand"
         tools:ignore="TextFields" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
