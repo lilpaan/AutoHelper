@@ -3,6 +3,7 @@ package com.mydiploma.autohelper.ui.car;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +52,9 @@ public class AddCarActivity extends AppCompatActivity {
                 }
             };
             thread.start();
+/*            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.navigation_dashboard, getFragmentManager().findFragmentById(R.id.frag));
+            fragmentTransaction.commit();*/
             finish();
         });
         cancelAdd.setOnClickListener(v -> finish());

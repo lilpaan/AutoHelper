@@ -52,44 +52,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/input_maker"
-                android:layout_width="330dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/back_for_input_field"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="@string/maker_hint"
-                android:inputType="textPersonName"
-                android:textColor="@color/white"
-                android:textColorHighlight="#36CF20"
-                android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0">
 
-            <EditText
-                android:id="@+id/input_model"
-                android:layout_width="330dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/back_for_input_field"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="@string/model_hint"
-                android:inputType="textPersonName"
-                android:textColor="@color/white"
-                android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/input_engine_volume"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_maker" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/input_engine_volume"
@@ -98,15 +75,29 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
+                android:focusable="auto"
                 android:gravity="center"
                 android:hint="@string/engine_volume_hint"
                 android:inputType="numberDecimal"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_model" />
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/input_maker"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:focusable="auto"
+                android:gravity="center"
+                android:hint="@string/maker_hint"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHighlight="#36CF20"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/input_type_of_transmission"
@@ -115,32 +106,44 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
+                android:focusable="auto"
                 android:gravity="center"
                 android:hint="@string/transmission_hint"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_engine_volume" />
+                android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/input_color"
+                android:id="@+id/input_model"
                 android:layout_width="330dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
+                android:focusable="auto"
                 android:gravity="center"
-                android:hint="@string/color_hint"
+                android:hint="@string/model_hint"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/input_insurance_run_out_date"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:focusable="auto"
+                android:gravity="center"
+                android:hint="@string/insurance_run_out_date_hint"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_type_of_transmission" />
+                tools:ignore="TextFields" />
 
             <EditText
                 android:id="@+id/input_production_year"
@@ -149,50 +152,44 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
+                android:focusable="auto"
                 android:gravity="center"
                 android:hint="@string/production_year_hint"
                 android:inputType="number"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_color" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/input_current_oil_brand"
                 android:layout_width="330dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="99dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
+                android:focusable="auto"
                 android:gravity="center"
                 android:hint="@string/current_oil_brand_hint"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_production_year" />
+                android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/input_insurance_run_out_date"
-        android:layout_width="330dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/back_for_input_field"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/insurance_run_out_date_hint"
-        android:inputType="text"
-        android:textColor="@color/white"
-        android:textColorHint="@color/whiteForHint"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_current_oil_brand"
-        tools:ignore="TextFields" />
+            <EditText
+                android:id="@+id/input_color"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:focusable="auto"
+                android:gravity="center"
+                android:hint="@string/color_hint"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

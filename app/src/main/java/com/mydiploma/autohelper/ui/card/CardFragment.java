@@ -16,25 +16,15 @@ import com.mydiploma.autohelper.databinding.FragmentHomeBinding;
 
 public class CardFragment extends Fragment {
 
-    private CardViewModel cardViewModel;
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        cardViewModel =
-                new ViewModelProvider(this).get(CardViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        cardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+
+        return binding.getRoot();
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -49,6 +50,14 @@ public class CarFragment extends Fragment {
         }
         CarAdapter adapter = new CarAdapter(requireContext(), cars);
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(root.getContext(), CarInfo.class);
+                intent.putExtra("ID", adapter.getItem(position).getId());
+                startActivity(intent);
+            }
+        });
         Button button = root.findViewById(R.id.addCarButton);
         button.setOnClickListener(v -> {
             Intent intent = new Intent(root.getContext(), AddCarActivity.class);
