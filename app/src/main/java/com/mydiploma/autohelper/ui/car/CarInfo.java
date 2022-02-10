@@ -38,9 +38,9 @@ public class CarInfo extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        TextView textView = findViewById(R.id.model);
+        TextView textView = findViewById(R.id.view_for_model);
         textView.setText(car.getModel());
-        TextView textViewmarka = findViewById(R.id.marka);
+        TextView textViewmarka = findViewById(R.id.view_for_maker);
         textViewmarka.setText(car.getMaker());
         Button button = findViewById(R.id.finish);
         button.setOnClickListener(v -> finish());

@@ -8,30 +8,6 @@
     tools:context=".ui.car.AddCarActivity">
 
 
-    <Button
-        android:id="@+id/saveCarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/complete"
-        android:foreground="@drawable/complete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/cancelAddCarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/complete"
-        android:foreground="@drawable/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -51,6 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +46,7 @@
             <EditText
                 android:id="@+id/input_maker"
                 android:layout_width="330dp"
-                android:layout_height="52dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -85,7 +62,7 @@
             <EditText
                 android:id="@+id/input_model"
                 android:layout_width="330dp"
-                android:layout_height="52dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -100,7 +77,7 @@
             <EditText
                 android:id="@+id/input_engine_volume"
                 android:layout_width="330dp"
-                android:layout_height="52dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -115,7 +92,7 @@
             <EditText
                 android:id="@+id/input_color"
                 android:layout_width="330dp"
-                android:layout_height="52dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -130,7 +107,7 @@
             <EditText
                 android:id="@+id/input_type_of_transmission"
                 android:layout_width="330dp"
-                android:layout_height="52dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -145,7 +122,7 @@
             <EditText
                 android:id="@+id/input_production_year"
                 android:layout_width="330dp"
-                android:layout_height="52dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -160,7 +137,7 @@
             <EditText
                 android:id="@+id/input_insurance_run_out_date"
                 android:layout_width="330dp"
-                android:layout_height="52dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -176,7 +153,7 @@
             <EditText
                 android:id="@+id/input_current_oil_brand"
                 android:layout_width="330dp"
-                android:layout_height="52dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_for_input_field"
                 android:ems="10"
@@ -187,6 +164,36 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
                 android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/saveCarButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:background="@drawable/complete"
+                    android:foreground="@drawable/complete"
+                    tools:ignore="SpeakableTextPresentCheck"
+                    style="?android:attr/buttonBarButtonStyle" />
+
+                <Button
+                    android:id="@+id/cancelAddCarButton"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="150dp"
+                    android:background="@drawable/cancel"
+                    android:foreground="@drawable/cancel"
+                    android:gravity="end"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
