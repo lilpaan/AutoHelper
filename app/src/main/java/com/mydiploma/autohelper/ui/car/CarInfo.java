@@ -6,6 +6,7 @@ import androidx.room.Room;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mydiploma.autohelper.Constants;
@@ -38,10 +39,26 @@ public class CarInfo extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        TextView textView = findViewById(R.id.view_for_model);
-        textView.setText(car.getModel());
-        TextView textViewmarka = findViewById(R.id.view_for_maker);
-        textViewmarka.setText(car.getMaker());
+
+        TextView viewForModel = findViewById(R.id.view_for_model);
+        TextView viewForMaker = findViewById(R.id.view_for_maker);
+        TextView viewForEngineVolume = findViewById(R.id.view_for_engine_volume);
+        TextView viewForColor = findViewById(R.id.view_for_color);
+        TextView viewForTransmission = findViewById(R.id.view_for_transmission);
+        TextView viewForProductionYear = findViewById(R.id.view_for_production_year);
+        TextView viewForInsuranceRunOutDate = findViewById(R.id.view_for_insurance_run_out_date);
+        TextView viewForCurrentOilBrand = findViewById(R.id.view_for_current_oil_brand);
+
+        viewForModel.setText(car.getModel());
+        viewForMaker.setText(car.getMaker());
+        viewForEngineVolume.setText(String.valueOf(car.getEngineVolume()));
+        viewForColor.setText(car.getColor());
+        viewForTransmission.setText(car.getTransmission());
+        viewForProductionYear.setText(String.valueOf(car.getProductionYear()));
+        viewForInsuranceRunOutDate.setText(car.getInsuranceRunOutDate());
+        viewForCurrentOilBrand.setText(car.getCurrentOilBrand());
+
+        // buttons
         Button button = findViewById(R.id.finish);
         button.setOnClickListener(v -> finish());
         Button delete = findViewById(R.id.delete);
