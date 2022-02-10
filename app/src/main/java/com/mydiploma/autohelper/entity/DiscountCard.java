@@ -3,26 +3,51 @@ package com.mydiploma.autohelper.entity;
 import java.util.Objects;
 
 public class DiscountCard extends Card{
-    boolean NFC;
-    int cardNumber;
-
-    public boolean isNFC() {
-        return NFC;
-    }
-
-    public void setNFC(boolean NFC) {
-        this.NFC = NFC;
-    }
-
-    public int getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(int cardNumber) {
-        this.cardNumber = cardNumber;
-    }
+    long id;
+    int number;
+    String nfc;
+    String barcode;
 
     public DiscountCard() {
+    }
+
+    public DiscountCard(long id, int number, String nfc, String barcode) {
+        this.id = id;
+        this.number = number;
+        this.nfc = nfc;
+        this.barcode = barcode;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getNfc() {
+        return nfc;
+    }
+
+    public void setNfc(String nfc) {
+        this.nfc = nfc;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
     @Override
@@ -31,19 +56,23 @@ public class DiscountCard extends Card{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         DiscountCard that = (DiscountCard) o;
-        return NFC == that.NFC && cardNumber == that.cardNumber;
+        return id == that.id && number == that.number && Objects.equals(nfc, that.nfc) && Objects.equals(barcode, that.barcode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), NFC, cardNumber);
+        return Objects.hash(super.hashCode(), id, number, nfc, barcode);
     }
 
     @Override
     public String toString() {
         return "DiscountCard{" +
-                "NFC=" + NFC +
-                ", cardNumber=" + cardNumber +
+                "company='" + company + '\'' +
+                ", description='" + description + '\'' +
+                ", id=" + id +
+                ", number=" + number +
+                ", nfc='" + nfc + '\'' +
+                ", barcode='" + barcode + '\'' +
                 '}';
     }
 }
