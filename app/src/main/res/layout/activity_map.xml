@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.refill.map">
+    tools:context=".ui.refill.YandexMaps">
     <com.yandex.mapkit.mapview.MapView
-        android:id="@+id/mapview"
+        android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

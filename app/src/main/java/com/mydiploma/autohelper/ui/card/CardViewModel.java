@@ -10,7 +10,6 @@ public class CardViewModel extends ViewModel {
 
     public CardViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
     }
 
     public LiveData<String> getText() {
