@@ -17,7 +17,8 @@
         android:background="@drawable/complete"
         android:foreground="@drawable/complete"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/cancelAddCarButton"
@@ -28,7 +29,8 @@
         android:background="@drawable/complete"
         android:foreground="@drawable/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView"
@@ -65,6 +67,37 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/input_maker"
+                android:layout_width="330dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:focusable="auto"
+                android:gravity="center"
+                android:hint="@string/maker_hint"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHighlight="#36CF20"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/input_model"
+                android:layout_width="330dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:ems="10"
+                android:focusable="auto"
+                android:gravity="center"
+                android:hint="@string/model_hint"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp" />
+
+            <EditText
                 android:id="@+id/input_engine_volume"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
@@ -80,7 +113,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/input_maker"
+                android:id="@+id/input_color"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="10dp"
@@ -88,10 +121,9 @@
                 android:ems="10"
                 android:focusable="auto"
                 android:gravity="center"
-                android:hint="@string/maker_hint"
+                android:hint="@string/color_hint"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
-                android:textColorHighlight="#36CF20"
                 android:textColorHint="@color/whiteForHint"
                 android:textSize="20sp" />
 
@@ -111,7 +143,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/input_model"
+                android:id="@+id/input_production_year"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="10dp"
@@ -119,8 +151,8 @@
                 android:ems="10"
                 android:focusable="auto"
                 android:gravity="center"
-                android:hint="@string/model_hint"
-                android:inputType="textPersonName"
+                android:hint="@string/production_year_hint"
+                android:inputType="number"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
                 android:textSize="20sp" />
@@ -142,21 +174,6 @@
                 tools:ignore="TextFields" />
 
             <EditText
-                android:id="@+id/input_production_year"
-                android:layout_width="330dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/back_for_input_field"
-                android:ems="10"
-                android:focusable="auto"
-                android:gravity="center"
-                android:hint="@string/production_year_hint"
-                android:inputType="number"
-                android:textColor="@color/white"
-                android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp" />
-
-            <EditText
                 android:id="@+id/input_current_oil_brand"
                 android:layout_width="330dp"
                 android:layout_height="52dp"
@@ -171,20 +188,6 @@
                 android:textColorHint="@color/whiteForHint"
                 android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/input_color"
-                android:layout_width="330dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/back_for_input_field"
-                android:ems="10"
-                android:focusable="auto"
-                android:gravity="center"
-                android:hint="@string/color_hint"
-                android:inputType="textPersonName"
-                android:textColor="@color/white"
-                android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
 
