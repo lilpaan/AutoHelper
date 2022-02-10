@@ -21,5 +21,5 @@
         android:id="@+id/navigation_notifications"
         android:name="com.mydiploma.autohelper.ui.refill.RefillFragment"
         android:label="@string/title_refills"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/activity_main2" />
 </navigation>

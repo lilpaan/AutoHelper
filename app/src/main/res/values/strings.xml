@@ -35,5 +35,6 @@
     <!--Strings for operations-->
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="show_map_button">Показать карту</string>
 
 </resources>

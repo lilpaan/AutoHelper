@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoHelper">
         <activity
+            android:name=".ui.refill.map"
+            android:exported="false" />
+        <activity
+            android:name=".YandexMap"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".ui.car.CarInfo"
             android:exported="false" />
         <!--
