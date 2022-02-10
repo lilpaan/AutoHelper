@@ -1,8 +1,13 @@
 package com.mydiploma.autohelper.entity;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Objects;
 
-public class DiscountCard extends Card{
+@Entity
+public class DiscountCard{
+    @PrimaryKey
     long id;
     int number;
     String nfc;
@@ -54,22 +59,19 @@ public class DiscountCard extends Card{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         DiscountCard that = (DiscountCard) o;
         return id == that.id && number == that.number && Objects.equals(nfc, that.nfc) && Objects.equals(barcode, that.barcode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, number, nfc, barcode);
+        return Objects.hash(id, number, nfc, barcode);
     }
 
     @Override
     public String toString() {
         return "DiscountCard{" +
-                "company='" + company + '\'' +
-                ", description='" + description + '\'' +
-                ", id=" + id +
+                "id=" + id +
                 ", number=" + number +
                 ", nfc='" + nfc + '\'' +
                 ", barcode='" + barcode + '\'' +

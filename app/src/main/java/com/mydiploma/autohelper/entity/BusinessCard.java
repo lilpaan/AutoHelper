@@ -1,8 +1,13 @@
 package com.mydiploma.autohelper.entity;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Objects;
 
-public class BusinessCard extends Card {
+@Entity
+public class BusinessCard {
+    @PrimaryKey
     long id;
     String phoneNumber;
     String address;
@@ -64,14 +69,13 @@ public class BusinessCard extends Card {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         BusinessCard that = (BusinessCard) o;
         return id == that.id && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(address, that.address) && Objects.equals(email, that.email) && Objects.equals(site, that.site);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, phoneNumber, address, email, site);
+        return Objects.hash(id, phoneNumber, address, email, site);
     }
 
     @Override
@@ -82,8 +86,6 @@ public class BusinessCard extends Card {
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", site='" + site + '\'' +
-                ", company='" + company + '\'' +
-                ", description='" + description + '\'' +
                 '}';
     }
 }
