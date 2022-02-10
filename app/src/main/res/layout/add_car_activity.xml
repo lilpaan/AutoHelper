@@ -174,25 +174,26 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/saveCarButton"
+                    android:id="@+id/cancelAddCarButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:background="@drawable/complete"
-                    android:foreground="@drawable/complete"
+                    android:background="@drawable/cancel"
+                    android:foreground="@drawable/cancel"
                     tools:ignore="SpeakableTextPresentCheck"
                     style="?android:attr/buttonBarButtonStyle" />
 
                 <Button
-                    android:id="@+id/cancelAddCarButton"
+                    android:id="@+id/saveCarButton"
                     style="?android:attr/buttonBarButtonStyle"
+                    android:background="@drawable/complete"
+                    android:foreground="@drawable/complete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="150dp"
-                    android:background="@drawable/cancel"
-                    android:foreground="@drawable/cancel"
                     android:gravity="end"
                     tools:ignore="SpeakableTextPresentCheck" />
+
             </LinearLayout>
 
         </LinearLayout>
