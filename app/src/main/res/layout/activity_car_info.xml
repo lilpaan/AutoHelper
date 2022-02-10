@@ -32,24 +32,30 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/view_for_maker"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:fontFamily="@font/arsenal"
+                    android:gravity="center_vertical|end"
                     android:textColor="@color/white"
-                    android:textSize="40sp" />
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/view_for_model"
                     android:layout_width="190dp"
                     android:layout_height="100dp"
-                    android:gravity="center"
+                    android:fontFamily="@font/arsenal"
+                    android:gravity="center_vertical"
                     android:textColor="@color/white"
-                    android:textSize="40sp" />
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -65,18 +71,20 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-thin"
                     android:gravity="center"
                     android:text="@string/engine_volume"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/view_for_engine_volume"
                     android:layout_width="190dp"
                     android:layout_height="100dp"
+                    android:fontFamily="sans-serif-thin"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -90,20 +98,22 @@
                     android:id="@+id/textView2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/color"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/view_for_color"
                     android:layout_width="190dp"
                     android:layout_height="100dp"
+                    android:fontFamily="sans-serif-thin"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -118,19 +128,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="10dp"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/transmission"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/view_for_transmission"
                     android:layout_width="190dp"
                     android:layout_height="100dp"
+                    android:fontFamily="sans-serif-thin"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -145,19 +157,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="10dp"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/production_year"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/view_for_production_year"
                     android:layout_width="190dp"
                     android:layout_height="100dp"
+                    android:fontFamily="sans-serif-thin"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -172,19 +186,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="10dp"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/insurance_run_out_date"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/view_for_insurance_run_out_date"
                     android:layout_width="190dp"
                     android:layout_height="100dp"
                     android:gravity="center"
+                    android:fontFamily="sans-serif-thin"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -198,20 +214,22 @@
                     android:id="@+id/textView6"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/current_oil_brand"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/view_for_current_oil_brand"
                     android:layout_width="190dp"
                     android:layout_height="100dp"
                     android:gravity="center"
+                    android:fontFamily="sans-serif-thin"
                     android:textColor="@color/white"
-                    android:textSize="34sp" />
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
