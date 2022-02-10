@@ -53,7 +53,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:textColor="@color/white"
                     android:textSize="34sp" />
 
@@ -62,7 +62,7 @@
                     android:layout_width="190dp"
                     android:layout_height="100dp"
                     android:layout_marginStart="8dp"
-                    android:gravity="left"
+                    android:gravity="start"
                     android:textColor="@color/white"
                     android:textSize="34sp" />
             </LinearLayout>
@@ -79,6 +79,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
                     android:gravity="center"
                     android:text="@string/engine_volume"
                     android:textColor="@color/white"
@@ -105,6 +106,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
                     android:gravity="center"
                     android:text="@string/color"
                     android:textColor="@color/white"
@@ -132,6 +134,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:layout_marginEnd="10dp"
                     android:text="@string/transmission"
                     android:textColor="@color/white"
                     android:textSize="34sp" />
@@ -157,6 +160,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
                     android:gravity="center"
                     android:text="@string/production_year"
                     android:textColor="@color/white"
@@ -182,6 +186,7 @@
                     android:id="@+id/tedxtView3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/insurance_run_out_date"
@@ -208,6 +213,7 @@
                     android:id="@+id/textdView3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/current_oil_brand"
@@ -223,31 +229,8 @@
                     android:textSize="34sp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/car_info_item"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textVidddew3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="МОДЕЛЬ"
-                    android:textColor="@color/white"
-                    android:textSize="34sp" />
-
-                <TextView
-                    android:id="@+id/moddddel"
-                    android:layout_width="190dp"
-                    android:layout_height="100dp"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="34sp" />
-            </LinearLayout>
         </LinearLayout>
+
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
