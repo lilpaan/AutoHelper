@@ -4,6 +4,138 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blueForBack"
     tools:context=".ui.card.AddBusinessCardActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/pt_sans"
+            android:text="@string/add_card_title"
+            android:textAlignment="center"
+            android:textColor="@color/auto_helper"
+            android:textSize="38sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.538"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/input_phone_number"
+                    android:layout_width="330dp"
+                    android:layout_height="62dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/back_for_input_field"
+                    android:ems="10"
+                    android:focusable="auto"
+                    android:gravity="center"
+                    android:hint="@string/phone_number"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#36CF20"
+                    android:textColorHint="@color/whiteForHint"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/input_address"
+                    android:layout_width="330dp"
+                    android:layout_height="62dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/back_for_input_field"
+                    android:ems="10"
+                    android:focusable="auto"
+                    android:gravity="center"
+                    android:hint="@string/address"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/whiteForHint"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/input_email"
+                    android:layout_width="330dp"
+                    android:layout_height="62dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/back_for_input_field"
+                    android:ems="10"
+                    android:focusable="auto"
+                    android:gravity="center"
+                    android:hint="@string/email"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/whiteForHint"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/input_site"
+                    android:layout_width="330dp"
+                    android:layout_height="62dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/back_for_input_field"
+                    android:ems="10"
+                    android:focusable="auto"
+                    android:gravity="center"
+                    android:hint="@string/site"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/whiteForHint"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/cancelAddCarButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:background="@drawable/cancel"
+                        android:foreground="@drawable/cancel"
+                        tools:ignore="SpeakableTextPresentCheck"
+                        style="?android:attr/buttonBarButtonStyle" />
+
+                    <Button
+                        android:id="@+id/saveCarButton"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:background="@drawable/complete"
+                        android:foreground="@drawable/complete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="150dp"
+                        android:gravity="end"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

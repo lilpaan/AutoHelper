@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Auto Helper</string>
+
     <!--Buttons-->
     <string name="ok_button">OK</string>
     <string name="cancel_button">Cancel</string>
     <string name="add_car_button">Добавить автомобиль</string>
+    <string name="show_map_button">Показать карту</string>
 
     <!--Menu-->
     <string name="title_cards">Карточки</string>
@@ -35,9 +37,14 @@
     <!--Strings for operations-->
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="show_map_button">Показать карту</string>
 
-    <!--Strings for add some card-->
+
+    <!--Strings for add card-->
     <string name="question_about_type">Выберите тип карты</string>
+    <string name="add_card_title">Добавить карту</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="email">Электронная почта</string>
+    <string name="address">Адрес</string>
+    <string name="site">Сайт</string>
 
 </resources>

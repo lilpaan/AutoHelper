@@ -3,6 +3,7 @@ package com.mydiploma.autohelper.ui.card;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.databinding.FragmentHomeBinding;
 import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
+import com.mydiploma.autohelper.ui.car.AddCarActivity;
 
 public class CardFragment extends Fragment {
 
@@ -57,6 +59,16 @@ public class CardFragment extends Fragment {
             closeDialog = chooseCardType.findViewById(R.id.close_dialog_button);
             closeDialog.setOnClickListener(v1 -> {
                 chooseCardType.cancel();
+            });
+            chooseDiscount = chooseCardType.findViewById(R.id.choose_discount_card_button);
+            chooseDiscount.setOnClickListener(v1 -> {
+                Intent intent = new Intent(root.getContext(), AddDiscountCardActivity.class);
+                startActivity(intent);
+            });
+            chooseBusiness = chooseCardType.findViewById(R.id.choose_business_card_button);
+            chooseBusiness.setOnClickListener(v1 -> {
+                Intent intent = new Intent(root.getContext(), AddBusinessCardActivity.class);
+                startActivity(intent);
             });
             chooseCardType.show();
         });
