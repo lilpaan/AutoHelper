@@ -37,4 +37,7 @@
     <string name="cancel">Cancel</string>
     <string name="show_map_button">Показать карту</string>
 
+    <!--Strings for add some card-->
+    <string name="question_about_type">Выберите тип карты</string>
+
 </resources>

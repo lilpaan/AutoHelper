@@ -8,6 +8,20 @@
     android:background="@color/blueForBack">
 
     <Button
+        android:id="@+id/add_card_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/rounded_button"
+        android:foreground="@drawable/plus_button"
+        android:textColorHighlight="#AA00FF"
+        android:textColorHint="#AA00FF"
+        app:iconSize="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
         android:id="@+id/business_card_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

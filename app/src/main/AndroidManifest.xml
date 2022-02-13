@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoHelper">
         <activity
+            android:name=".ui.card.AddDiscountCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.card.AddBusinessCardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.refill.YandexMaps"
             android:exported="false" />
         <activity

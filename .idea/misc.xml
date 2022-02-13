@@ -21,9 +21,12 @@
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_yandex_map.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/add_car_activity.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/add_car_dialog.xml" value="0.25" />
+        <entry key="..\:/learn/diploma/app/app/src/main/res/layout/business_card_adapter.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/business_card_item.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/car_item.xml" value="0.2" />
+        <entry key="..\:/learn/diploma/app/app/src/main/res/layout/choose_card_type.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/content_scrolling.xml" value="0.25" />
+        <entry key="..\:/learn/diploma/app/app/src/main/res/layout/discount_card_adapter.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/discount_card_item.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/fragment_home.xml" value="0.1648148148148148" />
