@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 public class BusinessCard {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     long id;
     String phoneNumber;
     String address;

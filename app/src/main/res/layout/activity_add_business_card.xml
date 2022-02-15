@@ -112,7 +112,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/cancelAddCarButton"
+                        android:id="@+id/cancelAddBusinessCardButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="start"
@@ -122,7 +122,7 @@
                         style="?android:attr/buttonBarButtonStyle" />
 
                     <Button
-                        android:id="@+id/saveCarButton"
+                        android:id="@+id/saveBusinessCardButton"
                         style="?android:attr/buttonBarButtonStyle"
                         android:background="@drawable/complete"
                         android:foreground="@drawable/complete"

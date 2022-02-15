@@ -9,6 +9,7 @@ public class Constants {
 
     // titles
     public static final String CAR = "car";
+    public static final String BUSINESS_CARD = "businessCard";
 
     // for some params (check usages for info)
     public static final String  INFLATE_PARAMS = "InflateParams";

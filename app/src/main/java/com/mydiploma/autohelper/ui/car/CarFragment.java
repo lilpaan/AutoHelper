@@ -21,6 +21,8 @@ import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.databinding.FragmentDashboardBinding;
 import com.mydiploma.autohelper.entity.Car;
 
+import java.util.Objects;
+
 public class CarFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
@@ -29,7 +31,6 @@ public class CarFragment extends Fragment {
     Car[] cars;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         ListView lv = root.findViewById(R.id.added_car_list);

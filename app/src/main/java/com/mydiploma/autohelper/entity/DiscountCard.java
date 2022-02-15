@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 public class DiscountCard{
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     long id;
     int number;
     String nfc;

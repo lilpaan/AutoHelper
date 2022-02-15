@@ -3,7 +3,6 @@ package com.mydiploma.autohelper.ui.car;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,10 +24,12 @@ public class AddCarActivity extends AppCompatActivity {
         ok.setOnClickListener(v -> {
 
 
-/*            CarDatabase db = Room.databaseBuilder(getApplicationContext(),
+/*
+            CarDatabase db = Room.databaseBuilder(getApplicationContext(),
                     CarDatabase.class, Constants.CAR)
                     .fallbackToDestructiveMigration()
-                    .build();*/
+                    .build();
+*/
 
 
             CarDatabase db =  Room.databaseBuilder(getApplicationContext(),
@@ -59,4 +60,5 @@ public class AddCarActivity extends AppCompatActivity {
         });
         cancelAdd.setOnClickListener(v -> finish());
     }
+
 }

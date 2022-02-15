@@ -55,7 +55,6 @@ public class CardFragment extends Fragment {
             chooseCardType = new Dialog(getActivity());
             chooseCardType.requestWindowFeature(Window.FEATURE_NO_TITLE);
             chooseCardType.setContentView(R.layout.choose_card_type);
-            chooseCardType.setTitle("ZAGOLOVOK");
             closeDialog = chooseCardType.findViewById(R.id.close_dialog_button);
             closeDialog.setOnClickListener(v1 -> {
                 chooseCardType.cancel();
@@ -69,6 +68,7 @@ public class CardFragment extends Fragment {
             chooseBusiness.setOnClickListener(v1 -> {
                 Intent intent = new Intent(root.getContext(), AddBusinessCardActivity.class);
                 startActivity(intent);
+                chooseCardType.cancel();
             });
             chooseCardType.show();
         });
