@@ -9,14 +9,14 @@ import java.util.Objects;
 public class DiscountCard{
     @PrimaryKey(autoGenerate = true)
     long id;
-    int number;
+    String number;
     String nfc;
     String barcode;
 
     public DiscountCard() {
     }
 
-    public DiscountCard(long id, int number, String nfc, String barcode) {
+    public DiscountCard(long id, String number, String nfc, String barcode) {
         this.id = id;
         this.number = number;
         this.nfc = nfc;
@@ -31,11 +31,11 @@ public class DiscountCard{
         this.id = id;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

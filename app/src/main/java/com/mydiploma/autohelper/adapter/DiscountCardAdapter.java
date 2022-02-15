@@ -29,7 +29,7 @@ public class DiscountCardAdapter extends ArrayAdapter<DiscountCard> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.discount_card_item, null);
         }
         convertView.setBackgroundColor(Color.parseColor(Constants.ADAPTER_COLOR));
-        ((TextView) convertView.findViewById(R.id.added_discount_cards)).setText(discountCard.getNfc());
+        ((TextView) convertView.findViewById(R.id.added_discount_cards)).setText(discountCard.getNumber());
         return convertView;
     }
 }

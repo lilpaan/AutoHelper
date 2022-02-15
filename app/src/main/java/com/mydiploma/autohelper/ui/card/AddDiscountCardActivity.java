@@ -40,7 +40,7 @@ public class AddDiscountCardActivity extends AppCompatActivity {
 
 
             DiscountCard discountCard = new DiscountCard();
-            discountCard.setNumber(Integer.parseInt(((EditText) findViewById(R.id.input_number)).getText().toString()));
+            discountCard.setNumber(((EditText) findViewById(R.id.input_number)).getText().toString());
             discountCard.setNfc(((EditText) findViewById(R.id.input_nfc)).getText().toString());
             discountCard.setBarcode(((EditText) findViewById(R.id.input_barcode)).getText().toString());
             DiscountCardDao discountCardDao = db.discountCardDao();
