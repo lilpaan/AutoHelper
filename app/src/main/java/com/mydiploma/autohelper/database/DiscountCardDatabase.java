@@ -1,4 +1,3 @@
-/*
 package com.mydiploma.autohelper.database;
 
 import androidx.room.Database;
@@ -11,4 +10,3 @@ import com.mydiploma.autohelper.entity.DiscountCard;
     public abstract class DiscountCardDatabase extends RoomDatabase {
         public abstract DiscountCardDao discountCardDao();
     }
-*/

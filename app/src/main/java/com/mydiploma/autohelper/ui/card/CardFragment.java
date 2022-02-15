@@ -63,6 +63,7 @@ public class CardFragment extends Fragment {
             chooseDiscount.setOnClickListener(v1 -> {
                 Intent intent = new Intent(root.getContext(), AddDiscountCardActivity.class);
                 startActivity(intent);
+                chooseCardType.cancel();
             });
             chooseBusiness = chooseCardType.findViewById(R.id.choose_business_card_button);
             chooseBusiness.setOnClickListener(v1 -> {

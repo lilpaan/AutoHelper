@@ -26,7 +26,7 @@ public class AddDiscountCardActivity extends AppCompatActivity {
 
 /*
             DiscountCardDatabase db = Room.databaseBuilder(getApplicationContext(),
-                    DiscountCardDatabase.class, Constants.BUSINESS_CARD)
+                    DiscountCardDatabase.class, Constants.DISCOUNT_CARD)
                     .fallbackToDestructiveMigration()
                     .build();
 */
@@ -34,16 +34,15 @@ public class AddDiscountCardActivity extends AppCompatActivity {
 
 
             DiscountCardDatabase db =  Room.databaseBuilder(getApplicationContext(),
-                    DiscountCardDatabase.class, Constants.BUSINESS_CARD).build();
+                    DiscountCardDatabase.class, Constants.DISCOUNT_CARD).build();
 
 
 
 
             DiscountCard discountCard = new DiscountCard();
-            discountCard.setPhoneNumber(((EditText) findViewById(R.id.input_phone_number)).getText().toString());
-            discountCard.setAddress(((EditText) findViewById(R.id.input_address)).getText().toString());
-            discountCard.setEmail(((EditText) findViewById(R.id.input_email)).getText().toString());
-            discountCard.setSite(((EditText) findViewById(R.id.input_site)).getText().toString());
+            discountCard.setNumber(Integer.parseInt(((EditText) findViewById(R.id.input_number)).getText().toString()));
+            discountCard.setNfc(((EditText) findViewById(R.id.input_nfc)).getText().toString());
+            discountCard.setBarcode(((EditText) findViewById(R.id.input_barcode)).getText().toString());
             DiscountCardDao discountCardDao = db.discountCardDao();
             Thread thread = new Thread(){
                 @Override

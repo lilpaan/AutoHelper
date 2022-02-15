@@ -46,5 +46,8 @@
     <string name="email">Электронная почта</string>
     <string name="address">Адрес</string>
     <string name="site">Сайт</string>
+    <string name="card_number">Номер</string>
+    <string name="card_barcode">Штрих-код</string>
+    <string name="card_nfc">NFC</string>
 
 </resources>
