@@ -31,7 +31,7 @@ public class CarAdapter extends ArrayAdapter<Car>{
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.car_item, null);
             }
-                convertView.setBackgroundColor(Color.parseColor(Constants.CAR_ADAPTER_COLOR));
+                convertView.setBackgroundColor(Color.parseColor(Constants.ADAPTER_COLOR));
             ((TextView) convertView.findViewById(R.id.added_cars)).setText(car.getModel());
             return convertView;
         }

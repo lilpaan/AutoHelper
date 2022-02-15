@@ -2,7 +2,7 @@ package com.mydiploma.autohelper;
 
 public class Constants {
     // properties of car adapter
-    public static final String CAR_ADAPTER_COLOR = "#212870";
+    public static final String ADAPTER_COLOR = "#212870";
 
     // constants for yandex maps
     public static final String YANDEX_API_KEY = "454f475e-9c32-495c-befa-f45546f51016";

@@ -8,7 +8,6 @@
     android:foreground="@drawable/back_for_list">
     <TextView
         android:id="@+id/added_discount_cards"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
