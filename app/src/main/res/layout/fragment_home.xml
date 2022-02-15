@@ -73,7 +73,7 @@
                     <ListView
                         android:id="@+id/added_business_card_list"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="600dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -86,7 +86,7 @@
                     <ListView
                         android:id="@+id/added_discount_card_list"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="600dp" />
                 </LinearLayout>
 
             </FrameLayout>
