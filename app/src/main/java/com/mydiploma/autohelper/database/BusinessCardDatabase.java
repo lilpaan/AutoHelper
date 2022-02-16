@@ -9,4 +9,5 @@ import com.mydiploma.autohelper.entity.BusinessCard;
 @Database(entities = {BusinessCard.class}, version = 1)
 public abstract class BusinessCardDatabase extends RoomDatabase {
     public abstract BusinessCardDao businessCardDao();
+
 }

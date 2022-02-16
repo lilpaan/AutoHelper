@@ -21,22 +21,21 @@ public class AddCarActivity extends AppCompatActivity {
         setContentView(R.layout.add_car_activity);
         Button ok = findViewById(R.id.saveCarButton);
         Button cancelAdd = findViewById(R.id.cancelAddCarButton);
+        // save new car
         ok.setOnClickListener(v -> {
 
-
+            // entrance into carDatabase
+            CarDatabase carDatabase =  Room.databaseBuilder(getApplicationContext(),
+                    CarDatabase.class, Constants.CAR).build();
+            // rebase db code
 /*
-            CarDatabase db = Room.databaseBuilder(getApplicationContext(),
+            CarDatabase carDatabase = Room.databaseBuilder(getApplicationContext(),
                     CarDatabase.class, Constants.CAR)
                     .fallbackToDestructiveMigration()
                     .build();
 */
-
-
-            CarDatabase db =  Room.databaseBuilder(getApplicationContext(),
-                    CarDatabase.class, Constants.CAR).build();
-
-
             Car car = new Car();
+            // take values from fields
             car.setMaker (((EditText) findViewById(R.id.input_maker)).getText().toString());
             car.setModel (((EditText) findViewById(R.id.input_model)).getText().toString());
             car.setEngineVolume (Float.parseFloat(((EditText) findViewById(R.id.input_engine_volume)).getText().toString()));
@@ -45,14 +44,15 @@ public class AddCarActivity extends AppCompatActivity {
             car.setProductionYear (Integer.parseInt(((EditText) findViewById(R.id.input_production_year)).getText().toString()));
             car.setCurrentOilBrand (((EditText) findViewById(R.id.input_current_oil_brand)).getText().toString());
             car.setInsuranceRunOutDate (((EditText) findViewById(R.id.input_insurance_run_out_date)).getText().toString());
-            CarDao carDao = db.carDao();
-            Thread thread = new Thread(){
+            // carSaveThread to save car into db
+            CarDao carDao = carDatabase.carDao();
+            Thread carSaveThread = new Thread(){
                 @Override
                 public void run() {
                     carDao.insert(car);
                 }
             };
-            thread.start();
+            carSaveThread.start();
 /*            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.navigation_dashboard, getFragmentManager().findFragmentById(R.id.frag));
             fragmentTransaction.commit();*/

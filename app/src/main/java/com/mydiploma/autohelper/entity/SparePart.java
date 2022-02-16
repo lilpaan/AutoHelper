@@ -1,5 +1,7 @@
 package com.mydiploma.autohelper.entity;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -54,6 +56,7 @@ public class SparePart {
         return Objects.hash(type, maker, installationDate);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "SparePart{" +

@@ -17,10 +17,12 @@ import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.entity.BusinessCard;
 
 public class BusinessCardAdapter extends ArrayAdapter<BusinessCard> {
+
     public BusinessCardAdapter(@NonNull Context context, @NonNull BusinessCard[] objects) {
         super(context, R.layout.business_card_item, objects);
     }
-    @SuppressLint(Constants.INFLATE_PARAMS)
+
+    @SuppressLint("InflateParams")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -32,4 +34,5 @@ public class BusinessCardAdapter extends ArrayAdapter<BusinessCard> {
         ((TextView) convertView.findViewById(R.id.added_business_cards)).setText(businessCard.getAddress());
         return convertView;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.mydiploma.autohelper.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -68,6 +69,7 @@ public class DiscountCard{
         return Objects.hash(id, number, nfc, barcode);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "DiscountCard{" +

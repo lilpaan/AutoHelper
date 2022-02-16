@@ -9,4 +9,5 @@ import com.mydiploma.autohelper.entity.Car;
 @Database(entities = {Car.class}, version = 2)
 public abstract class CarDatabase extends RoomDatabase {
     public abstract CarDao carDao();
+
 }

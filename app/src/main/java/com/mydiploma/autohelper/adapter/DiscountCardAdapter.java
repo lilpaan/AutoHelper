@@ -20,7 +20,8 @@ public class DiscountCardAdapter extends ArrayAdapter<DiscountCard> {
     public DiscountCardAdapter(@NonNull Context context, @NonNull DiscountCard[] objects) {
         super(context, R.layout.discount_card_item, objects);
     }
-    @SuppressLint(Constants.INFLATE_PARAMS)
+
+    @SuppressLint("InflateParams")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -32,4 +33,5 @@ public class DiscountCardAdapter extends ArrayAdapter<DiscountCard> {
         ((TextView) convertView.findViewById(R.id.added_discount_cards)).setText(discountCard.getNumber());
         return convertView;
     }
+
 }

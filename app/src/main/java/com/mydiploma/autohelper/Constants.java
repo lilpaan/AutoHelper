@@ -13,10 +13,6 @@ public class Constants {
     public static final String DISCOUNT_CARD = "discountCard";
     public static final String ID = "ID";
 
-    // for some params (check usages for info)
-    public static final String  INFLATE_PARAMS = "InflateParams";
-    public static final String SET_TEXT_I18_N = "SetTextI18n";
-
     // sql queries for car
     public static final String SQL_CAR_ALL_INFO = "SELECT * FROM car";
     public static final String SQL_CAR_TITLE_INFO = "SELECT id, maker, model, engineVolume," +

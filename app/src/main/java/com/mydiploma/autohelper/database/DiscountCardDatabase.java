@@ -7,6 +7,7 @@ import com.mydiploma.autohelper.dao.DiscountCardDao;
 import com.mydiploma.autohelper.entity.DiscountCard;
 
 @Database(entities = {DiscountCard.class}, version = 3)
-    public abstract class DiscountCardDatabase extends RoomDatabase {
-        public abstract DiscountCardDao discountCardDao();
-    }
+public abstract class DiscountCardDatabase extends RoomDatabase {
+    public abstract DiscountCardDao discountCardDao();
+
+}

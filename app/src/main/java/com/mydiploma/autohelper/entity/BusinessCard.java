@@ -1,5 +1,6 @@
 package com.mydiploma.autohelper.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -78,6 +79,7 @@ public class BusinessCard {
         return Objects.hash(id, phoneNumber, address, email, site);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "BusinessCard{" +

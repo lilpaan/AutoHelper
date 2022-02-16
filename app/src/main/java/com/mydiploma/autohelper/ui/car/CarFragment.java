@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -21,20 +20,18 @@ import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.databinding.FragmentDashboardBinding;
 import com.mydiploma.autohelper.entity.Car;
 
-import java.util.Objects;
-
 public class CarFragment extends Fragment {
-
     private FragmentDashboardBinding binding;
     CarDatabase carDatabase;
     CarDao carDao;
     Car[] cars;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        ListView lv = root.findViewById(R.id.added_car_list);
-        Thread thread = new Thread(){
+        ListView carListView = root.findViewById(R.id.added_car_list);
+        Thread carGetTitleThread = new Thread(){
             @Override
             public void run() {
                 carDatabase = Room.databaseBuilder(requireContext(), CarDatabase.class,
@@ -43,23 +40,23 @@ public class CarFragment extends Fragment {
                 cars = carDao.getCarTitle().toArray(new Car[0]);
             }
         };
-        thread.start();
+        carGetTitleThread.start();
         try {
-            thread.join();
+            carGetTitleThread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        CarAdapter adapter = new CarAdapter(requireContext(), cars);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(root.getContext(), CarInfo.class);
-            intent.putExtra(Constants.ID, adapter.getItem(position).getId());
-            startActivity(intent);
+        CarAdapter carAdapter = new CarAdapter(requireContext(), cars);
+        carListView.setAdapter(carAdapter);
+        carListView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intentToCarInfo = new Intent(root.getContext(), CarInfo.class);
+            intentToCarInfo.putExtra(Constants.ID, carAdapter.getItem(position).getId());
+            startActivity(intentToCarInfo);
         });
-        Button button = root.findViewById(R.id.addCarButton);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(root.getContext(), AddCarActivity.class);
-            startActivity(intent);
+        Button addCarButton = root.findViewById(R.id.add_car_button);
+        addCarButton.setOnClickListener(v -> {
+            Intent intentToAddCar = new Intent(root.getContext(), AddCarActivity.class);
+            startActivity(intentToAddCar);
         });
         return root;
     }
@@ -69,4 +66,5 @@ public class CarFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }
