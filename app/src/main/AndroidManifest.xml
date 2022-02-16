@@ -30,6 +30,9 @@
         <activity
             android:name=".ui.card.DiscountCardInfo"
             android:exported="false" />
+        <activity
+            android:name=".ui.car.AddSparePartActivity"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

@@ -27,6 +27,12 @@
     <string name="current_oil_brand">Моторное масло</string>
     <string name="insurance_run_out_date">Окончание страховки</string>
 
+    <!--Spare Part all info-->
+    <string name="add_spare_part_title">Добавить запчасть</string>
+    <string name="spare_part_type">Тип запчасти</string>
+    <string name="spare_part_maker">Производитель</string>
+    <string name="spare_part_installation_date">Дата установки</string>
+
     <!--Strings for hints-->
     <string name="maker_hint">Марка авто</string>
     <string name="model_hint">Модель</string>

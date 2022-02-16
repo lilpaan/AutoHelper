@@ -13,6 +13,7 @@ public class Constants {
     public static final String DISCOUNT_CARD = "discountCard";
     public static final String ID = "ID";
     public static final String CAR_ID_IN_SPARE_PART = "carID";
+    public static final String SPARE_PART = "sparePart";
 
     // sql queries for car
     public static final String SQL_CAR_ALL_INFO = "SELECT * FROM car";
