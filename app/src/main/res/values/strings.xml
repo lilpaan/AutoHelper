@@ -44,7 +44,7 @@
 
 
     <!--Strings for add card-->
-    <string name="question_about_type">Выберите тип карты</string>
+    <string name="question_about_type">Выберите тип</string>
     <string name="add_card_title">Добавить карту</string>
     <string name="phone_number">Номер телефона</string>
     <string name="email">Электронная почта</string>

@@ -12,6 +12,6 @@
     <color name="auto_helper">#AFCAE7</color>
     <color name="chosen_branch">#00C2E2</color>
     <color name="for_bar">#1D2151</color>
-
+    <color name="for_dialog">#404476</color>
 
 </resources>

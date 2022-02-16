@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -170,6 +171,12 @@ public class CardFragment extends Fragment {
             chooseCardType = new Dialog(getActivity());
             chooseCardType.requestWindowFeature(Window.FEATURE_NO_TITLE);
             chooseCardType.setContentView(R.layout.choose_card_type);
+            // for dialog design
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+            lp.copyFrom(chooseCardType.getWindow().getAttributes());
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            chooseCardType.getWindow().setAttributes(lp);
             // for close dialog
             closeDialog = chooseCardType.findViewById(R.id.close_dialog_button);
             closeDialog.setOnClickListener(v1 -> {
