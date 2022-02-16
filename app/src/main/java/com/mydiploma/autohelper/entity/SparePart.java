@@ -1,11 +1,16 @@
 package com.mydiploma.autohelper.entity;
 
 import androidx.annotation.NonNull;
+import androidx.room.PrimaryKey;
 
 import java.util.Date;
 import java.util.Objects;
 
 public class SparePart {
+    @PrimaryKey(autoGenerate = true)
+    long id;
+    //Foreign key
+    long carID;
     String type;
     String maker;
     Date installationDate;

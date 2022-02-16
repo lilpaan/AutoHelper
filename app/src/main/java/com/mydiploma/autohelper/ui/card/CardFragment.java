@@ -6,6 +6,8 @@ import static android.graphics.Color.WHITE;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -177,6 +179,7 @@ public class CardFragment extends Fragment {
             lp.width = WindowManager.LayoutParams.MATCH_PARENT;
             lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
             chooseCardType.getWindow().setAttributes(lp);
+            chooseCardType.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             // for close dialog
             closeDialog = chooseCardType.findViewById(R.id.close_dialog_button);
             closeDialog.setOnClickListener(v1 -> {

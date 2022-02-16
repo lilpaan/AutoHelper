@@ -3,6 +3,8 @@ package com.mydiploma.autohelper.ui.car;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -58,6 +60,13 @@ public class CarInfo extends AppCompatActivity {
         viewForProductionYear.setText(String.valueOf(car.getProductionYear()));
         viewForInsuranceRunOutDate.setText(car.getInsuranceRunOutDate());
         viewForCurrentOilBrand.setText(car.getCurrentOilBrand());
+        // spare part button activity
+        Button sparePartButton = findViewById(R.id.spare_part_button);
+        sparePartButton.setOnClickListener(v -> {
+            Intent intentToSparePart = new Intent(CarInfo.this, SparePartActivity.class);
+            intentToSparePart.putExtra(Constants.CAR_ID_IN_SPARE_PART, id);
+            startActivity(intentToSparePart);
+        });
         // finishCarButton for finish activity
         Button finishCarButton = findViewById(R.id.finish_car);
         finishCarButton.setOnClickListener(v -> finish());

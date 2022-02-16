@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoHelper">
         <activity
+            android:name=".ui.car.SparePartActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.card.AddDiscountCardActivity"
             android:exported="false" />
         <activity
@@ -50,6 +53,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

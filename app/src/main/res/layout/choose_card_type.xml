@@ -5,7 +5,7 @@
     android:id="@+id/choose_card_dialog"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/for_dialog">
+    android:background="@drawable/back_for_dialog">
 
     <TextView
         android:id="@+id/question_about_type"
