@@ -19,8 +19,8 @@ public class AddCarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_car_activity);
-        Button ok = findViewById(R.id.saveCarButton);
-        Button cancelAdd = findViewById(R.id.cancelAddCarButton);
+        Button ok = findViewById(R.id.save_car_button);
+        Button cancelAdd = findViewById(R.id.cancel_add_car_button);
         // save new car
         ok.setOnClickListener(v -> {
 

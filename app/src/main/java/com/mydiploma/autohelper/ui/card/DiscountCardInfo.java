@@ -22,7 +22,8 @@ public class DiscountCardInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discount_card_info);
         long id = getIntent().getLongExtra(Constants.ID, 0);
-        Thread thread = new Thread(){
+        // thread to take discount info
+        Thread getDiscountInfoThread = new Thread(){
             @Override
             public void run() {
                 discountCardDatabase = Room.databaseBuilder(getApplicationContext(), DiscountCardDatabase.class,
@@ -31,27 +32,26 @@ public class DiscountCardInfo extends AppCompatActivity {
                 discountCard = discountCardDao.getById(id);
             }
         };
-        thread.start();
+        getDiscountInfoThread.start();
         try {
-            thread.join();
+            getDiscountInfoThread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        // tw for output info
         TextView viewForNumber = findViewById(R.id.view_for_number);
         TextView viewForNfc = findViewById(R.id.view_for_nfc);
         TextView viewForBarcode = findViewById(R.id.view_for_barcode);
-
+        // place info to tw
         viewForNumber.setText(String.valueOf(discountCard.getNumber()));
         viewForNfc.setText(discountCard.getNfc());
         viewForBarcode.setText(discountCard.getBarcode());
-
-
         // buttons
         Button button = findViewById(R.id.finish_discount_card);
         button.setOnClickListener(v -> finish());
         Button delete = findViewById(R.id.delete_discount_card);
         delete.setOnClickListener(v -> {
+            //thread to delete car
             Thread deleteThread = new Thread(){
                 @Override
                 public void run() {

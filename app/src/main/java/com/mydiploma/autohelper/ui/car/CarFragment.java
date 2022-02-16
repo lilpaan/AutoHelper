@@ -30,7 +30,9 @@ public class CarFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        Button addCarButton = root.findViewById(R.id.add_car_button);
         ListView carListView = root.findViewById(R.id.added_car_list);
+        // thread to place car title in item
         Thread carGetTitleThread = new Thread(){
             @Override
             public void run() {
@@ -46,14 +48,16 @@ public class CarFragment extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        // init adapter
         CarAdapter carAdapter = new CarAdapter(requireContext(), cars);
         carListView.setAdapter(carAdapter);
+        // for clickable items
         carListView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intentToCarInfo = new Intent(root.getContext(), CarInfo.class);
             intentToCarInfo.putExtra(Constants.ID, carAdapter.getItem(position).getId());
             startActivity(intentToCarInfo);
         });
-        Button addCarButton = root.findViewById(R.id.add_car_button);
+        // button to add new car
         addCarButton.setOnClickListener(v -> {
             Intent intentToAddCar = new Intent(root.getContext(), AddCarActivity.class);
             startActivity(intentToAddCar);

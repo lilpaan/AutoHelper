@@ -8,10 +8,6 @@ public class CardViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public CardViewModel() {
-        mText = new MutableLiveData<>();
-    }
-
     public LiveData<String> getText() {
         return mText;
     }

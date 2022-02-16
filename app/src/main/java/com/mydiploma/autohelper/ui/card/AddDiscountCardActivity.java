@@ -21,41 +21,35 @@ public class AddDiscountCardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_discount_card);
         Button ok = findViewById(R.id.saveDiscountCardButton);
         Button cancelAdd = findViewById(R.id.cancelAddDiscountCardButton);
+        // for open discount db
         ok.setOnClickListener(v -> {
-
-
+            DiscountCardDatabase db =  Room.databaseBuilder(getApplicationContext(),
+                    DiscountCardDatabase.class, Constants.DISCOUNT_CARD).build();
+            // code to rebase db
 /*
             DiscountCardDatabase db = Room.databaseBuilder(getApplicationContext(),
                     DiscountCardDatabase.class, Constants.DISCOUNT_CARD)
                     .fallbackToDestructiveMigration()
                     .build();
 */
-
-
-
-            DiscountCardDatabase db =  Room.databaseBuilder(getApplicationContext(),
-                    DiscountCardDatabase.class, Constants.DISCOUNT_CARD).build();
-
-
-
-
             DiscountCard discountCard = new DiscountCard();
+            // read input info
             discountCard.setNumber(((EditText) findViewById(R.id.input_number)).getText().toString());
             discountCard.setNfc(((EditText) findViewById(R.id.input_nfc)).getText().toString());
             discountCard.setBarcode(((EditText) findViewById(R.id.input_barcode)).getText().toString());
             DiscountCardDao discountCardDao = db.discountCardDao();
-            Thread thread = new Thread(){
+            // thread to save car
+            Thread saveDiscountThread = new Thread(){
                 @Override
                 public void run() {
                     discountCardDao.insert(discountCard);
                 }
             };
-            thread.start();
+            saveDiscountThread.start();
 
 /*            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.navigation_dashboard, getFragmentManager().findFragmentById(R.id.frag));
             fragmentTransaction.commit(); */
-
 
             finish();
         });

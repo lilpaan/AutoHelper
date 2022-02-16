@@ -24,7 +24,8 @@ public class CarInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_info);
         long id = getIntent().getLongExtra(Constants.ID, 0);
-        Thread thread = new Thread(){
+        // thread to get car info
+        Thread threadToGetCarInfo = new Thread(){
             @Override
             public void run() {
                 carDatabase = Room.databaseBuilder(getApplicationContext(), CarDatabase.class,
@@ -33,13 +34,13 @@ public class CarInfo extends AppCompatActivity {
                 car = carDao.getById(id);
             }
         };
-        thread.start();
+        threadToGetCarInfo.start();
         try {
-            thread.join();
+            threadToGetCarInfo.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        // text views for output info
         TextView viewForModel = findViewById(R.id.view_for_model);
         TextView viewForMaker = findViewById(R.id.view_for_maker);
         TextView viewForEngineVolume = findViewById(R.id.view_for_engine_volume);
@@ -48,7 +49,7 @@ public class CarInfo extends AppCompatActivity {
         TextView viewForProductionYear = findViewById(R.id.view_for_production_year);
         TextView viewForInsuranceRunOutDate = findViewById(R.id.view_for_insurance_run_out_date);
         TextView viewForCurrentOilBrand = findViewById(R.id.view_for_current_oil_brand);
-
+        // place info to text views
         viewForModel.setText(car.getModel());
         viewForMaker.setText(car.getMaker());
         viewForEngineVolume.setText(String.valueOf(car.getEngineVolume()));
@@ -57,12 +58,13 @@ public class CarInfo extends AppCompatActivity {
         viewForProductionYear.setText(String.valueOf(car.getProductionYear()));
         viewForInsuranceRunOutDate.setText(car.getInsuranceRunOutDate());
         viewForCurrentOilBrand.setText(car.getCurrentOilBrand());
-
-        // buttons
-        Button button = findViewById(R.id.finish_car);
-        button.setOnClickListener(v -> finish());
+        // finishCarButton for finish activity
+        Button finishCarButton = findViewById(R.id.finish_car);
+        finishCarButton.setOnClickListener(v -> finish());
+        // button for delete car
         Button delete = findViewById(R.id.delete_car);
         delete.setOnClickListener(v -> {
+            // thread to delete car
             Thread deleteThread = new Thread(){
                 @Override
                 public void run() {

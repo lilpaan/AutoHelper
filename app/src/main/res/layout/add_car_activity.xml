@@ -174,7 +174,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/cancelAddCarButton"
+                    android:id="@+id/cancel_add_car_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
@@ -184,7 +184,7 @@
                     style="?android:attr/buttonBarButtonStyle" />
 
                 <Button
-                    android:id="@+id/saveCarButton"
+                    android:id="@+id/save_car_button"
                     style="?android:attr/buttonBarButtonStyle"
                     android:background="@drawable/complete"
                     android:foreground="@drawable/complete"

@@ -22,7 +22,8 @@ public class BusinessCardInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_card_info);
         long id = getIntent().getLongExtra(Constants.ID, 0);
-        Thread thread = new Thread(){
+        // thread to get car info
+        Thread threadToGetCarInfo = new Thread(){
             @Override
             public void run() {
                 businessCardDatabase = Room.databaseBuilder(getApplicationContext(), BusinessCardDatabase.class,
@@ -31,18 +32,20 @@ public class BusinessCardInfo extends AppCompatActivity {
                 businessCard = businessCardDao.getById(id);
             }
         };
-        thread.start();
+        threadToGetCarInfo.start();
         try {
-            thread.join();
+            threadToGetCarInfo.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        // tw for output info
         TextView viewForPhoneNumber = findViewById(R.id.view_for_phone_number);
         TextView viewForAddress = findViewById(R.id.view_for_address);
         TextView viewForEmail = findViewById(R.id.view_for_email);
         TextView viewForSite = findViewById(R.id.view_for_site);
 
+        // input into tw
         viewForPhoneNumber.setText(String.valueOf(businessCard.getPhoneNumber()));
         viewForAddress.setText(businessCard.getAddress());
         viewForEmail.setText(businessCard.getEmail());
@@ -54,6 +57,7 @@ public class BusinessCardInfo extends AppCompatActivity {
         button.setOnClickListener(v -> finish());
         Button delete = findViewById(R.id.delete_business_card);
         delete.setOnClickListener(v -> {
+            //thread to delete car
             Thread deleteThread = new Thread(){
                 @Override
                 public void run() {
