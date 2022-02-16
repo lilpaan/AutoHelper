@@ -1,8 +1,6 @@
 package com.mydiploma.autohelper.ui.card;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,38 +10,22 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.room.Room;
 
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.adapter.BusinessCardAdapter;
-import com.mydiploma.autohelper.adapter.CarAdapter;
 import com.mydiploma.autohelper.adapter.DiscountCardAdapter;
 import com.mydiploma.autohelper.dao.BusinessCardDao;
-import com.mydiploma.autohelper.dao.CarDao;
 import com.mydiploma.autohelper.dao.DiscountCardDao;
 import com.mydiploma.autohelper.database.BusinessCardDatabase;
-import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.database.DiscountCardDatabase;
 import com.mydiploma.autohelper.databinding.FragmentHomeBinding;
-import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
 import com.mydiploma.autohelper.entity.BusinessCard;
-import com.mydiploma.autohelper.entity.Car;
 import com.mydiploma.autohelper.entity.DiscountCard;
-import com.mydiploma.autohelper.ui.car.AddCarActivity;
-import com.mydiploma.autohelper.ui.car.CarInfo;
-
-import java.util.Objects;
 
 
 public class CardFragment extends Fragment {
@@ -81,8 +63,13 @@ public class CardFragment extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        BusinessCardAdapter adapter = new BusinessCardAdapter(requireContext(), businessCards);
-        businessListView.setAdapter(adapter);
+        BusinessCardAdapter businessAdapter= new BusinessCardAdapter(requireContext(), businessCards);
+        businessListView.setAdapter(businessAdapter);
+        businessListView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent businessIntent = new Intent(root.getContext(), BusinessCardInfo.class);
+            businessIntent.putExtra(Constants.ID, businessAdapter.getItem(position).getId());
+            startActivity(businessIntent);
+        });
         ListView discountListView = root.findViewById(R.id.added_discount_card_list);
         Thread thread1 = new Thread(){
             @Override

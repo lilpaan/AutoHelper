@@ -70,4 +70,5 @@ public class DiscountCardInfo extends AppCompatActivity {
             finish();
         });
     }
+
 }
