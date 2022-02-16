@@ -14,8 +14,6 @@ import com.yandex.mapkit.mapview.MapView;
 
 public class YandexMaps extends AppCompatActivity {
 
-    private MapView mapview;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -25,7 +23,7 @@ public class YandexMaps extends AppCompatActivity {
 
         // Укажите имя activity вместо map.
         setContentView(R.layout.activity_map);
-        mapview = (MapView) findViewById(R.id.map_view);
+        MapView mapview = (MapView) findViewById(R.id.map_view);
         mapview.getMap().move(
                         new CameraPosition(new Point(55.751574, 37.573856), 11.0f, 0.0f, 0.0f),
                         new Animation(Animation.Type.SMOOTH, 0),

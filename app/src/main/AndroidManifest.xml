@@ -19,13 +19,13 @@
             android:name=".ui.refill.YandexMaps"
             android:exported="false" />
         <activity
-            android:name=".YandexMap"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-        <activity
             android:name=".ui.car.CarInfo"
+            android:exported="false" />
+        <activity
+            android:name=".ui.card.BusinessCardInfo"
+            android:exported="false" />
+        <activity
+            android:name=".ui.card.DiscountCardInfo"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.

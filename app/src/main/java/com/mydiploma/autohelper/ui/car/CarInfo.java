@@ -23,7 +23,7 @@ public class CarInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_info);
-        long id = getIntent().getLongExtra("ID", 0);
+        long id = getIntent().getLongExtra(Constants.ID, 0);
         Thread thread = new Thread(){
             @Override
             public void run() {
@@ -59,9 +59,9 @@ public class CarInfo extends AppCompatActivity {
         viewForCurrentOilBrand.setText(car.getCurrentOilBrand());
 
         // buttons
-        Button button = findViewById(R.id.finish);
+        Button button = findViewById(R.id.finish_car);
         button.setOnClickListener(v -> finish());
-        Button delete = findViewById(R.id.delete);
+        Button delete = findViewById(R.id.delete_car);
         delete.setOnClickListener(v -> {
             Thread deleteThread = new Thread(){
                 @Override

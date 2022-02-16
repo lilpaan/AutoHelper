@@ -41,6 +41,7 @@ import com.mydiploma.autohelper.entity.BusinessCard;
 import com.mydiploma.autohelper.entity.Car;
 import com.mydiploma.autohelper.entity.DiscountCard;
 import com.mydiploma.autohelper.ui.car.AddCarActivity;
+import com.mydiploma.autohelper.ui.car.CarInfo;
 
 import java.util.Objects;
 
@@ -82,7 +83,6 @@ public class CardFragment extends Fragment {
         }
         BusinessCardAdapter adapter = new BusinessCardAdapter(requireContext(), businessCards);
         businessListView.setAdapter(adapter);
-
         ListView discountListView = root.findViewById(R.id.added_discount_card_list);
         Thread thread1 = new Thread(){
             @Override
@@ -101,7 +101,11 @@ public class CardFragment extends Fragment {
         }
         DiscountCardAdapter discountCardAdapter = new DiscountCardAdapter(requireActivity(), discountCards);
         discountListView.setAdapter(discountCardAdapter);
-
+        discountListView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent discountIntent = new Intent(root.getContext(), DiscountCardInfo.class);
+            discountIntent.putExtra(Constants.ID, discountCardAdapter.getItem(position).getId());
+            startActivity(discountIntent);
+        });
         LinearLayout discountCardList = root.findViewById(R.id.discount_card_list);
         LinearLayout businessCardList = root.findViewById(R.id.business_card_list);
         Button businessCardButton = root.findViewById(R.id.business_card_button);

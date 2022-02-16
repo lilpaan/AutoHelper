@@ -11,6 +11,7 @@ public class Constants {
     public static final String CAR = "car";
     public static final String BUSINESS_CARD = "businessCard";
     public static final String DISCOUNT_CARD = "discountCard";
+    public static final String ID = "ID";
 
     // for some params (check usages for info)
     public static final String  INFLATE_PARAMS = "InflateParams";

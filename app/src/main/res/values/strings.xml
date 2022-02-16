@@ -6,12 +6,16 @@
     <string name="cancel_button">Cancel</string>
     <string name="add_car_button">Добавить автомобиль</string>
     <string name="show_map_button">Показать карту</string>
+    <string name="business_button">Визитные</string>
+    <string name="discount_button">Скидочные</string>
 
     <!--Menu-->
     <string name="title_cards">Карточки</string>
     <string name="title_auto">Авто</string>
     <string name="title_refills">Заправки</string>
     <string name="auto_helper">Auto Helper</string>
+    <string name="discount_title">Скидочная карта</string>
+    <string name="business_title">Визитная карта</string>
 
     <!--Automobile properties-->
     <string name="maker">Марка автомобиля</string>

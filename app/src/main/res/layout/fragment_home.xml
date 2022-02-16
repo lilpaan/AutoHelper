@@ -24,21 +24,21 @@
 
     <Button
         android:id="@+id/business_card_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="32dp"
-        android:text="список 1"
+        android:text="@string/business_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/discount_card_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:text="список 2"
+        android:layout_marginEnd="30dp"
+        android:text="@string/discount_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
