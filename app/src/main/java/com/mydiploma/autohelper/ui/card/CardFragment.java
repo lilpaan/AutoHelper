@@ -1,5 +1,8 @@
 package com.mydiploma.autohelper.ui.card;
 
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.WHITE;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -144,11 +147,20 @@ public class CardFragment extends Fragment {
         });
         // for show business list
         businessCardButton.setOnClickListener(v -> {
+            businessCardButton.setTextColor(WHITE);
+            businessCardCountView.setTextColor(WHITE);
+            discountCardButton.setBackgroundColor(View.INVISIBLE);
+            discountCardButton.setTextColor(BLACK);
+            discountCardCountView.setTextColor(BLACK);
             businessCardList.setVisibility(View.VISIBLE);
             discountCardList.setVisibility(View.GONE);
         });
         // for show discount list
         discountCardButton.setOnClickListener(v -> {
+            discountCardButton.setTextColor(WHITE);
+            discountCardCountView.setTextColor(WHITE);
+            businessCardButton.setTextColor(BLACK);
+            businessCardCountView.setTextColor(BLACK);
             discountCardList.setVisibility(View.VISIBLE);
             businessCardList.setVisibility(View.GONE);
         });
