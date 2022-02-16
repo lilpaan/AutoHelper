@@ -15,6 +15,7 @@ public class Constants {
 
     // for some params (check usages for info)
     public static final String  INFLATE_PARAMS = "InflateParams";
+    public static final String SET_TEXT_I18_N = "SetTextI18n";
 
     // sql queries for car
     public static final String SQL_CAR_ALL_INFO = "SELECT * FROM car";
@@ -26,9 +27,11 @@ public class Constants {
     public static final String SQL_BUSINESS_CARD_ALL_INFO = "SELECT * FROM BusinessCard";
     public static final String SQL_BUSINESS_CARD_TITLE_INFO = "SELECT id, address FROM BusinessCard";
     public static final String SQL_BUSINESS_CARD_BY_ID = "SELECT * FROM BusinessCard WHERE id = :id";
+    public static final String SQL_BUSINESS_CARD_COUNT = "SELECT COUNT(*) as businessCount FROM BusinessCard";
 
     // sql queries for discount card
     public static final String SQL_DISCOUNT_CARD_ALL_INFO = "SELECT * FROM DiscountCard";
     public static final String SQL_DISCOUNT_CARD_TITLE_INFO = "SELECT id, number FROM DiscountCard";
     public static final String SQL_DISCOUNT_CARD_BY_ID = "SELECT * FROM DiscountCard WHERE id = :id";
+    public static final String SQL_DISCOUNT_CARD_COUNT = "SELECT COUNT(*) as discountCount FROM DiscountCard";
 }

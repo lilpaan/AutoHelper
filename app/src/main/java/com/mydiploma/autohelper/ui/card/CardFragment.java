@@ -1,5 +1,6 @@
 package com.mydiploma.autohelper.ui.card;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -41,6 +43,8 @@ public class CardFragment extends Fragment {
     DiscountCardDao discountCardDao;
     BusinessCard[] businessCards;
     DiscountCard[] discountCards;
+    TextView discountCardCountView;
+    TextView businessCardCountView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -86,6 +90,43 @@ public class CardFragment extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        Thread thread2 = new Thread(){
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void run() {
+                discountCardDatabase = Room.databaseBuilder(requireContext(), DiscountCardDatabase.class,
+                        Constants.DISCOUNT_CARD).build();
+                discountCardDao = discountCardDatabase.discountCardDao();
+                discountCardCountView = root.findViewById(R.id.discount_cards_count);
+                discountCardCountView.setText(discountCardDao.getDiscountCount().toString());
+            }
+        };
+        thread2.start();
+        try {
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Thread thread3 = new Thread(){
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void run() {
+                businessCardDatabase = Room.databaseBuilder(requireContext(), BusinessCardDatabase.class,
+                        Constants.BUSINESS_CARD).build();
+                businessCardDao = businessCardDatabase.businessCardDao();
+                businessCardCountView = root.findViewById(R.id.business_cards_count);
+                businessCardCountView.setText(businessCardDao.getBusinessCount().toString());
+            }
+        };
+        thread3.start();
+        try {
+            thread3.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         DiscountCardAdapter discountCardAdapter = new DiscountCardAdapter(requireActivity(), discountCards);
         discountListView.setAdapter(discountCardAdapter);
         discountListView.setOnItemClickListener((parent, view, position, id) -> {

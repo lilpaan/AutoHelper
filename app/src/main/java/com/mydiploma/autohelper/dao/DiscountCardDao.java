@@ -25,6 +25,9 @@ public interface DiscountCardDao {
     @Query(Constants.SQL_DISCOUNT_CARD_BY_ID)
     DiscountCard getById(long id);
 
+    @Query(Constants.SQL_DISCOUNT_CARD_COUNT)
+    Integer getDiscountCount();
+
     @Insert
     void insert(DiscountCard DiscountCard);
 

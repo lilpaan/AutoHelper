@@ -25,6 +25,9 @@ public interface BusinessCardDao {
     @Query(Constants.SQL_BUSINESS_CARD_BY_ID)
     BusinessCard getById(long id);
 
+    @Query(Constants.SQL_BUSINESS_CARD_COUNT)
+    Integer getBusinessCount();
+
     @Insert
     void insert(BusinessCard businessCard);
 
