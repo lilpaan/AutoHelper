@@ -28,18 +28,12 @@ public class AddSparePartActivity extends AppCompatActivity {
         ok.setOnClickListener(v -> {
             // entrance into carDataBase
             CarDatabase carDataBase = Room.databaseBuilder(getApplicationContext(),
-                    CarDatabase.class, Constants.SPARE_PART).build();
-
-            
+                    CarDatabase.class, Constants.CAR).build();
             // rebase db code
 /*            CarDatabase carDataBase = Room.databaseBuilder(getApplicationContext(),
-                    CarDatabase.class, Constants.SPARE_PART)
+                    CarDatabase.class, Constants.CAR)
                     .fallbackToDestructiveMigration()
                     .build();*/
-            //Car car;
-            //Car getById(long id);
-
-
             SparePart sparePart = new SparePart();
             // take values from fields
             sparePart.setCarID(id);
@@ -59,7 +53,6 @@ public class AddSparePartActivity extends AppCompatActivity {
 /*            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.navigation_dashboard, getFragmentManager().findFragmentById(R.id.frag));
             fragmentTransaction.commit();*/
-
             finish();
         });
         cancelAdd.setOnClickListener(v -> finish());

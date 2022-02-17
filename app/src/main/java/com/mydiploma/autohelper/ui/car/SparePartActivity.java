@@ -39,11 +39,11 @@ public class SparePartActivity extends AppCompatActivity {
             @Override
             public void run() {
 /*                carDatabase = Room.databaseBuilder(getApplicationContext(),
-                        CarDatabase.class, Constants.SPARE_PART)
+                        CarDatabase.class, Constants.CAR)
                         .fallbackToDestructiveMigration()
                         .build();*/
                 carDatabase = Room.databaseBuilder(SparePartActivity.this, CarDatabase.class,
-                        Constants.SPARE_PART).build();
+                        Constants.CAR).build();
                 sparePartDao = carDatabase.sparePartDao();
                 spareParts = sparePartDao.getSparePartTitle(id).toArray(new SparePart[0]);
             }

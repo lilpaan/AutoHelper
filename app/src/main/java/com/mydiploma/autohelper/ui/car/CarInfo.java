@@ -95,7 +95,7 @@ public class CarInfo extends AppCompatActivity {
                 @Override
                 public void run() {
                     carDatabase = Room.databaseBuilder(getApplicationContext(), CarDatabase.class,
-                            Constants.SPARE_PART).build();
+                            Constants.CAR).build();
                     sparePartDao = carDatabase.sparePartDao();
                     sparePartDao.deleteSparePart(id);
                 }
