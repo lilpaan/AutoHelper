@@ -10,14 +10,12 @@ import com.mydiploma.autohelper.Constants;
 import java.util.Date;
 import java.util.Objects;
 
-@Entity(foreignKeys = {@ForeignKey(entity = Car.class,
-        parentColumns = Constants.ID,
-        childColumns = Constants.CAR_ID_IN_SPARE_PART,
-        onDelete = ForeignKey.CASCADE)
-})
+@Entity
 public class SparePart {
     @PrimaryKey(autoGenerate = true)
     long id;
+    @ForeignKey(entity = Car.class, parentColumns = {Constants.ID},
+            childColumns = {Constants.CAR_ID_IN_SPARE_PART}, onDelete = ForeignKey.CASCADE)
     long carID;
     String type;
     String maker;

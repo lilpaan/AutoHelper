@@ -32,4 +32,9 @@ public class Constants {
     public static final String SQL_DISCOUNT_CARD_TITLE_INFO = "SELECT id, number FROM DiscountCard";
     public static final String SQL_DISCOUNT_CARD_BY_ID = "SELECT * FROM DiscountCard WHERE id = :id";
     public static final String SQL_DISCOUNT_CARD_COUNT = "SELECT COUNT(*) as discountCount FROM DiscountCard";
+
+    // sql queries for spare part
+    public static final String SQL_SPARE_PART_ALL_INFO = "SELECT * FROM sparePart";
+    public static final String SQL_SPARE_PART_TITLE_INFO = "SELECT id, carID, type FROM sparePart";
+    public static final String SQL_SPARE_PART_BY_ID = "SELECT * FROM sparePart WHERE id = :id";
 }
