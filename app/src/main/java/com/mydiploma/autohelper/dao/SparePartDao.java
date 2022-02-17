@@ -26,6 +26,9 @@ public interface SparePartDao {
     @Query(Constants.SQL_SPARE_PART_BY_ID)
     SparePart getById(long id);
 
+    @Query(Constants.SQL_DELETE_SPARE_PART)
+    void deleteSparePart(long id);
+
     @Insert
     void insert(SparePart sparePart);
 

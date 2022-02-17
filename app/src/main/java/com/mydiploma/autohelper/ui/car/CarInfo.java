@@ -14,12 +14,14 @@ import android.widget.TextView;
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.dao.CarDao;
+import com.mydiploma.autohelper.dao.SparePartDao;
 import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.entity.Car;
 
 public class CarInfo extends AppCompatActivity {
     CarDatabase carDatabase;
     CarDao carDao;
+    SparePartDao sparePartDao;
     Car car;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,7 @@ public class CarInfo extends AppCompatActivity {
         Button sparePartButton = findViewById(R.id.spare_part_button);
         sparePartButton.setOnClickListener(v -> {
             Intent intentToSparePart = new Intent(CarInfo.this, SparePartActivity.class);
-            intentToSparePart.putExtra(Constants.CAR_ID_IN_SPARE_PART, id);
+            intentToSparePart.putExtra(Constants.ID, id);
             startActivity(intentToSparePart);
         });
         // finishCarButton for finish activity
@@ -74,7 +76,7 @@ public class CarInfo extends AppCompatActivity {
         Button delete = findViewById(R.id.delete_car);
         delete.setOnClickListener(v -> {
             // thread to delete car
-            Thread deleteThread = new Thread(){
+            Thread deleteCarThread = new Thread(){
                 @Override
                 public void run() {
                     carDatabase = Room.databaseBuilder(getApplicationContext(), CarDatabase.class,
@@ -83,9 +85,24 @@ public class CarInfo extends AppCompatActivity {
                     carDao.delete(car);
                 }
             };
-            deleteThread.start();
+            deleteCarThread.start();
             try {
-                deleteThread.join();
+                deleteCarThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Thread deleteSparePartThread = new Thread(){
+                @Override
+                public void run() {
+                    carDatabase = Room.databaseBuilder(getApplicationContext(), CarDatabase.class,
+                            Constants.SPARE_PART).build();
+                    sparePartDao = carDatabase.sparePartDao();
+                    sparePartDao.deleteSparePart(id);
+                }
+            };
+            deleteSparePartThread.start();
+            try {
+                deleteSparePartThread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

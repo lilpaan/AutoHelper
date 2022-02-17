@@ -1,21 +1,23 @@
 package com.mydiploma.autohelper.entity;
 
-import androidx.annotation.NonNull;
+import static androidx.room.ForeignKey.CASCADE;
+
+import androidx.core.location.GnssStatusCompat;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import com.mydiploma.autohelper.Constants;
 
-import java.util.Date;
 import java.util.Objects;
-
-@Entity
+@Entity/*(foreignKeys ={
+        @ForeignKey(onDelete = CASCADE,entity = Car.class,
+                parentColumns = Constants.ID,childColumns = Constants.CAR_ID_IN_SPARE_PART)})*/
 public class SparePart {
     @PrimaryKey(autoGenerate = true)
     long id;
-    @ForeignKey(entity = Car.class, parentColumns = {Constants.ID},
-            childColumns = {Constants.CAR_ID_IN_SPARE_PART}, onDelete = ForeignKey.CASCADE)
     long carID;
     String type;
     String maker;

@@ -28,12 +28,10 @@ public class AddCarActivity extends AppCompatActivity {
             CarDatabase carDatabase =  Room.databaseBuilder(getApplicationContext(),
                     CarDatabase.class, Constants.CAR).build();
             // rebase db code
-/*
-            CarDatabase carDatabase = Room.databaseBuilder(getApplicationContext(),
+/*            CarDatabase carDatabase = Room.databaseBuilder(getApplicationContext(),
                     CarDatabase.class, Constants.CAR)
                     .fallbackToDestructiveMigration()
-                    .build();
-*/
+                    .build();*/
             Car car = new Car();
             // take values from fields
             car.setMaker (((EditText) findViewById(R.id.input_maker)).getText().toString());

@@ -11,7 +11,7 @@ public class Constants {
     public static final String CAR = "car";
     public static final String BUSINESS_CARD = "businessCard";
     public static final String DISCOUNT_CARD = "discountCard";
-    public static final String ID = "ID";
+    public static final String ID = "id";
     public static final String CAR_ID_IN_SPARE_PART = "carID";
     public static final String SPARE_PART = "sparePart";
 
@@ -20,6 +20,8 @@ public class Constants {
     public static final String SQL_CAR_TITLE_INFO = "SELECT id, maker, model, engineVolume," +
             " productionYear, fuelAmount FROM car";
     public static final String SQL_CAR_BY_ID = "SELECT * FROM car WHERE id = :id";
+    /*public static final String SQL_DELETE_CAR = "DELETE FROM car WHERE id = :id" +
+            "; DELETE FROM sparePart WHERE carID = :id;";*/
 
     // sql queries for business card
     public static final String SQL_BUSINESS_CARD_ALL_INFO = "SELECT * FROM BusinessCard";
@@ -38,4 +40,6 @@ public class Constants {
     /*public static final String SQL_SPARE_PART_TITLE_INFO = "SELECT id, carID, type FROM sparePart";*/
     public static final String SQL_SPARE_PART_TITLE_INFO = "SELECT * FROM sparePart WHERE carID = :carID;";
     public static final String SQL_SPARE_PART_BY_ID = "SELECT * FROM sparePart WHERE id = :id";
+    public static final String SQL_DELETE_SPARE_PART = "DELETE FROM sparePart WHERE carID = :id";
+
 }

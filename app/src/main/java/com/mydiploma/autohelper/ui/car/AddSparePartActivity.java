@@ -9,8 +9,10 @@ import android.widget.EditText;
 
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
+import com.mydiploma.autohelper.dao.CarDao;
 import com.mydiploma.autohelper.dao.SparePartDao;
-import com.mydiploma.autohelper.database.SparePartDatabase;
+import com.mydiploma.autohelper.database.CarDatabase;
+import com.mydiploma.autohelper.entity.Car;
 import com.mydiploma.autohelper.entity.SparePart;
 
 public class AddSparePartActivity extends AppCompatActivity {
@@ -19,20 +21,23 @@ public class AddSparePartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_spare_part);
-        long id = getIntent().getLongExtra(Constants.CAR_ID_IN_SPARE_PART, 0);
+        long id = getIntent().getLongExtra(Constants.ID, 0);
         Button ok = findViewById(R.id.save_spare_part_button);
         Button cancelAdd = findViewById(R.id.cancel_add_spare_part_button);
         // save new spare part
         ok.setOnClickListener(v -> {
+            // entrance into carDataBase
+            CarDatabase carDataBase = Room.databaseBuilder(getApplicationContext(),
+                    CarDatabase.class, Constants.SPARE_PART).build();
 
-            // entrance into sparePartDatabase
-            SparePartDatabase sparePartDatabase = Room.databaseBuilder(getApplicationContext(),
-                    SparePartDatabase.class, Constants.SPARE_PART).build();
+            
             // rebase db code
-/*            SparePartDatabase sparePartDatabase = Room.databaseBuilder(getApplicationContext(),
-                    SparePartDatabase.class, Constants.SPARE_PART)
+/*            CarDatabase carDataBase = Room.databaseBuilder(getApplicationContext(),
+                    CarDatabase.class, Constants.SPARE_PART)
                     .fallbackToDestructiveMigration()
                     .build();*/
+            //Car car;
+            //Car getById(long id);
 
 
             SparePart sparePart = new SparePart();
@@ -43,7 +48,7 @@ public class AddSparePartActivity extends AppCompatActivity {
             sparePart.setInstallationDate(((EditText)
                     findViewById(R.id.input_spare_part_installation_date)).getText().toString());
             // sparePartSaveThread to save sparePart into db
-            SparePartDao sparePartDao = sparePartDatabase.sparePartDao();
+            SparePartDao sparePartDao = carDataBase.sparePartDao();
             Thread sparePartSaveThread = new Thread() {
                 @Override
                 public void run() {

@@ -12,11 +12,11 @@ import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.adapter.SparePartAdapter;
 import com.mydiploma.autohelper.dao.SparePartDao;
-import com.mydiploma.autohelper.database.SparePartDatabase;
+import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.entity.SparePart;
 
 public class SparePartActivity extends AppCompatActivity {
-    SparePartDatabase sparePartDatabase;
+    CarDatabase carDatabase;
     SparePartDao sparePartDao;
     SparePart[] spareParts;
 
@@ -24,23 +24,27 @@ public class SparePartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.spare_part_activity);
-        long id = getIntent().getLongExtra(Constants.CAR_ID_IN_SPARE_PART, 0);
+        long id = getIntent().getLongExtra(Constants.ID, 0);
         Button addSparePart = findViewById(R.id.add_spare_part_button);
         ListView sparePartListView = findViewById(R.id.added_spare_part_list);
         // add spare part
         addSparePart.setOnClickListener(v -> {
             Intent intentToAddSparePart
                     = new Intent(SparePartActivity.this, AddSparePartActivity.class);
-            intentToAddSparePart.putExtra(Constants.CAR_ID_IN_SPARE_PART, id);
+            intentToAddSparePart.putExtra(Constants.ID, id);
             startActivity(intentToAddSparePart);
         });
         // thread to show spare part items
         Thread threadToShowSparePart = new Thread(){
             @Override
             public void run() {
-                sparePartDatabase = Room.databaseBuilder(SparePartActivity.this, SparePartDatabase.class,
+/*                carDatabase = Room.databaseBuilder(getApplicationContext(),
+                        CarDatabase.class, Constants.SPARE_PART)
+                        .fallbackToDestructiveMigration()
+                        .build();*/
+                carDatabase = Room.databaseBuilder(SparePartActivity.this, CarDatabase.class,
                         Constants.SPARE_PART).build();
-                sparePartDao = sparePartDatabase.sparePartDao();
+                sparePartDao = carDatabase.sparePartDao();
                 spareParts = sparePartDao.getSparePartTitle(id).toArray(new SparePart[0]);
             }
         };
@@ -51,7 +55,7 @@ public class SparePartActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // init and set spare part adapter
-        SparePartAdapter sparePartAdapter= new SparePartAdapter(SparePartActivity.this, spareParts);
+        SparePartAdapter sparePartAdapter = new SparePartAdapter(SparePartActivity.this, spareParts);
         sparePartListView.setAdapter(sparePartAdapter);
         // close activity
         Button finishSparePartButton = findViewById(R.id.finish_spare_part);
