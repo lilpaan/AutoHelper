@@ -18,7 +18,7 @@ public interface SparePartDao {
     @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
 
     @Query(Constants.SQL_SPARE_PART_TITLE_INFO)
-    List<SparePart> getSparePartTitle();
+    List<SparePart> getSparePartTitle(long carID);
 
     @Query(Constants.SQL_SPARE_PART_ALL_INFO)
     List<SparePart> getAll();

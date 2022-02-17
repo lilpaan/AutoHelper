@@ -95,4 +95,5 @@ public class SparePart {
                 ", installationDate='" + installationDate + '\'' +
                 '}';
     }
+    
 }
