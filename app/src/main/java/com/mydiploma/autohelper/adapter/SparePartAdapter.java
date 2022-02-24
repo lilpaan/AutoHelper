@@ -18,7 +18,6 @@ import com.mydiploma.autohelper.entity.SparePart;
 
 public class SparePartAdapter extends ArrayAdapter<SparePart> {
 
-
     public SparePartAdapter(@NonNull Context context, @NonNull SparePart[] objects) {
         super(context, R.layout.spare_part_item, objects);
     }

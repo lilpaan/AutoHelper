@@ -167,7 +167,7 @@ public class CardFragment extends Fragment {
             discountCardList.setVisibility(View.VISIBLE);
             businessCardList.setVisibility(View.GONE);
         });
-        // for add new car
+        // for add new card
         addCard.setOnClickListener(v -> {
             // dialog with choosing card type
             chooseCardType = new Dialog(getActivity());

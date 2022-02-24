@@ -1,5 +1,6 @@
 package com.mydiploma.autohelper.ui.car;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import com.mydiploma.autohelper.adapter.SparePartAdapter;
 import com.mydiploma.autohelper.dao.SparePartDao;
 import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.entity.SparePart;
+import com.mydiploma.autohelper.ui.card.BusinessCardInfo;
 
 public class SparePartActivity extends AppCompatActivity {
     CarDatabase carDatabase;
@@ -24,14 +26,14 @@ public class SparePartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.spare_part_activity);
-        long id = getIntent().getLongExtra(Constants.ID, 0);
+        long spareId = getIntent().getLongExtra(Constants.ID, 0);
         Button addSparePart = findViewById(R.id.add_spare_part_button);
         ListView sparePartListView = findViewById(R.id.added_spare_part_list);
         // add spare part
         addSparePart.setOnClickListener(v -> {
             Intent intentToAddSparePart
                     = new Intent(SparePartActivity.this, AddSparePartActivity.class);
-            intentToAddSparePart.putExtra(Constants.ID, id);
+            intentToAddSparePart.putExtra(Constants.ID, spareId);
             startActivity(intentToAddSparePart);
         });
         // thread to show spare part items
@@ -45,7 +47,7 @@ public class SparePartActivity extends AppCompatActivity {
                 carDatabase = Room.databaseBuilder(SparePartActivity.this, CarDatabase.class,
                         Constants.CAR).build();
                 sparePartDao = carDatabase.sparePartDao();
-                spareParts = sparePartDao.getSparePartTitle(id).toArray(new SparePart[0]);
+                spareParts = sparePartDao.getSparePartTitle(spareId).toArray(new SparePart[0]);
             }
         };
         threadToShowSparePart.start();
@@ -57,6 +59,12 @@ public class SparePartActivity extends AppCompatActivity {
         // init and set spare part adapter
         SparePartAdapter sparePartAdapter = new SparePartAdapter(SparePartActivity.this, spareParts);
         sparePartListView.setAdapter(sparePartAdapter);
+        // for clickable items
+        sparePartListView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intentToSparePart = new Intent(SparePartActivity.this, SparePartInfo.class);
+            intentToSparePart.putExtra(Constants.ID, sparePartAdapter.getItem(position).getId());
+            startActivity(intentToSparePart);
+        });
         // close activity
         Button finishSparePartButton = findViewById(R.id.finish_spare_part);
         finishSparePartButton.setOnClickListener(v -> finish());
