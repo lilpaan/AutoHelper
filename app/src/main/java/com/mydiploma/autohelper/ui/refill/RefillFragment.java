@@ -35,7 +35,7 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
     private FragmentNotificationsBinding binding;
     MapView mapView;
     private UserLocationLayer userLocationLayer;
-    private static final int PERMISSION_REQUEST = 1;
+    /*private static final int PERMISSION_REQUEST = 1;*/
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         MapKitFactory.initialize(requireActivity());
@@ -43,18 +43,12 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         View root = binding.getRoot();
         mapView = root.findViewById(R.id.mapview);
         MapKit mapKit = MapKitFactory.getInstance();
-        if(ContextCompat.checkSelfPermission(requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(requireActivity(),
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST);
-        } else {
-            mapView.getMap().setRotateGesturesEnabled(false);
-            mapView.getMap().move(new CameraPosition(new Point(0, 0), 14, 0, 0));
-            userLocationLayer = mapKit.createUserLocationLayer(mapView.getMapWindow());
-            userLocationLayer.setVisible(true);
-            userLocationLayer.setHeadingEnabled(true);
-            userLocationLayer.setObjectListener(this);
-        }
+        mapView.getMap().setRotateGesturesEnabled(false);
+        mapView.getMap().move(new CameraPosition(new Point(0, 0), 14, 0, 0));
+        userLocationLayer = mapKit.createUserLocationLayer(mapView.getMapWindow());
+        userLocationLayer.setVisible(true);
+        userLocationLayer.setHeadingEnabled(true);
+        userLocationLayer.setObjectListener(this);
 
         return root;
     }
