@@ -19,9 +19,10 @@ import com.mydiploma.autohelper.entity.Car;
 import com.mydiploma.autohelper.dao.CarDao;
 import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.R;
+import com.mydiploma.autohelper.util.CarUtil;
 
 public class AddCarActivity extends AppCompatActivity {
-
+    boolean success;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,6 @@ public class AddCarActivity extends AppCompatActivity {
         Button cancelAdd = findViewById(R.id.cancel_add_car_button);
         // save new car
         ok.setOnClickListener(v -> {
-
             // entrance into carDatabase
             CarDatabase carDatabase =  Room.databaseBuilder(getApplicationContext(),
                     CarDatabase.class, Constants.CAR).build();
@@ -41,15 +41,15 @@ public class AddCarActivity extends AppCompatActivity {
                     .build();*/
             Car car = new Car();
             // take values from fields
-/*            String[] countries = { "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
+            String[] countries = { "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
             Spinner spinner = findViewById(R.id.spinner);
             // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
             ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, countries);
             // Определяем разметку для использования при выборе элемента
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             // Применяем адаптер к элементу spinner
-            spinner.setAdapter(adapter);*/
-            Spinner spinner = findViewById(R.id.spinner);
+            spinner.setAdapter(adapter);
+            //Spinner spinner = findViewById(R.id.spinner);
             //spinner.setText
             car.setMaker (((EditText) findViewById(R.id.input_maker)).getText().toString());
             car.setModel (((EditText) findViewById(R.id.input_model)).getText().toString());
@@ -59,16 +59,10 @@ public class AddCarActivity extends AppCompatActivity {
             car.setProductionYear (Integer.parseInt(((EditText) findViewById(R.id.input_production_year)).getText().toString()));
             car.setCurrentOilBrand (((EditText) findViewById(R.id.input_current_oil_brand)).getText().toString());
             car.setInsuranceRunOutDate (((EditText) findViewById(R.id.input_insurance_run_out_date)).getText().toString());
-            // carSaveThread to save car into db
-            CarDao carDao = carDatabase.carDao();
-            Thread carSaveThread = new Thread(){
-                @Override
-                public void run() {
-                    carDao.insert(car);
-                }
-            };
-            carSaveThread.start();
-            this.finish();
+            success = CarUtil.addNewCar(car, carDatabase);
+            if(success) {
+                this.finish();
+            }
         });
         cancelAdd.setOnClickListener(v -> finish());
     }

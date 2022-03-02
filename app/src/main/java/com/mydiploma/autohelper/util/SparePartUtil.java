@@ -1,7 +1,5 @@
 package com.mydiploma.autohelper.util;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.mydiploma.autohelper.dao.SparePartDao;
 import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.entity.SparePart;
@@ -27,4 +25,23 @@ public class SparePartUtil {
         return isSparePartAdded;
     }
 
+    public static boolean deleteSparePart(CarDatabase carDatabase, Long id) {
+        boolean isSparePartDeleted;
+        Thread deleteSparePartThread = new Thread(){
+            @Override
+            public void run() {
+                SparePartDao sparePartDao = carDatabase.sparePartDao();
+                sparePartDao.deleteSparePart(id);
+            }
+        };
+        deleteSparePartThread.start();
+        try {
+            deleteSparePartThread.join();
+            isSparePartDeleted = true;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            isSparePartDeleted = false;
+        }
+        return isSparePartDeleted;
+    }
 }

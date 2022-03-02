@@ -1,33 +1,30 @@
 package com.mydiploma.autohelper.ui.car;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.dao.CarDao;
-import com.mydiploma.autohelper.dao.SparePartDao;
 import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.entity.Car;
+import com.mydiploma.autohelper.util.CarUtil;
 
 public class CarInfo extends AppCompatActivity {
     CarDatabase carDatabase;
     CarDao carDao;
-    SparePartDao sparePartDao;
     Car car;
+    boolean success;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_info);
-        long id = getIntent().getLongExtra(Constants.ID, 0);
+        Long id = getIntent().getLongExtra(Constants.ID, 0);
         // thread to get car info
         Thread threadToGetCarInfo = new Thread(){
             @Override
@@ -76,37 +73,12 @@ public class CarInfo extends AppCompatActivity {
         Button delete = findViewById(R.id.delete_car);
         delete.setOnClickListener(v -> {
             // thread to delete car
-            Thread deleteCarThread = new Thread(){
-                @Override
-                public void run() {
-                    carDatabase = Room.databaseBuilder(getApplicationContext(), CarDatabase.class,
-                            Constants.CAR).build();
-                    carDao = carDatabase.carDao();
-                    carDao.delete(car);
-                }
-            };
-            deleteCarThread.start();
-            try {
-                deleteCarThread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            carDatabase = Room.databaseBuilder(getApplicationContext(), CarDatabase.class,
+                    Constants.CAR).build();
+            success = CarUtil.deleteCar(carDatabase, car);
+            if (success) {
+                finish();
             }
-            Thread deleteSparePartThread = new Thread(){
-                @Override
-                public void run() {
-                    carDatabase = Room.databaseBuilder(getApplicationContext(), CarDatabase.class,
-                            Constants.CAR).build();
-                    sparePartDao = carDatabase.sparePartDao();
-                    sparePartDao.deleteSparePart(id);
-                }
-            };
-            deleteSparePartThread.start();
-            try {
-                deleteSparePartThread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            finish();
         });
     }
 
