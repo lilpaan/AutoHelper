@@ -1,11 +1,18 @@
 package com.mydiploma.autohelper.ui.car;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.entity.Car;
@@ -34,6 +41,16 @@ public class AddCarActivity extends AppCompatActivity {
                     .build();*/
             Car car = new Car();
             // take values from fields
+/*            String[] countries = { "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
+            Spinner spinner = findViewById(R.id.spinner);
+            // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
+            ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, countries);
+            // Определяем разметку для использования при выборе элемента
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // Применяем адаптер к элементу spinner
+            spinner.setAdapter(adapter);*/
+            Spinner spinner = findViewById(R.id.spinner);
+            //spinner.setText
             car.setMaker (((EditText) findViewById(R.id.input_maker)).getText().toString());
             car.setModel (((EditText) findViewById(R.id.input_model)).getText().toString());
             car.setEngineVolume (Float.parseFloat(((EditText) findViewById(R.id.input_engine_volume)).getText().toString()));
@@ -51,10 +68,7 @@ public class AddCarActivity extends AppCompatActivity {
                 }
             };
             carSaveThread.start();
-/*            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.navigation_dashboard, getFragmentManager().findFragmentById(R.id.frag));
-            fragmentTransaction.commit();*/
-            finish();
+            this.finish();
         });
         cancelAdd.setOnClickListener(v -> finish());
     }

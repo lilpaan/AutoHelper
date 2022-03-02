@@ -1,22 +1,20 @@
 package com.mydiploma.autohelper.ui.car;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
-import com.mydiploma.autohelper.dao.CarDao;
-import com.mydiploma.autohelper.dao.SparePartDao;
 import com.mydiploma.autohelper.database.CarDatabase;
-import com.mydiploma.autohelper.entity.Car;
 import com.mydiploma.autohelper.entity.SparePart;
+import com.mydiploma.autohelper.util.SparePartUtil;
 
 public class AddSparePartActivity extends AppCompatActivity {
-
+boolean success;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +24,11 @@ public class AddSparePartActivity extends AppCompatActivity {
         Button cancelAdd = findViewById(R.id.cancel_add_spare_part_button);
         // save new spare part
         ok.setOnClickListener(v -> {
-            // entrance into carDataBase
-            CarDatabase carDataBase = Room.databaseBuilder(getApplicationContext(),
+            // entrance into carDatabase
+            CarDatabase carDatabase = Room.databaseBuilder(getApplicationContext(),
                     CarDatabase.class, Constants.CAR).build();
             // rebase db code
-/*            CarDatabase carDataBase = Room.databaseBuilder(getApplicationContext(),
+/*            CarDatabase carDatabase = Room.databaseBuilder(getApplicationContext(),
                     CarDatabase.class, Constants.CAR)
                     .fallbackToDestructiveMigration()
                     .build();*/
@@ -41,19 +39,11 @@ public class AddSparePartActivity extends AppCompatActivity {
             sparePart.setMaker(((EditText) findViewById(R.id.input_spare_part_maker)).getText().toString());
             sparePart.setInstallationDate(((EditText)
                     findViewById(R.id.input_spare_part_installation_date)).getText().toString());
-            // sparePartSaveThread to save sparePart into db
-            SparePartDao sparePartDao = carDataBase.sparePartDao();
-            Thread sparePartSaveThread = new Thread() {
-                @Override
-                public void run() {
-                    sparePartDao.insert(sparePart);
-                }
-            };
-            sparePartSaveThread.start();
-/*            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.navigation_dashboard, getFragmentManager().findFragmentById(R.id.frag));
-            fragmentTransaction.commit();*/
-            finish();
+            // execute adding
+            success = SparePartUtil.addSparePart(carDatabase, sparePart);
+            if(success) {
+                finish();
+            }
         });
         cancelAdd.setOnClickListener(v -> finish());
     }

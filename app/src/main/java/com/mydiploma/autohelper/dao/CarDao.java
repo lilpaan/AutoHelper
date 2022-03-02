@@ -4,7 +4,6 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.RoomWarnings;
 import androidx.room.Update;
 
 import com.mydiploma.autohelper.Constants;
@@ -15,7 +14,6 @@ import java.util.List;
 @Dao
 public interface CarDao {
 
-        @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
 
         @Query(Constants.SQL_CAR_TITLE_INFO)
         List<Car> getCarTitle();

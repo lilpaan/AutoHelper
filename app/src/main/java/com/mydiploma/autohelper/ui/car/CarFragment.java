@@ -25,15 +25,17 @@ public class CarFragment extends Fragment {
     CarDatabase carDatabase;
     CarDao carDao;
     Car[] cars;
+    ListView carListView;
+    CarAdapter carAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         Button addCarButton = root.findViewById(R.id.add_car_button);
-        ListView carListView = root.findViewById(R.id.added_car_list);
+        carListView = root.findViewById(R.id.added_car_list);
         // thread to place car title in item
-        Thread carGetTitleThread = new Thread(){
+        Thread carGetTitleThread = new Thread() {
             @Override
             public void run() {
                 carDatabase = Room.databaseBuilder(requireContext(), CarDatabase.class,
@@ -53,7 +55,7 @@ public class CarFragment extends Fragment {
             e.printStackTrace();
         }
         // init adapter
-        CarAdapter carAdapter = new CarAdapter(requireContext(), cars);
+        carAdapter = new CarAdapter(requireContext(), cars);
         carListView.setAdapter(carAdapter);
         // for clickable items
         carListView.setOnItemClickListener((parent, view, position, id) -> {

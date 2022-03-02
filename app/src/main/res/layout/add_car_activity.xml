@@ -119,6 +119,19 @@
                 android:textColorHint="@color/whiteForHint"
                 android:textSize="20sp" />
 
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="330dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/back_for_input_field"
+                android:entries="@array/catNames"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:touchscreenBlocksFocus="false" />
+
             <EditText
                 android:id="@+id/input_production_year"
                 android:layout_width="330dp"

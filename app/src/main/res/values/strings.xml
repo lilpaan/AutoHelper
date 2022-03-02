@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Auto Helper</string>
 
     <!--Buttons-->
@@ -8,6 +8,9 @@
     <string name="show_map_button">Показать карту</string>
     <string name="business_button">Визитные</string>
     <string name="discount_button">Скидочные</string>
+
+    <!--Tags-->
+    <string name="car_list_tag">car_list_tag</string>
 
     <!--Menu-->
     <string name="title_cards">Карточки</string>
@@ -48,6 +51,9 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
 
+    <!--yandex api-->
+    <string name="api_key_yandex" tools:ignore="TypographyDashes">
+        454f475e-9c32-495c-befa-f45546f51016</string>
 
     <!--Strings for add card-->
     <string name="question_about_type">Выберите тип</string>
@@ -59,5 +65,10 @@
     <string name="card_number">Номер</string>
     <string name="card_barcode">Штрих-код</string>
     <string name="card_nfc">NFC</string>
-
+    <string-array name="catNames">
+        <item>Барсик</item>
+        <item>Мурзик</item>
+        <item>Васька</item>
+        <item>Рыжик</item>
+    </string-array>
 </resources>
