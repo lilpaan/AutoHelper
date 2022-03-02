@@ -7,6 +7,9 @@ public class Constants {
     // constants for yandex maps
     public static final String YANDEX_API_KEY = "454f475e-9c32-495c-befa-f45546f51016";
 
+    // constants for items on map
+    public static final String PIN = "pin";
+
     // titles
     public static final String CAR = "car";
     public static final String BUSINESS_CARD = "businessCard";

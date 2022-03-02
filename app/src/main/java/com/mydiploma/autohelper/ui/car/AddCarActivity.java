@@ -27,7 +27,6 @@ import java.time.LocalDate;
 
 public class AddCarActivity extends AppCompatActivity {
     boolean success;
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
