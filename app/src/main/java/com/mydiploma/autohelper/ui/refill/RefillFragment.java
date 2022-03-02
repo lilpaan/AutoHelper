@@ -50,6 +50,10 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         } else {
             mapView.getMap().setRotateGesturesEnabled(false);
             mapView.getMap().move(new CameraPosition(new Point(0, 0), 14, 0, 0));
+            userLocationLayer = mapKit.createUserLocationLayer(mapView.getMapWindow());
+            userLocationLayer.setVisible(true);
+            userLocationLayer.setHeadingEnabled(true);
+            userLocationLayer.setObjectListener(this);
         }
 
         return root;
