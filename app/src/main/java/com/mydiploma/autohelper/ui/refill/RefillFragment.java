@@ -1,5 +1,7 @@
 package com.mydiploma.autohelper.ui.refill;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.mydiploma.autohelper.R;
@@ -25,7 +29,7 @@ public class RefillFragment extends Fragment {
 
     private FragmentNotificationsBinding binding;
     MapView mapview;
-
+    private static final int PERMISSION_REQUEST = 1;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         MapKitFactory.initialize(requireActivity());
@@ -34,24 +38,28 @@ public class RefillFragment extends Fragment {
         // Укажите имя activity вместо map.
         mapview = root.findViewById(R.id.mapview);
         MapKit mapKit = MapKitFactory.getInstance();
+        if(ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST);
+        } else {
+            mapKit.createLocationManager().requestSingleUpdate(new LocationListener() {
+                @Override
+                public void onLocationUpdated(@NonNull Location location) {
+                    Log.d("TagCheck", "LocationUpdated " + location.getPosition().getLongitude());
+                    Log.d("TagCheck", "LocationUpdated " + location.getPosition().getLatitude());
+                    mapview.getMap().move(
+                            new CameraPosition(location.getPosition(), 16.0f, 0.0f, 0.0f),
+                            new Animation(Animation.Type.SMOOTH, 0),
+                            null);
 
-        mapKit.createLocationManager().requestSingleUpdate(new LocationListener() {
-            @Override
-            public void onLocationUpdated(@NonNull Location location) {
-                Log.d("TagCheck", "LocationUpdated " + location.getPosition().getLongitude());
-                Log.d("TagCheck", "LocationUpdated " + location.getPosition().getLatitude());
-                mapview.getMap().move(
-                        new CameraPosition(location.getPosition(), 14.0f, 0.0f, 0.0f),
-                        new Animation(Animation.Type.SMOOTH, 1),
-                        null);
+                }
 
-            }
+                @Override
+                public void onLocationStatusUpdated(@NonNull LocationStatus locationStatus) {
 
-            @Override
-            public void onLocationStatusUpdated(@NonNull LocationStatus locationStatus) {
+                }
+            });
+        }
 
-            }
-        });
         return root;
     }
 
