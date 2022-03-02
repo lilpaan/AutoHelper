@@ -40,12 +40,13 @@ public class CarFragment extends Fragment {
             public void run() {
                 carDatabase = Room.databaseBuilder(requireContext(), CarDatabase.class,
                         Constants.CAR).build();
-                carDao = carDatabase.carDao();
-                cars = carDao.getCarTitle().toArray(new Car[0]);
 /*                carDatabase = Room.databaseBuilder(requireActivity(),
                         CarDatabase.class, Constants.CAR)
                         .fallbackToDestructiveMigration()
                         .build();*/
+                carDao = carDatabase.carDao();
+                cars = carDao.getCarTitle().toArray(new Car[0]);
+
             }
         };
         carGetTitleThread.start();

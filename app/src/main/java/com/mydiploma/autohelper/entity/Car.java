@@ -19,7 +19,6 @@ public class Car {
     int productionYear;
     float fuelAmount;
     String currentOilBrand;
-    String wheelsType;
     String insuranceRunOutDate;
 
     public Car() {
@@ -37,7 +36,7 @@ public class Car {
 
     public Car(long id, String maker, String model, float engineVolume, String transmission,
                String color, int productionYear, float fuelAmount, String currentOilBrand,
-               String wheelsType, String insuranceRunOutDate) {
+               String insuranceRunOutDate) {
         this.id = id;
         this.maker = maker;
         this.model = model;
@@ -47,7 +46,6 @@ public class Car {
         this.productionYear = productionYear;
         this.fuelAmount = fuelAmount;
         this.currentOilBrand = currentOilBrand;
-        this.wheelsType = wheelsType;
         this.insuranceRunOutDate = insuranceRunOutDate;
     }
 
@@ -123,14 +121,6 @@ public class Car {
         this.currentOilBrand = currentOilBrand;
     }
 
-    public String getWheelsType() {
-        return wheelsType;
-    }
-
-    public void setWheelsType(String wheelsType) {
-        this.wheelsType = wheelsType;
-    }
-
     public String getInsuranceRunOutDate() {
         return insuranceRunOutDate;
     }
@@ -144,12 +134,12 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return id == car.id && Float.compare(car.engineVolume, engineVolume) == 0 && productionYear == car.productionYear && Float.compare(car.fuelAmount, fuelAmount) == 0 && Objects.equals(maker, car.maker) && Objects.equals(model, car.model) && Objects.equals(transmission, car.transmission) && Objects.equals(color, car.color) && Objects.equals(currentOilBrand, car.currentOilBrand) && Objects.equals(wheelsType, car.wheelsType) && Objects.equals(insuranceRunOutDate, car.insuranceRunOutDate);
+        return id == car.id && Float.compare(car.engineVolume, engineVolume) == 0 && productionYear == car.productionYear && Float.compare(car.fuelAmount, fuelAmount) == 0 && Objects.equals(maker, car.maker) && Objects.equals(model, car.model) && Objects.equals(transmission, car.transmission) && Objects.equals(color, car.color) && Objects.equals(currentOilBrand, car.currentOilBrand) && Objects.equals(insuranceRunOutDate, car.insuranceRunOutDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, maker, model, engineVolume, transmission, color, productionYear, fuelAmount, currentOilBrand, wheelsType, insuranceRunOutDate);
+        return Objects.hash(id, maker, model, engineVolume, transmission, color, productionYear, fuelAmount, currentOilBrand, insuranceRunOutDate);
     }
 
     @NonNull
@@ -165,7 +155,6 @@ public class Car {
                 ", productionYear=" + productionYear +
                 ", fuelAmount=" + fuelAmount +
                 ", currentOilBrand='" + currentOilBrand + '\'' +
-                ", wheelsType='" + wheelsType + '\'' +
                 ", insuranceRunOutDate='" + insuranceRunOutDate + '\'' +
                 '}';
     }

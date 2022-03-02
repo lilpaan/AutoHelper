@@ -1,5 +1,6 @@
 package com.mydiploma.autohelper.ui.car;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,6 +9,7 @@ import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,8 +23,11 @@ import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.util.CarUtil;
 
+import java.time.LocalDate;
+
 public class AddCarActivity extends AppCompatActivity {
     boolean success;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,17 +45,6 @@ public class AddCarActivity extends AppCompatActivity {
                     .fallbackToDestructiveMigration()
                     .build();*/
             Car car = new Car();
-            // take values from fields
-            String[] countries = { "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
-            Spinner spinner = findViewById(R.id.spinner);
-            // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
-            ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, countries);
-            // Определяем разметку для использования при выборе элемента
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            // Применяем адаптер к элементу spinner
-            spinner.setAdapter(adapter);
-            //Spinner spinner = findViewById(R.id.spinner);
-            //spinner.setText
             car.setMaker (((EditText) findViewById(R.id.input_maker)).getText().toString());
             car.setModel (((EditText) findViewById(R.id.input_model)).getText().toString());
             car.setEngineVolume (Float.parseFloat(((EditText) findViewById(R.id.input_engine_volume)).getText().toString()));
@@ -58,6 +52,8 @@ public class AddCarActivity extends AppCompatActivity {
             car.setColor (((EditText) findViewById(R.id.input_color)).getText().toString());
             car.setProductionYear (Integer.parseInt(((EditText) findViewById(R.id.input_production_year)).getText().toString()));
             car.setCurrentOilBrand (((EditText) findViewById(R.id.input_current_oil_brand)).getText().toString());
+            //LocalDate date = LocalDate.parse(findViewById(R.id.input_insurance_run_out_date));
+            //car.setInsuranceRunOutDate(date);
             car.setInsuranceRunOutDate (((EditText) findViewById(R.id.input_insurance_run_out_date)).getText().toString());
             success = CarUtil.addNewCar(car, carDatabase);
             if(success) {
