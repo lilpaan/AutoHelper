@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
+import com.yandex.mapkit.GeoObjectCollection;
 import com.yandex.mapkit.MapKit;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
@@ -26,9 +28,15 @@ import com.yandex.mapkit.map.CameraUpdateReason;
 import com.yandex.mapkit.map.CompositeIcon;
 import com.yandex.mapkit.map.IconStyle;
 import com.yandex.mapkit.map.Map;
+import com.yandex.mapkit.map.MapObjectCollection;
 import com.yandex.mapkit.map.RotationType;
+import com.yandex.mapkit.map.VisibleRegionUtils;
 import com.yandex.mapkit.mapview.MapView;
 import com.yandex.mapkit.search.Response;
+import com.yandex.mapkit.search.SearchFactory;
+import com.yandex.mapkit.search.SearchManager;
+import com.yandex.mapkit.search.SearchManagerType;
+import com.yandex.mapkit.search.SearchOptions;
 import com.yandex.mapkit.search.Session;
 import com.yandex.mapkit.user_location.UserLocationLayer;
 import com.yandex.mapkit.user_location.UserLocationObjectListener;
@@ -41,25 +49,35 @@ import com.yandex.runtime.network.RemoteError;
 public class RefillFragment extends Fragment implements UserLocationObjectListener, Session.SearchListener, CameraListener {
     private FragmentNotificationsBinding binding;
     MapView mapView;
+    private EditText searchEdit;
+    private SearchManager searchManager;
+    private Session searchSession;
     private UserLocationLayer userLocationLayer;
+    private void submitQuery(String query) {
+        searchSession = searchManager.submit(
+                query,
+                VisibleRegionUtils.toPolygon(mapView.getMap().getVisibleRegion()),
+                new SearchOptions(),
+                this);
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         MapKitFactory.initialize(requireActivity());
+        SearchFactory.initialize(requireActivity());
+        searchManager = SearchFactory.getInstance().createSearchManager(SearchManagerType.COMBINED);
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         mapView = root.findViewById(R.id.mapview);
         MapKit mapKit = MapKitFactory.getInstance();
         mapView.getMap().setRotateGesturesEnabled(false);
         mapView.getMap().move(new CameraPosition(new Point(0, 0), 14, 0, 0));
+        mapView.getMap().addCameraListener(this);
+        submitQuery(Constants.YANDEX_REFILL);
         userLocationLayer = mapKit.createUserLocationLayer(mapView.getMapWindow());
         userLocationLayer.setVisible(true);
         userLocationLayer.setHeadingEnabled(true);
         userLocationLayer.setObjectListener(this);
-        Button button = root.findViewById(R.id.button123);
-        button.setOnClickListener(v -> {
-            Intent intentToAddCar = new Intent(root.getContext(), myTest.class);
-            startActivity(intentToAddCar);
-        });
         return root;
     }
 
@@ -119,13 +137,23 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
                                         @NonNull CameraUpdateReason cameraUpdateReason,
                                         boolean finished) {
         if (finished) {
-     //       submitQuery(searchEdit.getText().toString());
+            submitQuery(Constants.YANDEX_REFILL);
         }
     }
 
     @Override
     public void onSearchResponse(@NonNull Response response) {
+        MapObjectCollection mapObjects = mapView.getMap().getMapObjects();
+        mapObjects.clear();
 
+        for (GeoObjectCollection.Item searchResult : response.getCollection().getChildren()) {
+            Point resultLocation = searchResult.getObj().getGeometry().get(0).getPoint();
+            if (resultLocation != null) {
+                mapObjects.addPlacemark(
+                        resultLocation,
+                        ImageProvider.fromResource(requireActivity(), R.drawable.my_icon));
+            }
+        }
     }
 
     @Override
