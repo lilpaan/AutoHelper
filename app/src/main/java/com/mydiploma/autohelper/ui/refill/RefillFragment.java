@@ -1,39 +1,44 @@
 package com.mydiploma.autohelper.ui.refill;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
-import com.yandex.mapkit.GeoObject;
-import com.yandex.mapkit.GeoObjectCollection;
 import com.yandex.mapkit.MapKit;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.layers.ObjectEvent;
+import com.yandex.mapkit.map.CameraListener;
 import com.yandex.mapkit.map.CameraPosition;
+import com.yandex.mapkit.map.CameraUpdateReason;
 import com.yandex.mapkit.map.CompositeIcon;
 import com.yandex.mapkit.map.IconStyle;
+import com.yandex.mapkit.map.Map;
 import com.yandex.mapkit.map.RotationType;
 import com.yandex.mapkit.mapview.MapView;
+import com.yandex.mapkit.search.Response;
+import com.yandex.mapkit.search.Session;
 import com.yandex.mapkit.user_location.UserLocationLayer;
 import com.yandex.mapkit.user_location.UserLocationObjectListener;
 import com.yandex.mapkit.user_location.UserLocationView;
+import com.yandex.runtime.Error;
 import com.yandex.runtime.image.ImageProvider;
+import com.yandex.runtime.network.NetworkError;
+import com.yandex.runtime.network.RemoteError;
 
-public class RefillFragment extends Fragment implements UserLocationObjectListener {
+public class RefillFragment extends Fragment implements UserLocationObjectListener, Session.SearchListener, CameraListener {
     private FragmentNotificationsBinding binding;
     MapView mapView;
     private UserLocationLayer userLocationLayer;
@@ -50,8 +55,11 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         userLocationLayer.setVisible(true);
         userLocationLayer.setHeadingEnabled(true);
         userLocationLayer.setObjectListener(this);
-        GeoObjectCollection geoObjectCollection = new GeoObjectCollection();
-        GeoObject geoObject = new GeoObject();
+        Button button = root.findViewById(R.id.button123);
+        button.setOnClickListener(v -> {
+            Intent intentToAddCar = new Intent(root.getContext(), myTest.class);
+            startActivity(intentToAddCar);
+        });
         return root;
     }
 
@@ -106,4 +114,29 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
     public void onObjectUpdated(@NonNull UserLocationView view, @NonNull ObjectEvent event) {
     }
 
+    @Override
+    public void onCameraPositionChanged(@NonNull Map map, @NonNull CameraPosition cameraPosition,
+                                        @NonNull CameraUpdateReason cameraUpdateReason,
+                                        boolean finished) {
+        if (finished) {
+     //       submitQuery(searchEdit.getText().toString());
+        }
+    }
+
+    @Override
+    public void onSearchResponse(@NonNull Response response) {
+
+    }
+
+    @Override
+    public void onSearchError(@NonNull Error error) {
+        String errorMessage = getString(R.string.unknown_error_message);
+        if (error instanceof RemoteError) {
+            errorMessage = getString(R.string.remote_error_message);
+        } else if (error instanceof NetworkError) {
+            errorMessage = getString(R.string.network_error_message);
+        }
+
+        Toast.makeText(requireActivity(), errorMessage, Toast.LENGTH_SHORT).show();
+    }
 }

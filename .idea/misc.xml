@@ -25,6 +25,7 @@
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_main2.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_map.xml" value="0.1" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_maps.xml" value="0.25" />
+        <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_my_test.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_spare_part_info.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_test.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_yandex_map.xml" value="0.25" />
@@ -39,7 +40,7 @@
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/discount_card_item.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/learn/diploma/app/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
+        <entry key="..\:/learn/diploma/app/app/src/main/res/layout/fragment_notifications.xml" value="0.264" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/spare_part_activity.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/spare_part_item.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/spinner_item.xml" value="0.25" />
