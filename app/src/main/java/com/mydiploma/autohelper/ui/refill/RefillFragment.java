@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment;
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
+import com.yandex.mapkit.GeoObject;
+import com.yandex.mapkit.GeoObjectCollection;
 import com.yandex.mapkit.MapKit;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
@@ -35,7 +37,6 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
     private FragmentNotificationsBinding binding;
     MapView mapView;
     private UserLocationLayer userLocationLayer;
-    /*private static final int PERMISSION_REQUEST = 1;*/
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         MapKitFactory.initialize(requireActivity());
@@ -49,7 +50,8 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         userLocationLayer.setVisible(true);
         userLocationLayer.setHeadingEnabled(true);
         userLocationLayer.setObjectListener(this);
-
+        GeoObjectCollection geoObjectCollection = new GeoObjectCollection();
+        GeoObject geoObject = new GeoObject();
         return root;
     }
 

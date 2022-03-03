@@ -73,9 +73,10 @@
             <ListView
                 android:id="@+id/added_car_list"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="420dp"
                 android:divider="@null"
-                android:dividerHeight="8dp" />
+                android:dividerHeight="8dp"
+                tools:ignore="NestedScrolling" />
         </LinearLayout>
     </ScrollView>
 
