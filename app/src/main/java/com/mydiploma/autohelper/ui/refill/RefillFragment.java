@@ -1,14 +1,11 @@
 package com.mydiploma.autohelper.ui.refill;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,16 +43,17 @@ import com.yandex.runtime.image.ImageProvider;
 import com.yandex.runtime.network.NetworkError;
 import com.yandex.runtime.network.RemoteError;
 
-public class RefillFragment extends Fragment implements UserLocationObjectListener, Session.SearchListener, CameraListener {
+import java.util.Objects;
+
+public class RefillFragment extends Fragment implements UserLocationObjectListener,
+        Session.SearchListener, CameraListener {
     private FragmentNotificationsBinding binding;
     MapView mapView;
-    private EditText searchEdit;
     private SearchManager searchManager;
-    private Session searchSession;
     private UserLocationLayer userLocationLayer;
-    private void submitQuery(String query) {
-        searchSession = searchManager.submit(
-                query,
+    private void submitQuery() {
+                searchManager.submit(
+                Constants.YANDEX_REFILL,
                 VisibleRegionUtils.toPolygon(mapView.getMap().getVisibleRegion()),
                 new SearchOptions(),
                 this);
@@ -71,9 +69,10 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         mapView = root.findViewById(R.id.mapview);
         MapKit mapKit = MapKitFactory.getInstance();
         mapView.getMap().setRotateGesturesEnabled(false);
-        mapView.getMap().move(new CameraPosition(new Point(0, 0), 14, 0, 0));
+        mapView.getMap().move(new CameraPosition(new Point(0, 0), 14,
+                0, 0));
         mapView.getMap().addCameraListener(this);
-        submitQuery(Constants.YANDEX_REFILL);
+        submitQuery();
         userLocationLayer = mapKit.createUserLocationLayer(mapView.getMapWindow());
         userLocationLayer.setVisible(true);
         userLocationLayer.setHeadingEnabled(true);
@@ -137,7 +136,7 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
                                         @NonNull CameraUpdateReason cameraUpdateReason,
                                         boolean finished) {
         if (finished) {
-            submitQuery(Constants.YANDEX_REFILL);
+            submitQuery();
         }
     }
 
@@ -147,11 +146,12 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         mapObjects.clear();
 
         for (GeoObjectCollection.Item searchResult : response.getCollection().getChildren()) {
-            Point resultLocation = searchResult.getObj().getGeometry().get(0).getPoint();
+            Point resultLocation = Objects.requireNonNull(searchResult.getObj())
+                    .getGeometry().get(0).getPoint();
             if (resultLocation != null) {
                 mapObjects.addPlacemark(
                         resultLocation,
-                        ImageProvider.fromResource(requireActivity(), R.drawable.my_icon));
+                        ImageProvider.fromResource(requireActivity(), R.drawable.refill_tag));
             }
         }
     }
