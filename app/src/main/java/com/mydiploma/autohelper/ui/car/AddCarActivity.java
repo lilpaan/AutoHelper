@@ -1,5 +1,7 @@
 package com.mydiploma.autohelper.ui.car;
 
+import static android.graphics.Color.WHITE;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -80,6 +82,7 @@ public class AddCarActivity extends AppCompatActivity {
         button.setText(DateUtils.formatDateTime(this,
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR));
+        button.setTextColor(WHITE);
     }
 
     public void setDate(View v) {
