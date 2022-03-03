@@ -39,6 +39,7 @@
     <!--Strings for hints-->
     <string name="maker_hint">Марка авто</string>
     <string name="model_hint">Модель</string>
+    <string name="date_hint">Выбранная дата</string>
     <string name="engine_volume_hint">Объём двигателя</string>
     <string name="transmission_hint">Тип трансмиссии</string>
     <string name="color_hint">Цвет</string>

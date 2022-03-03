@@ -57,7 +57,8 @@
                 android:textColor="@color/white"
                 android:textColorHighlight="#36CF20"
                 android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:autofillHints="maker" />
 
             <EditText
                 android:id="@+id/input_model"
@@ -72,7 +73,8 @@
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:autofillHints="model"/>
 
             <EditText
                 android:id="@+id/input_engine_volume"
@@ -86,6 +88,34 @@
                 android:hint="@string/engine_volume_hint"
                 android:inputType="numberDecimal"
                 android:textColor="@color/white"
+                android:textColorHint="@color/whiteForHint"
+                android:textSize="20sp"
+                android:autofillHints="engine volume"/>
+
+            <Button
+                android:id="@+id/dateButton"
+                android:layout_width="330dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:fontFamily="sans-serif"
+                android:onClick="setDate"
+                android:text="@string/insurance_run_out_date"
+                android:textColor="@color/whiteForHint"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/currentDateTime"
+                android:layout_width="330dp"
+                android:layout_height="62dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back_for_input_field"
+                android:gravity="center"
+                android:hint="@string/date_hint"
+                android:textColor="#ECE6E6"
                 android:textColorHint="@color/whiteForHint"
                 android:textSize="20sp" />
 
@@ -102,7 +132,8 @@
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:autofillHints="color"/>
 
             <EditText
                 android:id="@+id/input_type_of_transmission"
@@ -117,20 +148,8 @@
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp" />
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="330dp"
-                android:layout_height="62dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/back_for_input_field"
-                android:entries="@array/catNames"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:touchscreenBlocksFocus="false" />
+                android:textSize="20sp"
+                android:autofillHints="transmission"/>
 
             <EditText
                 android:id="@+id/input_production_year"
@@ -145,7 +164,8 @@
                 android:inputType="number"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:autofillHints="year"/>
 
             <EditText
                 android:id="@+id/input_insurance_run_out_date"
@@ -161,7 +181,8 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
                 android:textSize="20sp"
-                tools:ignore="TextFields" />
+                tools:ignore="TextFields"
+                android:autofillHints="insurance"/>
 
             <EditText
                 android:id="@+id/input_current_oil_brand"
@@ -176,7 +197,8 @@
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:autofillHints="oil"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
