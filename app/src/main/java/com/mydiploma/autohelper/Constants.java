@@ -22,6 +22,7 @@ public class Constants {
     public static final String SQL_CAR_TITLE_INFO = "SELECT id, maker, model, engineVolume," +
             " productionYear, fuelAmount FROM car";
     public static final String SQL_CAR_BY_ID = "SELECT * FROM car WHERE id = :id";
+    public static final String SQL_GET_CAR_COUNT = "SELECT COUNT(*) FROM car";
 
     // sql queries for business card
     public static final String SQL_BUSINESS_CARD_ALL_INFO = "SELECT * FROM BusinessCard";

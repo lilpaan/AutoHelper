@@ -18,6 +18,9 @@ public interface CarDao {
         @Query(Constants.SQL_CAR_TITLE_INFO)
         List<Car> getCarTitle();
 
+        @Query(Constants.SQL_GET_CAR_COUNT)
+        int getCarCount();
+
         @Query(Constants.SQL_CAR_ALL_INFO)
         List<Car> getAll();
 

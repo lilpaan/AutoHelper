@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,13 +29,20 @@ public class CarFragment extends Fragment {
     Car[] cars;
     ListView carListView;
     CarAdapter carAdapter;
+    int carCount;
+    ImageView carListIsEmpty;
+    ScrollView carCountScrollView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        carCountScrollView = root.findViewById(R.id.car_list_scroll_view);
+        carListIsEmpty = root.findViewById(R.id.car_list_empty_image);
         Button addCarButton = root.findViewById(R.id.add_car_button);
         carListView = root.findViewById(R.id.added_car_list);
+
         // thread to place car title in item
         Thread carGetTitleThread = new Thread() {
             @Override
@@ -55,15 +64,38 @@ public class CarFragment extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         // init adapter
         carAdapter = new CarAdapter(requireContext(), cars);
         carListView.setAdapter(carAdapter);
+
         // for clickable items
         carListView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intentToCarInfo = new Intent(root.getContext(), CarInfo.class);
             intentToCarInfo.putExtra(Constants.ID, carAdapter.getItem(position).getId());
             startActivity(intentToCarInfo);
         });
+
+        // getting car count
+        Thread getCarCount = new Thread() {
+            @Override
+            public void run() {
+                carDao = carDatabase.carDao();
+                carCount = carDao.getCarCount();
+
+            }
+        };
+        getCarCount.start();
+        try {
+            getCarCount.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (carCount == 0) {
+            carCountScrollView.setVisibility(View.INVISIBLE);
+            carListIsEmpty.setVisibility(View.VISIBLE);
+        }
+
         // button to add new car
         addCarButton.setOnClickListener(v -> {
             Intent intentToAddCar = new Intent(root.getContext(), AddCarActivity.class);
