@@ -51,16 +51,12 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
     MapView mapView;
     private SearchManager searchManager;
     private UserLocationLayer userLocationLayer;
-    private void submitQuery() {
-                searchManager.submit(
-                Constants.YANDEX_REFILL,
-                VisibleRegionUtils.toPolygon(mapView.getMap().getVisibleRegion()),
-                new SearchOptions(),
-                this);
-    }
+    boolean findSuccess;
+    boolean showSuccess;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        // init factories
         MapKitFactory.initialize(requireActivity());
         SearchFactory.initialize(requireActivity());
         searchManager = SearchFactory.getInstance().createSearchManager(SearchManagerType.COMBINED);
@@ -72,12 +68,108 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         mapView.getMap().move(new CameraPosition(new Point(0, 0), 14,
                 0, 0));
         mapView.getMap().addCameraListener(this);
-        submitQuery();
-        userLocationLayer = mapKit.createUserLocationLayer(mapView.getMapWindow());
-        userLocationLayer.setVisible(true);
-        userLocationLayer.setHeadingEnabled(true);
-        userLocationLayer.setObjectListener(this);
+        findSuccess = findRefill(searchManager, mapView);
+        if (findSuccess) {
+            showSuccess = showRefillLocations(mapKit);
+            if (!showSuccess) {
+                Toast.makeText(requireActivity(), Constants.SHOW_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(requireActivity(), Constants.FIND_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+        }
+
         return root;
+    }
+
+    @Override
+    public void onObjectAdded(UserLocationView userLocationView) {
+        userLocationLayer.setAnchor(
+                new PointF((float)(mapView.getWidth() * 0.5), (float)(mapView.getHeight() * 0.5)),
+                new PointF((float)(mapView.getWidth() * 0.5), (float)(mapView.getHeight() * 0.83)));
+        userLocationView.getArrow().setIcon(ImageProvider.fromResource(
+                requireContext(), R.drawable.user_arrow));
+        CompositeIcon pinIcon = userLocationView.getPin().useCompositeIcon();
+        pinIcon.setIcon(
+                Constants.PIN,
+                ImageProvider.fromResource(requireContext(), R.drawable.search_result),
+                new IconStyle().setAnchor(new PointF(0.5f, 0.5f))
+                        .setRotationType(RotationType.ROTATE)
+                        .setZIndex(1f)
+                        .setScale(0.5f)
+        );
+
+        userLocationView.getAccuracyCircle().setFillColor(Color.BLUE & 0x99ffffff);
+    }
+
+    @Override
+    public void onCameraPositionChanged(@NonNull Map map, @NonNull CameraPosition cameraPosition,
+                                        @NonNull CameraUpdateReason cameraUpdateReason,
+                                        boolean finished) {
+        if (finished) {
+            findSuccess = findRefill(searchManager, mapView);
+            if (!findSuccess) {
+                Toast.makeText(requireActivity(),
+                        Constants.FIND_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    public void onSearchResponse(@NonNull Response response) {
+        MapObjectCollection mapObjects = mapView.getMap().getMapObjects();
+        mapObjects.clear();
+        for (GeoObjectCollection.Item searchResult : response.getCollection().getChildren()) {
+            Point resultLocation = Objects.requireNonNull(searchResult.getObj())
+                    .getGeometry().get(0).getPoint();
+            if (resultLocation != null) {
+                mapObjects.addPlacemark(
+                        resultLocation,
+                        ImageProvider.fromResource(requireActivity(), R.drawable.refill_tag));
+            }
+        }
+    }
+
+    @Override
+    public void onSearchError(@NonNull Error error) {
+        String errorMessage = getString(R.string.unknown_error_message);
+        if (error instanceof RemoteError) {
+            errorMessage = getString(R.string.remote_error_message);
+        } else if (error instanceof NetworkError) {
+            errorMessage = getString(R.string.network_error_message);
+        }
+
+        Toast.makeText(requireActivity(), errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean findRefill(SearchManager searchManager, MapView mapView) {
+        boolean findSuccess;
+        try {
+            searchManager.submit(
+                    Constants.YANDEX_REFILL,
+                    VisibleRegionUtils.toPolygon(mapView.getMap().getVisibleRegion()),
+                    new SearchOptions(),
+                    (Session.SearchListener) this);
+            findSuccess = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            findSuccess = false;
+        }
+        return findSuccess;
+    }
+
+    public boolean showRefillLocations(MapKit mapKit) {
+        boolean showSuccess;
+        try {
+            userLocationLayer = mapKit.createUserLocationLayer(mapView.getMapWindow());
+            userLocationLayer.setVisible(true);
+            userLocationLayer.setHeadingEnabled(true);
+            userLocationLayer.setObjectListener(this);
+            showSuccess = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            showSuccess = false;
+        }
+        return showSuccess;
     }
 
     @Override
@@ -101,29 +193,6 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
     }
 
     @Override
-    public void onObjectAdded(UserLocationView userLocationView) {
-        userLocationLayer.setAnchor(
-                new PointF((float)(mapView.getWidth() * 0.5), (float)(mapView.getHeight() * 0.5)),
-                new PointF((float)(mapView.getWidth() * 0.5), (float)(mapView.getHeight() * 0.83)));
-
-        userLocationView.getArrow().setIcon(ImageProvider.fromResource(
-                requireContext(), R.drawable.user_arrow));
-
-        CompositeIcon pinIcon = userLocationView.getPin().useCompositeIcon();
-
-        pinIcon.setIcon(
-                Constants.PIN,
-                ImageProvider.fromResource(requireContext(), R.drawable.search_result),
-                new IconStyle().setAnchor(new PointF(0.5f, 0.5f))
-                        .setRotationType(RotationType.ROTATE)
-                        .setZIndex(1f)
-                        .setScale(0.5f)
-        );
-
-        userLocationView.getAccuracyCircle().setFillColor(Color.BLUE & 0x99ffffff);
-    }
-
-    @Override
     public void onObjectRemoved(@NonNull UserLocationView view) {
     }
 
@@ -131,40 +200,4 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
     public void onObjectUpdated(@NonNull UserLocationView view, @NonNull ObjectEvent event) {
     }
 
-    @Override
-    public void onCameraPositionChanged(@NonNull Map map, @NonNull CameraPosition cameraPosition,
-                                        @NonNull CameraUpdateReason cameraUpdateReason,
-                                        boolean finished) {
-        if (finished) {
-            submitQuery();
-        }
-    }
-
-    @Override
-    public void onSearchResponse(@NonNull Response response) {
-        MapObjectCollection mapObjects = mapView.getMap().getMapObjects();
-        mapObjects.clear();
-
-        for (GeoObjectCollection.Item searchResult : response.getCollection().getChildren()) {
-            Point resultLocation = Objects.requireNonNull(searchResult.getObj())
-                    .getGeometry().get(0).getPoint();
-            if (resultLocation != null) {
-                mapObjects.addPlacemark(
-                        resultLocation,
-                        ImageProvider.fromResource(requireActivity(), R.drawable.refill_tag));
-            }
-        }
-    }
-
-    @Override
-    public void onSearchError(@NonNull Error error) {
-        String errorMessage = getString(R.string.unknown_error_message);
-        if (error instanceof RemoteError) {
-            errorMessage = getString(R.string.remote_error_message);
-        } else if (error instanceof NetworkError) {
-            errorMessage = getString(R.string.network_error_message);
-        }
-
-        Toast.makeText(requireActivity(), errorMessage, Toast.LENGTH_SHORT).show();
-    }
 }

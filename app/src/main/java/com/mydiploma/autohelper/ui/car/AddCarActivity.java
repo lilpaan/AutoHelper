@@ -2,36 +2,23 @@ package com.mydiploma.autohelper.ui.car;
 
 import static android.graphics.Color.WHITE;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.room.Room;
-
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+
 import com.mydiploma.autohelper.Constants;
-import com.mydiploma.autohelper.entity.Car;
+import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.dao.CarDao;
 import com.mydiploma.autohelper.database.CarDatabase;
-import com.mydiploma.autohelper.R;
-import com.mydiploma.autohelper.util.CarUtil;
+import com.mydiploma.autohelper.entity.Car;
 
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -39,6 +26,8 @@ public class AddCarActivity extends AppCompatActivity {
     boolean success;
     Calendar dateAndTime = Calendar.getInstance();
     TextView currentDateTime;
+    static CarDao carDao;
+
     //Button button = findViewById(R.id.dateButton);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,20 +47,8 @@ public class AddCarActivity extends AppCompatActivity {
 
         // save new car
         ok.setOnClickListener(v -> {
-            Car car = new Car();
-            car.setMaker (((EditText) findViewById(R.id.input_maker)).getText().toString());
-            car.setModel (((EditText) findViewById(R.id.input_model)).getText().toString());
-            car.setEngineVolume (Float.parseFloat(((EditText) findViewById(R.id.input_engine_volume)).getText().toString()));
-            car.setTransmission (((EditText) findViewById(R.id.input_type_of_transmission)).getText().toString());
-            car.setColor (((EditText) findViewById(R.id.input_color)).getText().toString());
-            car.setProductionYear (Integer.parseInt(((EditText) findViewById(R.id.input_production_year)).getText().toString()));
-            car.setCurrentOilBrand (((EditText) findViewById(R.id.input_current_oil_brand)).getText().toString());
-            //LocalDate date = LocalDate.parse(findViewById(R.id.input_insurance_run_out_date));
-            //car.setInsuranceRunOutDate(date);
-            car.setInsuranceRunOutDate (((EditText) findViewById(R.id.input_insurance_run_out_date)).getText().toString());
-
             // add new car
-            success = CarUtil.addNewCar(car, carDatabase);
+            success = addNewCar(carDatabase);
             if(success) {
                 this.finish();
             }
@@ -80,7 +57,6 @@ public class AddCarActivity extends AppCompatActivity {
         // cancel
         cancelAdd.setOnClickListener(v -> finish());
     }
-
 
     private void setDateOnTextView() {
         Button button = findViewById(R.id.dateButton);
@@ -104,5 +80,37 @@ public class AddCarActivity extends AppCompatActivity {
         dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         setDateOnTextView();
     };
+
+    public boolean addNewCar(CarDatabase carDatabase) {
+        boolean isCarAdded;
+        Car car = new Car();
+        car.setMaker (((EditText) findViewById(R.id.input_maker)).getText().toString());
+        car.setModel (((EditText) findViewById(R.id.input_model)).getText().toString());
+        car.setEngineVolume (Float.parseFloat(((EditText) findViewById(R.id.input_engine_volume)).getText().toString()));
+        car.setTransmission (((EditText) findViewById(R.id.input_type_of_transmission)).getText().toString());
+        car.setColor (((EditText) findViewById(R.id.input_color)).getText().toString());
+        car.setProductionYear (Integer.parseInt(((EditText) findViewById(R.id.input_production_year)).getText().toString()));
+        car.setCurrentOilBrand (((EditText) findViewById(R.id.input_current_oil_brand)).getText().toString());
+        Date myDate = dateAndTime.getTime();
+        //LocalDate date = LocalDate.parse(findViewById(R.id.input_insurance_run_out_date));
+         //car.setInsuranceRunOutDate(date);
+        car.setInsuranceRunOutDate (((EditText) findViewById(R.id.input_insurance_run_out_date)).getText().toString());
+        // carSaveThread to save car into db
+        carDao = carDatabase.carDao();
+        Thread carSaveThread = new Thread() {
+            @Override
+            public void run() {
+                carDao.insert(car);
+            }
+        };
+        try {
+            carSaveThread.start();
+            isCarAdded = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            isCarAdded = false;
+        }
+        return isCarAdded;
+    }
 
 }

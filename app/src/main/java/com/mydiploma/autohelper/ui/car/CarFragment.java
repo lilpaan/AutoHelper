@@ -27,7 +27,6 @@ import java.util.Objects;
 
 public class CarFragment extends Fragment {
     private FragmentDashboardBinding binding;
-    CarDao carDao;
     ListView carListView;
     Car[] cars;
     CarAdapter carAdapter;
@@ -55,7 +54,7 @@ public class CarFragment extends Fragment {
 
         cars = CarUtil.showUserCar(carDatabase);
 
-        // init adapter
+        // configure adapter
         carAdapter = new CarAdapter(requireContext(), cars);
         carListView.setAdapter(carAdapter);
 
@@ -66,21 +65,9 @@ public class CarFragment extends Fragment {
             startActivity(intentToCarInfo);
         });
 
-        // getting car count
-        Thread getCarCount = new Thread() {
-            @Override
-            public void run() {
-                carDao = carDatabase.carDao();
-                carCount = carDao.getCarCount();
+        carCount = CarUtil.getCarCount(carDatabase);
 
-            }
-        };
-        getCarCount.start();
-        try {
-            getCarCount.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        // if car list is empty
         if (carCount == 0) {
             carCountScrollView.setVisibility(View.INVISIBLE);
             carListIsEmpty.setVisibility(View.VISIBLE);
