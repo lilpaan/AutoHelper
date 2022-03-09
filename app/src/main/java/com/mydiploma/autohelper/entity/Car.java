@@ -5,6 +5,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -19,7 +20,7 @@ public class Car {
     int productionYear;
     float fuelAmount;
     String currentOilBrand;
-    String insuranceRunOutDate;
+    Date insuranceRunOutDate;
 
     public Car() {
     }
@@ -36,7 +37,7 @@ public class Car {
 
     public Car(long id, String maker, String model, float engineVolume, String transmission,
                String color, int productionYear, float fuelAmount, String currentOilBrand,
-               String insuranceRunOutDate) {
+               Date insuranceRunOutDate) {
         this.id = id;
         this.maker = maker;
         this.model = model;
@@ -121,11 +122,11 @@ public class Car {
         this.currentOilBrand = currentOilBrand;
     }
 
-    public String getInsuranceRunOutDate() {
+    public Date getInsuranceRunOutDate() {
         return insuranceRunOutDate;
     }
 
-    public void setInsuranceRunOutDate(String insuranceRunOutDate) {
+    public void setInsuranceRunOutDate(Date insuranceRunOutDate) {
         this.insuranceRunOutDate = insuranceRunOutDate;
     }
 
@@ -134,7 +135,12 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return id == car.id && Float.compare(car.engineVolume, engineVolume) == 0 && productionYear == car.productionYear && Float.compare(car.fuelAmount, fuelAmount) == 0 && Objects.equals(maker, car.maker) && Objects.equals(model, car.model) && Objects.equals(transmission, car.transmission) && Objects.equals(color, car.color) && Objects.equals(currentOilBrand, car.currentOilBrand) && Objects.equals(insuranceRunOutDate, car.insuranceRunOutDate);
+        return id == car.id && Float.compare(car.engineVolume, engineVolume) == 0 && productionYear
+                == car.productionYear && Float.compare(car.fuelAmount, fuelAmount)
+                == 0 && Objects.equals(maker, car.maker) && Objects.equals(model, car.model)
+                && Objects.equals(transmission, car.transmission)
+                && Objects.equals(color, car.color) && Objects.equals(currentOilBrand,
+                car.currentOilBrand) && Objects.equals(insuranceRunOutDate, car.insuranceRunOutDate);
     }
 
     @Override
@@ -155,7 +161,7 @@ public class Car {
                 ", productionYear=" + productionYear +
                 ", fuelAmount=" + fuelAmount +
                 ", currentOilBrand='" + currentOilBrand + '\'' +
-                ", insuranceRunOutDate='" + insuranceRunOutDate + '\'' +
+                ", insuranceRunOutDate=" + insuranceRunOutDate +
                 '}';
     }
 

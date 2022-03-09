@@ -33,6 +33,7 @@ public class CarFragment extends Fragment {
     int carCount;
     ImageView carListIsEmpty;
     ScrollView carCountScrollView;
+    CarDatabase carDatabase;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class CarFragment extends Fragment {
         carListView = root.findViewById(R.id.added_car_list);
 
         // open DB
-        CarDatabase carDatabase = Room.databaseBuilder(requireContext(), CarDatabase.class,
+              carDatabase = Room.databaseBuilder(requireContext(), CarDatabase.class,
                 Constants.CAR).build();
 /*                carDatabase = Room.databaseBuilder(requireContext(),
                         CarDatabase.class, Constants.CAR)

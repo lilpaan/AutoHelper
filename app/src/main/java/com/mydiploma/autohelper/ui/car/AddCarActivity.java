@@ -18,7 +18,6 @@ import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.dao.CarDao;
 import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.entity.Car;
-
 import java.util.Calendar;
 import java.util.Date;
 
@@ -91,10 +90,9 @@ public class AddCarActivity extends AppCompatActivity {
         car.setColor (((EditText) findViewById(R.id.input_color)).getText().toString());
         car.setProductionYear (Integer.parseInt(((EditText) findViewById(R.id.input_production_year)).getText().toString()));
         car.setCurrentOilBrand (((EditText) findViewById(R.id.input_current_oil_brand)).getText().toString());
-        Date myDate = dateAndTime.getTime();
         //LocalDate date = LocalDate.parse(findViewById(R.id.input_insurance_run_out_date));
          //car.setInsuranceRunOutDate(date);
-        car.setInsuranceRunOutDate (((EditText) findViewById(R.id.input_insurance_run_out_date)).getText().toString());
+        car.setInsuranceRunOutDate(dateAndTime.getTime());
         // carSaveThread to save car into db
         carDao = carDatabase.carDao();
         Thread carSaveThread = new Thread() {

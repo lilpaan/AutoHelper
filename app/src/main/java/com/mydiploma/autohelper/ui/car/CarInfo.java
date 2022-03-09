@@ -92,7 +92,7 @@ public class CarInfo extends AppCompatActivity {
         viewForColor.setText(car.getColor());
         viewForTransmission.setText(car.getTransmission());
         viewForProductionYear.setText(String.valueOf(car.getProductionYear()));
-        viewForInsuranceRunOutDate.setText(car.getInsuranceRunOutDate());
+        viewForInsuranceRunOutDate.setText(car.getInsuranceRunOutDate().toString());
         viewForCurrentOilBrand.setText(car.getCurrentOilBrand());
     }
 
