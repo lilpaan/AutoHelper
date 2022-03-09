@@ -21,13 +21,15 @@ import com.mydiploma.autohelper.dao.CarDao;
 import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.databinding.FragmentDashboardBinding;
 import com.mydiploma.autohelper.entity.Car;
+import com.mydiploma.autohelper.util.CarUtil;
+
+import java.util.Objects;
 
 public class CarFragment extends Fragment {
     private FragmentDashboardBinding binding;
-    CarDatabase carDatabase;
     CarDao carDao;
-    Car[] cars;
     ListView carListView;
+    Car[] cars;
     CarAdapter carAdapter;
     int carCount;
     ImageView carListIsEmpty;
@@ -43,27 +45,15 @@ public class CarFragment extends Fragment {
         Button addCarButton = root.findViewById(R.id.add_car_button);
         carListView = root.findViewById(R.id.added_car_list);
 
-        // thread to place car title in item
-        Thread carGetTitleThread = new Thread() {
-            @Override
-            public void run() {
-                carDatabase = Room.databaseBuilder(requireContext(), CarDatabase.class,
-                        Constants.CAR).build();
-/*                carDatabase = Room.databaseBuilder(requireActivity(),
+        // open DB
+        CarDatabase carDatabase = Room.databaseBuilder(requireContext(), CarDatabase.class,
+                Constants.CAR).build();
+/*                carDatabase = Room.databaseBuilder(requireContext(),
                         CarDatabase.class, Constants.CAR)
                         .fallbackToDestructiveMigration()
                         .build();*/
-                carDao = carDatabase.carDao();
-                cars = carDao.getCarTitle().toArray(new Car[0]);
 
-            }
-        };
-        carGetTitleThread.start();
-        try {
-            carGetTitleThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        cars = CarUtil.showUserCar(carDatabase);
 
         // init adapter
         carAdapter = new CarAdapter(requireContext(), cars);

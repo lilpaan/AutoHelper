@@ -94,6 +94,7 @@
 
             <Button
                 android:id="@+id/dateButton"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="330dp"
                 android:layout_height="62dp"
                 android:layout_marginTop="10dp"
@@ -102,22 +103,10 @@
                 android:onClick="setDate"
                 android:text="@string/insurance_run_out_date"
                 android:textColor="@color/whiteForHint"
+                android:textAllCaps="false"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />
-
-            <TextView
-                android:id="@+id/currentDateTime"
-                android:layout_width="330dp"
-                android:layout_height="62dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/back_for_input_field"
-                android:gravity="center"
-                android:hint="@string/date_hint"
-                android:textColor="#ECE6E6"
-                android:textColorHint="@color/whiteForHint"
-                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/input_color"

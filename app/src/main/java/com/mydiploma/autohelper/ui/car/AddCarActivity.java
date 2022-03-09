@@ -11,6 +11,7 @@ import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,18 +46,18 @@ public class AddCarActivity extends AppCompatActivity {
         setContentView(R.layout.add_car_activity);
         Button ok = findViewById(R.id.save_car_button);
         Button cancelAdd = findViewById(R.id.cancel_add_car_button);
-        currentDateTime = findViewById(R.id.currentDateTime);
+        //currentDateTime = findViewById(R.id.currentDateTime);
+
+        // open DB
+        CarDatabase carDatabase = Room.databaseBuilder(getApplicationContext(), CarDatabase.class,
+                Constants.CAR).build();
+/*                carDatabase = Room.databaseBuilder(requireActivity(),
+                        CarDatabase.class, Constants.CAR)
+                        .fallbackToDestructiveMigration()
+                        .build();*/
+
         // save new car
         ok.setOnClickListener(v -> {
-            // entrance into carDatabase
-            CarDatabase carDatabase =  Room.databaseBuilder(getApplicationContext(),
-                    CarDatabase.class, Constants.CAR).build();
-            // rebase db code
-/*            CarDatabase carDatabase = Room.databaseBuilder(getApplicationContext(),
-                    CarDatabase.class, Constants.CAR)
-                    .fallbackToDestructiveMigration()
-                    .build();*/
-            Date date = dateAndTime.getTime();
             Car car = new Car();
             car.setMaker (((EditText) findViewById(R.id.input_maker)).getText().toString());
             car.setModel (((EditText) findViewById(R.id.input_model)).getText().toString());
@@ -68,11 +69,15 @@ public class AddCarActivity extends AppCompatActivity {
             //LocalDate date = LocalDate.parse(findViewById(R.id.input_insurance_run_out_date));
             //car.setInsuranceRunOutDate(date);
             car.setInsuranceRunOutDate (((EditText) findViewById(R.id.input_insurance_run_out_date)).getText().toString());
+
+            // add new car
             success = CarUtil.addNewCar(car, carDatabase);
             if(success) {
                 this.finish();
             }
         });
+
+        // cancel
         cancelAdd.setOnClickListener(v -> finish());
     }
 
