@@ -1,5 +1,6 @@
 package com.mydiploma.autohelper.ui.car;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -15,11 +16,19 @@ import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.entity.Car;
 import com.mydiploma.autohelper.util.CarUtil;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CarInfo extends AppCompatActivity {
     CarDatabase carDatabase;
     CarDao carDao;
     Car car;
     boolean success;
+    @SuppressLint("SimpleDateFormat") SimpleDateFormat DateFor
+            = new SimpleDateFormat(Constants.DATE_PATTERN);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +101,8 @@ public class CarInfo extends AppCompatActivity {
         viewForColor.setText(car.getColor());
         viewForTransmission.setText(car.getTransmission());
         viewForProductionYear.setText(String.valueOf(car.getProductionYear()));
-        viewForInsuranceRunOutDate.setText(car.getInsuranceRunOutDate().toString());
+        Date date = car.getInsuranceRunOutDate();
+        viewForInsuranceRunOutDate.setText(DateFor.format(date));
         viewForCurrentOilBrand.setText(car.getCurrentOilBrand());
     }
 
