@@ -1,5 +1,6 @@
 package com.mydiploma.autohelper.ui.car;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,11 +15,16 @@ import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.entity.SparePart;
 import com.mydiploma.autohelper.util.SparePartUtil;
 
+import java.text.SimpleDateFormat;
+
 public class SparePartInfo extends AppCompatActivity {
     CarDatabase carDatabase;
     SparePartDao sparePartDao;
     SparePart sparePart;
     boolean success;
+    @SuppressLint("SimpleDateFormat")
+    SimpleDateFormat DateFor
+            = new SimpleDateFormat(Constants.DATE_PATTERN);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +78,7 @@ public class SparePartInfo extends AppCompatActivity {
         // place info to text views
         viewForSparePartType.setText(sparePart.getType());
         viewForSparePartMaker.setText(sparePart.getMaker());
-        viewForSparePartInstallationDate.setText(String.valueOf(sparePart.getInstallationDate()));
+        viewForSparePartInstallationDate.setText(DateFor.format(sparePart.getInstallationDate()));
     }
 
 }

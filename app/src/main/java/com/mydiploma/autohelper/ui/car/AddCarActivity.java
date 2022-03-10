@@ -8,7 +8,6 @@ import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
@@ -18,13 +17,12 @@ import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.dao.CarDao;
 import com.mydiploma.autohelper.database.CarDatabase;
 import com.mydiploma.autohelper.entity.Car;
+
 import java.util.Calendar;
-import java.util.Date;
 
 public class AddCarActivity extends AppCompatActivity {
     boolean success;
     Calendar dateAndTime = Calendar.getInstance();
-    TextView currentDateTime;
     static CarDao carDao;
 
     //Button button = findViewById(R.id.dateButton);
@@ -90,8 +88,6 @@ public class AddCarActivity extends AppCompatActivity {
         car.setColor (((EditText) findViewById(R.id.input_color)).getText().toString());
         car.setProductionYear (Integer.parseInt(((EditText) findViewById(R.id.input_production_year)).getText().toString()));
         car.setCurrentOilBrand (((EditText) findViewById(R.id.input_current_oil_brand)).getText().toString());
-        //LocalDate date = LocalDate.parse(findViewById(R.id.input_insurance_run_out_date));
-         //car.setInsuranceRunOutDate(date);
         car.setInsuranceRunOutDate(dateAndTime.getTime());
         // carSaveThread to save car into db
         carDao = carDatabase.carDao();

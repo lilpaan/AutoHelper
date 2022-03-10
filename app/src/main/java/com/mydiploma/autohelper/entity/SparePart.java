@@ -1,32 +1,25 @@
 package com.mydiploma.autohelper.entity;
 
-import static androidx.room.ForeignKey.CASCADE;
-
-import androidx.core.location.GnssStatusCompat;
-import androidx.room.ColumnInfo;
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import com.mydiploma.autohelper.Constants;
-
+import java.util.Date;
 import java.util.Objects;
-@Entity/*(foreignKeys ={
-        @ForeignKey(onDelete = CASCADE,entity = Car.class,
-                parentColumns = Constants.ID,childColumns = Constants.CAR_ID_IN_SPARE_PART)})*/
+
+@Entity
 public class SparePart {
     @PrimaryKey(autoGenerate = true)
     long id;
     long carID;
     String type;
     String maker;
-    String installationDate;
+    Date installationDate;
 
     public SparePart() {
     }
 
-    public SparePart(long id, long carID, String type, String maker, String installationDate) {
+    public SparePart(long id, long carID, String type, String maker, Date installationDate) {
         this.id = id;
         this.carID = carID;
         this.type = type;
@@ -66,11 +59,11 @@ public class SparePart {
         this.maker = maker;
     }
 
-    public String getInstallationDate() {
+    public Date getInstallationDate() {
         return installationDate;
     }
 
-    public void setInstallationDate(String installationDate) {
+    public void setInstallationDate(Date installationDate) {
         this.installationDate = installationDate;
     }
 
@@ -87,6 +80,7 @@ public class SparePart {
         return Objects.hash(id, carID, type, maker, installationDate);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "SparePart{" +
@@ -94,8 +88,8 @@ public class SparePart {
                 ", carID=" + carID +
                 ", type='" + type + '\'' +
                 ", maker='" + maker + '\'' +
-                ", installationDate='" + installationDate + '\'' +
+                ", installationDate=" + installationDate +
                 '}';
     }
-    
+
 }

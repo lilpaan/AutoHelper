@@ -10,7 +10,7 @@ import com.mydiploma.autohelper.dao.SparePartDao;
 import com.mydiploma.autohelper.entity.Car;
 import com.mydiploma.autohelper.entity.SparePart;
 
-@Database(entities = {Car.class, SparePart.class}, version = 7)
+@Database(entities = {Car.class, SparePart.class}, version = 8)
 @TypeConverters({DateConverter.class})
 public abstract class CarDatabase extends RoomDatabase {
     public abstract CarDao carDao();
