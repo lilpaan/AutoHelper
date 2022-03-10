@@ -143,11 +143,6 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
             }
 
         }
-        if(!response.getCollection().getChildren().isEmpty()) {
-            //
-
-        }
-
     }
 
     @Override
@@ -249,7 +244,12 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
 
             if (addresses != null) {
                 android.location.Address returnedAddress = addresses.get(0);
-                city = returnedAddress.getAdminArea();
+                //city = returnedAddress.getAdminArea();
+                city = returnedAddress.getSubAdminArea();
+                String citystreet = returnedAddress.getThoroughfare();
+                System.out.println(citystreet);
+                String cityNomer = returnedAddress.getSubThoroughfare();
+                System.out.println(cityNomer);
             } else {
                 city = "Error";
             }
