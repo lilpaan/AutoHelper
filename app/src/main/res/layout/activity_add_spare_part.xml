@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.car.AddSparePartActivity"
     android:background="@color/blueForBack">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
