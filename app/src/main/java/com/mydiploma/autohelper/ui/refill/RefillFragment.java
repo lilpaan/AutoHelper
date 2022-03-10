@@ -2,6 +2,7 @@ package com.mydiploma.autohelper.ui.refill;
 
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,13 @@ import androidx.fragment.app.Fragment;
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
+import com.yandex.mapkit.GeoObject;
 import com.yandex.mapkit.GeoObjectCollection;
 import com.yandex.mapkit.MapKit;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
+import com.yandex.mapkit.layers.GeoObjectTapEvent;
+import com.yandex.mapkit.layers.GeoObjectTapListener;
 import com.yandex.mapkit.layers.ObjectEvent;
 import com.yandex.mapkit.map.CameraListener;
 import com.yandex.mapkit.map.CameraPosition;
@@ -25,16 +29,23 @@ import com.yandex.mapkit.map.CameraUpdateReason;
 import com.yandex.mapkit.map.CompositeIcon;
 import com.yandex.mapkit.map.IconStyle;
 import com.yandex.mapkit.map.Map;
+import com.yandex.mapkit.map.MapObject;
 import com.yandex.mapkit.map.MapObjectCollection;
+import com.yandex.mapkit.map.MapObjectTapListener;
 import com.yandex.mapkit.map.RotationType;
 import com.yandex.mapkit.map.VisibleRegionUtils;
 import com.yandex.mapkit.mapview.MapView;
+import com.yandex.mapkit.search.Address;
+import com.yandex.mapkit.search.BusinessResultMetadata;
+import com.yandex.mapkit.search.Category;
 import com.yandex.mapkit.search.Response;
 import com.yandex.mapkit.search.SearchFactory;
 import com.yandex.mapkit.search.SearchManager;
 import com.yandex.mapkit.search.SearchManagerType;
+import com.yandex.mapkit.search.SearchMetadata;
 import com.yandex.mapkit.search.SearchOptions;
 import com.yandex.mapkit.search.Session;
+import com.yandex.mapkit.search.ToponymObjectMetadata;
 import com.yandex.mapkit.user_location.UserLocationLayer;
 import com.yandex.mapkit.user_location.UserLocationObjectListener;
 import com.yandex.mapkit.user_location.UserLocationView;
@@ -43,10 +54,13 @@ import com.yandex.runtime.image.ImageProvider;
 import com.yandex.runtime.network.NetworkError;
 import com.yandex.runtime.network.RemoteError;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class RefillFragment extends Fragment implements UserLocationObjectListener,
-        Session.SearchListener, CameraListener {
+        Session.SearchListener, CameraListener, MapObjectTapListener, GeoObjectTapListener {
     private FragmentNotificationsBinding binding;
     MapView mapView;
     private SearchManager searchManager;
@@ -68,6 +82,8 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         mapView.getMap().move(new CameraPosition(new Point(0, 0), 14,
                 0, 0));
         mapView.getMap().addCameraListener(this);
+        mapView.getMap().addTapListener(this);
+        Geocoder geocoder = new Geocoder(requireActivity(), Locale.getDefault());
         findSuccess = findRefill(searchManager, mapView);
         if (findSuccess) {
             showSuccess = showRefillLocations(mapKit);
@@ -97,7 +113,6 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
                         .setZIndex(1f)
                         .setScale(0.5f)
         );
-
         userLocationView.getAccuracyCircle().setFillColor(Color.BLUE & 0x99ffffff);
     }
 
@@ -126,7 +141,13 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
                         resultLocation,
                         ImageProvider.fromResource(requireActivity(), R.drawable.refill_tag));
             }
+
         }
+        if(!response.getCollection().getChildren().isEmpty()) {
+            //
+
+        }
+
     }
 
     @Override
@@ -148,7 +169,7 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
                     Constants.YANDEX_REFILL,
                     VisibleRegionUtils.toPolygon(mapView.getMap().getVisibleRegion()),
                     new SearchOptions(),
-                    (Session.SearchListener) this);
+                    this);
             findSuccess = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -198,6 +219,45 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
 
     @Override
     public void onObjectUpdated(@NonNull UserLocationView view, @NonNull ObjectEvent event) {
+    }
+
+    @Override
+    public boolean onMapObjectTap(@NonNull MapObject mapObject, @NonNull Point point) {
+        //getAddress();
+        System.out.println("хз как но ты зашёл сюда");
+        return false;
+    }
+
+    @Override
+    public boolean onObjectTap(@NonNull GeoObjectTapEvent geoObjectTapEvent) {
+        GeoObject geoObject = geoObjectTapEvent.getGeoObject();
+        System.out.println(geoObject.getName());
+        System.out.println(getAddress(geoObject));
+        //getAddress();
+      //  onMapObjectTap(geoObjectTapEvent., mapView.getMap());
+        return false;
+    }
+
+    private String getAddress(GeoObject geoObject) {
+        Geocoder geocoder = new Geocoder(requireActivity(), Locale.getDefault());
+        String city;
+        List <com.yandex.mapkit.geometry.Geometry> hehe = geoObject.getGeometry();
+        double latitude = Objects.requireNonNull(hehe.get(0).getPoint()).getLatitude();
+        double longitude = Objects.requireNonNull(hehe.get(0).getPoint()).getLongitude();
+        try {
+            List<android.location.Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+
+            if (addresses != null) {
+                android.location.Address returnedAddress = addresses.get(0);
+                city = returnedAddress.getAdminArea();
+            } else {
+                city = "Error";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            city = "Error";
+        }
+        return city;
     }
 
 }
