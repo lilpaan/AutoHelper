@@ -17,6 +17,7 @@ public class Constants {
     public static final String CAR = "car";
     public static final String BUSINESS_CARD = "businessCard";
     public static final String DISCOUNT_CARD = "discountCard";
+    public static final String REFILL = "refill";
     public static final String ID = "id";
 
     // sql queries for car

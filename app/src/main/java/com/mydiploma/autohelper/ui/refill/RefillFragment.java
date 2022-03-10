@@ -1,20 +1,32 @@
 package com.mydiploma.autohelper.ui.refill;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
+import com.mydiploma.autohelper.dao.RefillDao;
+import com.mydiploma.autohelper.database.RefillDatabase;
+import com.mydiploma.autohelper.database.RefillDatabase;
 import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
+import com.mydiploma.autohelper.entity.Refill;
 import com.yandex.mapkit.GeoObject;
 import com.yandex.mapkit.GeoObjectCollection;
 import com.yandex.mapkit.MapKit;
@@ -35,17 +47,12 @@ import com.yandex.mapkit.map.MapObjectTapListener;
 import com.yandex.mapkit.map.RotationType;
 import com.yandex.mapkit.map.VisibleRegionUtils;
 import com.yandex.mapkit.mapview.MapView;
-import com.yandex.mapkit.search.Address;
-import com.yandex.mapkit.search.BusinessResultMetadata;
-import com.yandex.mapkit.search.Category;
 import com.yandex.mapkit.search.Response;
 import com.yandex.mapkit.search.SearchFactory;
 import com.yandex.mapkit.search.SearchManager;
 import com.yandex.mapkit.search.SearchManagerType;
-import com.yandex.mapkit.search.SearchMetadata;
 import com.yandex.mapkit.search.SearchOptions;
 import com.yandex.mapkit.search.Session;
-import com.yandex.mapkit.search.ToponymObjectMetadata;
 import com.yandex.mapkit.user_location.UserLocationLayer;
 import com.yandex.mapkit.user_location.UserLocationObjectListener;
 import com.yandex.mapkit.user_location.UserLocationView;
@@ -60,16 +67,29 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class RefillFragment extends Fragment implements UserLocationObjectListener,
-        Session.SearchListener, CameraListener, MapObjectTapListener, GeoObjectTapListener {
+        Session.SearchListener, CameraListener, GeoObjectTapListener {
     private FragmentNotificationsBinding binding;
     MapView mapView;
+    Dialog refillInfo;
     private SearchManager searchManager;
     private UserLocationLayer userLocationLayer;
     boolean findSuccess;
     boolean showSuccess;
+    RefillDao refillDao;
+    boolean isRefillAdded;
+    RefillDatabase refillDatabase;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        // open DB
+         refillDatabase = Room.databaseBuilder(requireContext(), RefillDatabase.class,
+                Constants.REFILL).build();
+/*                refillDatabase = Room.databaseBuilder(requireContext(),
+                        RefillDatabase.class, Constants.REFILL)
+                        .fallbackToDestructiveMigration()
+                        .build();*/
+
         // init factories
         MapKitFactory.initialize(requireActivity());
         SearchFactory.initialize(requireActivity());
@@ -141,7 +161,6 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
                         resultLocation,
                         ImageProvider.fromResource(requireActivity(), R.drawable.refill_tag));
             }
-
         }
     }
 
@@ -217,25 +236,56 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
     }
 
     @Override
-    public boolean onMapObjectTap(@NonNull MapObject mapObject, @NonNull Point point) {
-        //getAddress();
-        System.out.println("хз как но ты зашёл сюда");
-        return false;
-    }
-
-    @Override
     public boolean onObjectTap(@NonNull GeoObjectTapEvent geoObjectTapEvent) {
         GeoObject geoObject = geoObjectTapEvent.getGeoObject();
         System.out.println(geoObject.getName());
-        System.out.println(getAddress(geoObject));
-        //getAddress();
-      //  onMapObjectTap(geoObjectTapEvent., mapView.getMap());
+        if (geoObject.getName() == null) {
+            return false;
+        }
+        refillInfo = new Dialog(getActivity());
+        refillInfo.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        refillInfo.setContentView(R.layout.refill_info);
+        // for dialog design
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        TextView refillName = refillInfo.findViewById(R.id.view_for_refill_name);
+        TextView refillAddress = refillInfo.findViewById(R.id.view_for_refill_address);
+        refillAddress.setText(getAddress(geoObject));
+        refillName.setText(geoObject.getName());
+        lp.copyFrom(refillInfo.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        refillInfo.getWindow().setAttributes(lp);
+        refillInfo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        refillInfo.show();
+        Button addToFav = refillInfo.findViewById(R.id.add_refill);
+        addToFav.setOnClickListener(v -> {
+            Refill refill = new Refill();
+            refill.setName(geoObject.getName());
+            refill.setAddress(refillAddress.getText().toString());
+            // carSaveThread to save refill into db
+            refillDao = refillDatabase.refillDao();
+            Thread carSaveThread = new Thread() {
+                @Override
+                public void run() {
+                    refillDao.insert(refill);
+                }
+            };
+            try {
+                carSaveThread.start();
+                isRefillAdded = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                isRefillAdded = false;
+            }
+            refillInfo.cancel();
+        });
         return false;
     }
 
     private String getAddress(GeoObject geoObject) {
         Geocoder geocoder = new Geocoder(requireActivity(), Locale.getDefault());
         String city;
+        String requireAddress;
         List <com.yandex.mapkit.geometry.Geometry> hehe = geoObject.getGeometry();
         double latitude = Objects.requireNonNull(hehe.get(0).getPoint()).getLatitude();
         double longitude = Objects.requireNonNull(hehe.get(0).getPoint()).getLongitude();
@@ -244,20 +294,20 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
 
             if (addresses != null) {
                 android.location.Address returnedAddress = addresses.get(0);
-                //city = returnedAddress.getAdminArea();
                 city = returnedAddress.getSubAdminArea();
                 String citystreet = returnedAddress.getThoroughfare();
                 System.out.println(citystreet);
                 String cityNomer = returnedAddress.getSubThoroughfare();
                 System.out.println(cityNomer);
+                requireAddress = city + "\n" + citystreet + "\n" + cityNomer;
             } else {
-                city = "Error";
+                requireAddress = "Error";
             }
         } catch (IOException e) {
             e.printStackTrace();
-            city = "Error";
+            requireAddress = "Error";
         }
-        return city;
+        return requireAddress;
     }
 
 }

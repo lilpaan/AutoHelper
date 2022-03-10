@@ -55,6 +55,8 @@
     <!--yandex api-->
     <string name="api_key_yandex" tools:ignore="TypographyDashes">
         454f475e-9c32-495c-befa-f45546f51016</string>
+    <string name="refill_info_title">АЗС</string>
+    <string name="add_to_fav">Добавить в избранное</string>
 
     <!--Strings for add card-->
     <string name="question_about_type">Выберите тип</string>
