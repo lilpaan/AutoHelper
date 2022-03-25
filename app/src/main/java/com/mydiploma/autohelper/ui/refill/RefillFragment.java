@@ -99,7 +99,7 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         mapView = root.findViewById(R.id.mapview);
         MapKit mapKit = MapKitFactory.getInstance();
         mapView.getMap().setRotateGesturesEnabled(false);
-        mapView.getMap().move(new CameraPosition(new Point(0, 0), 14,
+        mapView.getMap().move(new CameraPosition(new Point(0, 0), 15,
                 0, 0));
         mapView.getMap().addCameraListener(this);
         mapView.getMap().addTapListener(this);
