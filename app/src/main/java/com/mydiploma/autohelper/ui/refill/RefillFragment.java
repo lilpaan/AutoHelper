@@ -1,6 +1,7 @@
 package com.mydiploma.autohelper.ui.refill;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.drawable.ColorDrawable;
@@ -12,7 +13,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +24,10 @@ import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
 import com.mydiploma.autohelper.dao.RefillDao;
 import com.mydiploma.autohelper.database.RefillDatabase;
-import com.mydiploma.autohelper.database.RefillDatabase;
 import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
 import com.mydiploma.autohelper.entity.Refill;
+import com.mydiploma.autohelper.ui.car.AddCarActivity;
+import com.mydiploma.autohelper.ui.car.CarInfo;
 import com.yandex.mapkit.GeoObject;
 import com.yandex.mapkit.GeoObjectCollection;
 import com.yandex.mapkit.MapKit;
@@ -41,9 +42,7 @@ import com.yandex.mapkit.map.CameraUpdateReason;
 import com.yandex.mapkit.map.CompositeIcon;
 import com.yandex.mapkit.map.IconStyle;
 import com.yandex.mapkit.map.Map;
-import com.yandex.mapkit.map.MapObject;
 import com.yandex.mapkit.map.MapObjectCollection;
-import com.yandex.mapkit.map.MapObjectTapListener;
 import com.yandex.mapkit.map.RotationType;
 import com.yandex.mapkit.map.VisibleRegionUtils;
 import com.yandex.mapkit.mapview.MapView;
@@ -81,7 +80,6 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         // open DB
          refillDatabase = Room.databaseBuilder(requireContext(), RefillDatabase.class,
                 Constants.REFILL).build();
@@ -96,6 +94,7 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         searchManager = SearchFactory.getInstance().createSearchManager(SearchManagerType.COMBINED);
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        Button favouriteRefillsButton = root.findViewById(R.id.favourite_refills);
         mapView = root.findViewById(R.id.mapview);
         MapKit mapKit = MapKitFactory.getInstance();
         mapView.getMap().setRotateGesturesEnabled(false);
@@ -103,7 +102,6 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
                 0, 0));
         mapView.getMap().addCameraListener(this);
         mapView.getMap().addTapListener(this);
-        Geocoder geocoder = new Geocoder(requireActivity(), Locale.getDefault());
         findSuccess = findRefill(searchManager, mapView);
         if (findSuccess) {
             showSuccess = showRefillLocations(mapKit);
@@ -113,6 +111,12 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         } else {
             Toast.makeText(requireActivity(), Constants.FIND_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
         }
+
+        // move to fav refills list
+        favouriteRefillsButton.setOnClickListener(v -> {
+            Intent intentToFavRefills = new Intent(root.getContext(), FavouriteRefills.class);
+            startActivity(intentToFavRefills);
+        });
 
         return root;
     }

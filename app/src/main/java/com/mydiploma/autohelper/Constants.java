@@ -48,6 +48,9 @@ public class Constants {
     public static final String SQL_SPARE_PART_BY_ID = "SELECT * FROM sparePart WHERE id = :id";
     public static final String SQL_DELETE_SPARE_PART = "DELETE FROM sparePart WHERE carID = :id";
 
+    // sql queries for refill
+    public static final String SQL_REFILL_TITLE_INFO = "SELECT id, name FROM refill";;
+
     // regex and date patterns
     public static final String DATE_PATTERN = "dd/MM/yyyy";
 

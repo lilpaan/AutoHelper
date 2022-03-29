@@ -20,6 +20,7 @@
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_business_card_info.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_car_info.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_discount_card_info.xml" value="0.25" />
+        <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_favourite_refills.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_intent_to_add_spare_part.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/activity_main2.xml" value="0.25" />
@@ -42,6 +43,7 @@
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/fragment_notifications.xml" value="0.264" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/refill_info.xml" value="0.25" />
+        <entry key="..\:/learn/diploma/app/app/src/main/res/layout/refill_item.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/spare_part_activity.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/spare_part_item.xml" value="0.25" />
         <entry key="..\:/learn/diploma/app/app/src/main/res/layout/spinner_item.xml" value="0.25" />

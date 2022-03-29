@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.refill.FavouriteRefills"
+    android:background="@color/blueForBack">
+    <ScrollView
+        android:id="@+id/refill_list_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/finish_refill"
+                android:layout_width="109dp"
+                android:layout_height="105dp"
+                android:background="@drawable/back"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/fav_refills_text" />
+
+            <ListView
+                android:id="@+id/refill_list_list_view"
+                android:paddingTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="550dp"
+                android:divider="@null"
+                android:dividerHeight="8dp"
+                tools:ignore="NestedScrolling" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

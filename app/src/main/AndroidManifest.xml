@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoHelper">
         <activity
+            android:name=".ui.refill.FavouriteRefills"
+            android:exported="false" />
+        <activity
             android:name=".ui.refill.myTest"
             android:exported="false" />
         <activity
