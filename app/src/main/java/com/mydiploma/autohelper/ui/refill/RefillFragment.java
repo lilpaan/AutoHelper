@@ -261,7 +261,13 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         refillInfo.getWindow().setAttributes(lp);
         refillInfo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         refillInfo.show();
+        Button closeDialog = refillInfo.findViewById(R.id.close_refill_info_button);
         Button addToFav = refillInfo.findViewById(R.id.add_refill);
+
+        closeDialog.setOnClickListener(v -> {
+            refillInfo.cancel();
+        });
+
         addToFav.setOnClickListener(v -> {
             Refill refill = new Refill();
             refill.setName(geoObject.getName());

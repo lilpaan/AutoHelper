@@ -46,15 +46,15 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-thin"
                 android:gravity="center"
-                android:text="НАЗВАНИЕ"
+                android:text= "@string/refill_info_name"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="23sp" />
 
             <TextView
                 android:id="@+id/view_for_refill_name"
                 android:layout_width="190dp"
                 android:layout_height="100dp"
-                android:fontFamily="sans-serif-thin"
+                android:fontFamily="@font/arsenal"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
@@ -62,7 +62,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
             android:background="@drawable/car_info_item"
             android:orientation="horizontal">
@@ -71,23 +71,23 @@
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-thin"
                 android:gravity="center"
-                android:text="АДРЕС"
+                android:text="@string/address"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="26sp" />
 
             <TextView
                 android:id="@+id/view_for_refill_address"
                 android:layout_width="190dp"
-                android:layout_height="100dp"
-                android:fontFamily="sans-serif-thin"
-                android:gravity="start|fill_vertical"
+                android:layout_height="120dp"
+                android:fontFamily="@font/arsenal"
+                android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
         </LinearLayout>
+
     </LinearLayout>
 
     <Button
@@ -108,7 +108,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/add_to_fav"
         app:layout_constraintEnd_toEndOf="parent"
