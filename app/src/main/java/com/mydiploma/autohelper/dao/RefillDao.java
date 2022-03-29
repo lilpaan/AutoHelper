@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.mydiploma.autohelper.Constants;
+import com.mydiploma.autohelper.entity.Car;
 import com.mydiploma.autohelper.entity.Refill;
 
 import java.util.List;
@@ -16,6 +17,9 @@ public interface RefillDao {
 
     @Query(Constants.SQL_REFILL_TITLE_INFO)
     List<Refill> getRefillName();
+
+    @Query(Constants.SQL_REFILL_BY_ID)
+    Refill getById(long id);
 
     @Insert
     void insert(Refill refill);

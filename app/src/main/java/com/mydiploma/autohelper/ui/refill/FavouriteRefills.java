@@ -1,7 +1,9 @@
 package com.mydiploma.autohelper.ui.refill;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,12 +42,16 @@ public class FavouriteRefills extends AppCompatActivity {
         refillAdapter = new RefillAdapter(getApplicationContext(), refills);
         refillListView.setAdapter(refillAdapter);
 
-/*        // for clickable items
+        // finishCarButton for finish activity
+        Button finishCarButton = findViewById(R.id.finish_refill);
+        finishCarButton.setOnClickListener(v -> finish());
+
+        // for clickable items
         refillListView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intentToCarInfo = new Intent(getApplicationContext(), RefillInfo.class);
             intentToCarInfo.putExtra(Constants.ID, refillAdapter.getItem(position).getId());
             startActivity(intentToCarInfo);
-        });*/
+        });
 
 
     }

@@ -3,6 +3,7 @@ package com.mydiploma.autohelper.util;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mydiploma.autohelper.dao.RefillDao;
+import com.mydiploma.autohelper.dao.SparePartDao;
 import com.mydiploma.autohelper.database.RefillDatabase;
 import com.mydiploma.autohelper.entity.Refill;
 
@@ -16,16 +17,18 @@ public class RefillUtil extends AppCompatActivity {
         Thread deleteRefillThread = new Thread() {
             @Override
             public void run() {
-                try {
-                    RefillDao refillDao = refillDatabase.refillDao();
-                    refillDao.delete(refill);
-                    isRefillDeleted = true;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    isRefillDeleted = false;
-                }
+                RefillDao refillDao = refillDatabase.refillDao();
+                refillDao.delete(refill);
             }
         };
+        deleteRefillThread.start();
+        try {
+            deleteRefillThread.join();
+            isRefillDeleted = true;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            isRefillDeleted = false;
+        }
         return isRefillDeleted;
     }
 

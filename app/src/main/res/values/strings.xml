@@ -58,6 +58,9 @@
     <string name="refill_info_title">АЗС</string>
     <string name="add_to_fav">Добавить в избранное</string>
 
+    <!--refill-->
+    <string name="refill_info_name">Наименование</string>
+
     <!--Strings for add card-->
     <string name="question_about_type">Выберите тип</string>
     <string name="add_card_title">Добавить карту</string>
@@ -68,12 +71,6 @@
     <string name="card_number">Номер</string>
     <string name="card_barcode">Штрих-код</string>
     <string name="card_nfc">NFC</string>
-    <string-array name="catNames">
-        <item>Барсик</item>
-        <item>Мурзик</item>
-        <item>Васька</item>
-        <item>Рыжик</item>
-    </string-array>
     <!--Strings for maps-->
     <string name="not_found_error_message">Not found</string>
     <string name="network_error_message">Network error</string>

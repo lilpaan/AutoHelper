@@ -26,8 +26,8 @@ public class BusinessCardInfo extends AppCompatActivity {
         Thread threadToGetCarInfo = new Thread(){
             @Override
             public void run() {
-                businessCardDatabase = Room.databaseBuilder(getApplicationContext(), BusinessCardDatabase.class,
-                        Constants.BUSINESS_CARD).build();
+                businessCardDatabase = Room.databaseBuilder(getApplicationContext(),
+                        BusinessCardDatabase.class, Constants.BUSINESS_CARD).build();
                 businessCardDao = businessCardDatabase.businessCardDao();
                 businessCard = businessCardDao.getById(id);
             }
