@@ -26,8 +26,6 @@ import com.mydiploma.autohelper.dao.RefillDao;
 import com.mydiploma.autohelper.database.RefillDatabase;
 import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
 import com.mydiploma.autohelper.entity.Refill;
-import com.mydiploma.autohelper.ui.car.AddCarActivity;
-import com.mydiploma.autohelper.ui.car.CarInfo;
 import com.yandex.mapkit.GeoObject;
 import com.yandex.mapkit.GeoObjectCollection;
 import com.yandex.mapkit.MapKit;
@@ -263,11 +261,7 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
         refillInfo.show();
         Button closeDialog = refillInfo.findViewById(R.id.close_refill_info_button);
         Button addToFav = refillInfo.findViewById(R.id.add_refill);
-
-        closeDialog.setOnClickListener(v -> {
-            refillInfo.cancel();
-        });
-
+        closeDialog.setOnClickListener(v -> refillInfo.cancel());
         addToFav.setOnClickListener(v -> {
             Refill refill = new Refill();
             refill.setName(geoObject.getName());
@@ -289,27 +283,27 @@ public class RefillFragment extends Fragment implements UserLocationObjectListen
             }
             refillInfo.cancel();
         });
-        return false;
+        return true;
     }
 
     private String getAddress(GeoObject geoObject) {
         Geocoder geocoder = new Geocoder(requireActivity(), Locale.getDefault());
         String city;
         String requireAddress;
-        List <com.yandex.mapkit.geometry.Geometry> hehe = geoObject.getGeometry();
-        double latitude = Objects.requireNonNull(hehe.get(0).getPoint()).getLatitude();
-        double longitude = Objects.requireNonNull(hehe.get(0).getPoint()).getLongitude();
+        List <com.yandex.mapkit.geometry.Geometry> listGeometry = geoObject.getGeometry();
+        double latitude = Objects.requireNonNull(listGeometry.get(0).getPoint()).getLatitude();
+        double longitude = Objects.requireNonNull(listGeometry.get(0).getPoint()).getLongitude();
         try {
             List<android.location.Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
 
             if (addresses != null) {
                 android.location.Address returnedAddress = addresses.get(0);
                 city = returnedAddress.getSubAdminArea();
-                String citystreet = returnedAddress.getThoroughfare();
-                System.out.println(citystreet);
-                String cityNomer = returnedAddress.getSubThoroughfare();
-                System.out.println(cityNomer);
-                requireAddress = city + "\n" + citystreet + "\n" + cityNomer;
+                String cityStreet = returnedAddress.getThoroughfare();
+                System.out.println(cityStreet);
+                String cityNumber = returnedAddress.getSubThoroughfare();
+                System.out.println(cityNumber);
+                requireAddress = city + "\n" + cityStreet + "\n" + cityNumber;
             } else {
                 requireAddress = "Error";
             }

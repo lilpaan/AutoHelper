@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
@@ -77,7 +78,7 @@ public class CarFragment extends Fragment {
         // button to add new car
         addCarButton.setOnClickListener(v -> {
             Intent intentToAddCar = new Intent(root.getContext(), AddCarActivity.class);
-            startActivity(intentToAddCar);
+            startActivityForResult(intentToAddCar, 1);
         });
         return root;
     }
@@ -88,4 +89,12 @@ public class CarFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        cars = CarUtil.showUserCar(carDatabase);
+        // configure adapter
+        carAdapter = new CarAdapter(requireContext(), cars);
+        carListView.setAdapter(carAdapter);
+        carListView.invalidateViews();
+    }
 }

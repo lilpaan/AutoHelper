@@ -47,6 +47,7 @@ public class AddCarActivity extends AppCompatActivity {
             // add new car
             success = addNewCar(carDatabase);
             if(success) {
+                setResult(1);
                 this.finish();
             }
         });
