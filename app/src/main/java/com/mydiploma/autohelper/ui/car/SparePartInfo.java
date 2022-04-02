@@ -50,6 +50,7 @@ public class SparePartInfo extends AppCompatActivity {
         delete.setOnClickListener(v -> {
             success = SparePartUtil.deleteSparePart(carDatabase, id);
             if(success) {
+                setResult(1);
                 finish();
             }
         });

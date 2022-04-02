@@ -63,6 +63,7 @@ public class CarInfo extends AppCompatActivity {
                     Constants.CAR).build();
             success = CarUtil.deleteCar(carDatabase, car);
             if (success) {
+                setResult(1);
                 finish();
             }
         });

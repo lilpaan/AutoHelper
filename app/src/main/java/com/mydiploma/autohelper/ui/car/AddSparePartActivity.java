@@ -52,6 +52,7 @@ public class AddSparePartActivity extends AppCompatActivity {
             // execute adding
             success = SparePartUtil.addSparePart(carDatabase, sparePart);
             if(success) {
+                setResult(1);
                 finish();
             }
         });

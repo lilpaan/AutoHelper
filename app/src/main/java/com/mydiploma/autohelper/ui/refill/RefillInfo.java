@@ -46,6 +46,7 @@ public class RefillInfo extends AppCompatActivity {
         delete.setOnClickListener(v -> {
             success = RefillUtil.deleteRefill(refillDatabase, refill);
             if (success) {
+                setResult(1);
                 finish();
             }
         });

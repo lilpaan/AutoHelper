@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
@@ -50,18 +51,23 @@ public class CardFragment extends Fragment {
     DiscountCard[] discountCards;
     TextView discountCardCountView;
     TextView businessCardCountView;
+    DiscountCardAdapter discountCardAdapter;
+    BusinessCardAdapter businessAdapter;
+    ListView businessListView;
+    ListView discountListView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        ListView businessListView = root.findViewById(R.id.added_business_card_list);
-        ListView discountListView = root.findViewById(R.id.added_discount_card_list);
+        businessListView = root.findViewById(R.id.added_business_card_list);
+        discountListView = root.findViewById(R.id.added_discount_card_list);
         LinearLayout discountCardList = root.findViewById(R.id.discount_card_list);
         LinearLayout businessCardList = root.findViewById(R.id.business_card_list);
         Button businessCardButton = root.findViewById(R.id.business_card_button);
         Button discountCardButton = root.findViewById(R.id.discount_card_button);
         Button addCard = root.findViewById(R.id.add_card_button);
+
         // thread to show business items
         Thread threadToShowBusinessCard = new Thread(){
             @Override
@@ -79,7 +85,7 @@ public class CardFragment extends Fragment {
             e.printStackTrace();
         }
         // init and set business adapter
-        BusinessCardAdapter businessAdapter= new BusinessCardAdapter(requireContext(), businessCards);
+        businessAdapter = new BusinessCardAdapter(requireContext(), businessCards);
         businessListView.setAdapter(businessAdapter);
         // for open business info
         businessListView.setOnItemClickListener((parent, view, position, id) -> {
@@ -121,6 +127,7 @@ public class CardFragment extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         // for show business cards count
         Thread threadToShowBusinessCount = new Thread(){
             @SuppressLint("SetTextI18n")
@@ -139,15 +146,18 @@ public class CardFragment extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         // init and set discount adapter
-        DiscountCardAdapter discountCardAdapter = new DiscountCardAdapter(requireActivity(), discountCards);
+        discountCardAdapter = new DiscountCardAdapter(requireActivity(), discountCards);
         discountListView.setAdapter(discountCardAdapter);
+
         // for open discount info
         discountListView.setOnItemClickListener((parent, view, position, id) -> {
             Intent discountIntent = new Intent(root.getContext(), DiscountCardInfo.class);
             discountIntent.putExtra(Constants.ID, discountCardAdapter.getItem(position).getId());
             startActivity(discountIntent);
         });
+
         // for show business list
         businessCardButton.setOnClickListener(v -> {
             businessCardButton.setTextColor(WHITE);
@@ -158,6 +168,7 @@ public class CardFragment extends Fragment {
             businessCardList.setVisibility(View.VISIBLE);
             discountCardList.setVisibility(View.GONE);
         });
+
         // for show discount list
         discountCardButton.setOnClickListener(v -> {
             discountCardButton.setTextColor(WHITE);
@@ -167,6 +178,7 @@ public class CardFragment extends Fragment {
             discountCardList.setVisibility(View.VISIBLE);
             businessCardList.setVisibility(View.GONE);
         });
+
         // for add new card
         addCard.setOnClickListener(v -> {
             // dialog with choosing card type
@@ -188,21 +200,22 @@ public class CardFragment extends Fragment {
             chooseDiscount = chooseCardType.findViewById(R.id.choose_discount_card_button);
             // if discount chose
             chooseDiscount.setOnClickListener(v1 -> {
-                Intent intent = new Intent(root.getContext(), AddDiscountCardActivity.class);
-                startActivity(intent);
+                Intent intentToAddDiscount = new Intent(root.getContext(), AddDiscountCardActivity.class);
+                startActivityForResult(intentToAddDiscount, 1);
                 chooseCardType.cancel();
             });
+
             chooseBusiness = chooseCardType.findViewById(R.id.choose_business_card_button);
             //if business chose
             chooseBusiness.setOnClickListener(v1 -> {
-                Intent intent = new Intent(root.getContext(), AddBusinessCardActivity.class);
-                startActivity(intent);
+                Intent intentToAddBusiness = new Intent(root.getContext(), AddBusinessCardActivity.class);
+                startActivityForResult(intentToAddBusiness, 1);
                 chooseCardType.cancel();
             });
+
             // show dialog
             chooseCardType.show();
         });
-
         return binding.getRoot();
     }
 
@@ -211,5 +224,17 @@ public class CardFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+/*    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        // update business card info
+        businessCards = businessCardDao.getBusinessCardTitle().toArray(new BusinessCard[0]);
+        businessAdapter = new BusinessCardAdapter(requireContext(), businessCards);
+        businessListView.setAdapter(businessAdapter);
+        businessListView.invalidateViews();
+
+        // update discount card info
+        discountCards = discountCardDao.getDiscountCardTitle().toArray(new DiscountCard[0]);
+    }*/
 
 }

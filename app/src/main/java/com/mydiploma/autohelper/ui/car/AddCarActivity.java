@@ -24,15 +24,12 @@ public class AddCarActivity extends AppCompatActivity {
     boolean success;
     Calendar dateAndTime = Calendar.getInstance();
     static CarDao carDao;
-
-    //Button button = findViewById(R.id.dateButton);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_car_activity);
         Button ok = findViewById(R.id.save_car_button);
         Button cancelAdd = findViewById(R.id.cancel_add_car_button);
-        //currentDateTime = findViewById(R.id.currentDateTime);
 
         // open DB
         CarDatabase carDatabase = Room.databaseBuilder(getApplicationContext(), CarDatabase.class,
@@ -90,6 +87,7 @@ public class AddCarActivity extends AppCompatActivity {
         car.setProductionYear (Integer.parseInt(((EditText) findViewById(R.id.input_production_year)).getText().toString()));
         car.setCurrentOilBrand (((EditText) findViewById(R.id.input_current_oil_brand)).getText().toString());
         car.setInsuranceRunOutDate(dateAndTime.getTime());
+
         // carSaveThread to save car into db
         carDao = carDatabase.carDao();
         Thread carSaveThread = new Thread() {

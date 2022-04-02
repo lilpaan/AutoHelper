@@ -17,15 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
 import com.mydiploma.autohelper.Constants;
 import com.mydiploma.autohelper.R;
+import com.mydiploma.autohelper.adapter.CarAdapter;
 import com.mydiploma.autohelper.dao.RefillDao;
 import com.mydiploma.autohelper.database.RefillDatabase;
 import com.mydiploma.autohelper.databinding.FragmentNotificationsBinding;
 import com.mydiploma.autohelper.entity.Refill;
+import com.mydiploma.autohelper.util.CarUtil;
 import com.yandex.mapkit.GeoObject;
 import com.yandex.mapkit.GeoObjectCollection;
 import com.yandex.mapkit.MapKit;

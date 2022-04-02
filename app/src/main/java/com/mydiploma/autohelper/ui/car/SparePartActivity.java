@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
@@ -19,14 +20,16 @@ public class SparePartActivity extends AppCompatActivity {
     CarDatabase carDatabase;
     SparePart[] spareParts;
     SparePartAdapter sparePartAdapter;
+    ListView sparePartListView;
+    long spareId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.spare_part_activity);
-        long spareId = getIntent().getLongExtra(Constants.ID, 0);
+        spareId = getIntent().getLongExtra(Constants.ID, 0);
         Button addSparePart = findViewById(R.id.add_spare_part_button);
-        ListView sparePartListView = findViewById(R.id.added_spare_part_list);
+        sparePartListView = findViewById(R.id.added_spare_part_list);
         Button finishSparePartButton = findViewById(R.id.finish_spare_part);
 
         // open DB
@@ -48,7 +51,7 @@ public class SparePartActivity extends AppCompatActivity {
         sparePartListView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intentToSparePart = new Intent(SparePartActivity.this, SparePartInfo.class);
             intentToSparePart.putExtra(Constants.ID, sparePartAdapter.getItem(position).getId());
-            startActivity(intentToSparePart);
+            startActivityForResult(intentToSparePart, 1);
         });
 
         // add spare part
@@ -56,11 +59,21 @@ public class SparePartActivity extends AppCompatActivity {
             Intent intentToAddSparePart
                     = new Intent(SparePartActivity.this, AddSparePartActivity.class);
             intentToAddSparePart.putExtra(Constants.ID, spareId);
-            startActivity(intentToAddSparePart);
+            startActivityForResult(intentToAddSparePart, 1);
         });
 
         // close activity
         finishSparePartButton.setOnClickListener(v -> finish());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        spareParts = SparePartUtil.showSparePart(carDatabase, spareId);
+        // configure adapter
+        sparePartAdapter = new SparePartAdapter(getApplicationContext(), spareParts);
+        sparePartListView.setAdapter(sparePartAdapter);
+        sparePartListView.invalidateViews();
     }
 
 }

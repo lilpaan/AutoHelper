@@ -47,11 +47,7 @@ public class AddBusinessCardActivity extends AppCompatActivity {
                 }
             };
             saveBusinessThread.start();
-
-/*            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.navigation_dashboard, getFragmentManager().findFragmentById(R.id.frag));
-            fragmentTransaction.commit(); */
-
+            setResult(1);
             finish();
         });
         cancelAdd.setOnClickListener(v -> finish());

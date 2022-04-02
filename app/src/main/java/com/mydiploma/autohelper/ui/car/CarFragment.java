@@ -64,7 +64,7 @@ public class CarFragment extends Fragment {
         carListView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intentToCarInfo = new Intent(root.getContext(), CarInfo.class);
             intentToCarInfo.putExtra(Constants.ID, carAdapter.getItem(position).getId());
-            startActivity(intentToCarInfo);
+            startActivityForResult(intentToCarInfo, 1);
         });
 
         carCount = CarUtil.getCarCount(carDatabase);
@@ -97,4 +97,5 @@ public class CarFragment extends Fragment {
         carListView.setAdapter(carAdapter);
         carListView.invalidateViews();
     }
+
 }
